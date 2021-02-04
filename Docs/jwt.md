@@ -36,9 +36,9 @@ Note: If you can't find this menu item it can be created as a URL-type menu item
 
 ## Accessing the SMIP GraphQL API remotely
 
-The main benefit of the SMIP GraphQL API is that it can be accessed from outside of the web application. In this section we will use a desktop GraphiQL client to first obtain a JWT token and then make remote queries across the web. [GraphiQL](https://www.electronjs.org/apps/graphiql) can be downloaded as a light-weight electron app client for multiple operating systems, including Windows, Mac, and Linux. In this tutorial we will be using the [Altair GraphQL Client](https://www.electronjs.org/apps/altair).
+The main benefit of the SMIP GraphQL API is that it can be accessed from outside of the web application. In this section we will use a desktop GraphQL client to first obtain a JWT token and then make remote queries across the web. [GraphiQL](https://www.electronjs.org/apps/graphiql) can be downloaded as a light-weight electron app client for multiple operating systems, including Windows, Mac, and Linux. For this tutorial we will be using the [Altair GraphQL Client](https://www.electronjs.org/apps/altair).
 
-You can perform all of these actions programmatically, see the [Samples folder](https://github.com/cesmii/API/tree/main/Samples) for details in a variety of programming languages.
+You can also perform all of these actions in code, using your programming language of choice, see the [Samples folder](https://github.com/cesmii/API/tree/main/Samples) for details in a variety of languages.
 
 ### Check if you have an Authenticator in Place
 
