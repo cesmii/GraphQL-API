@@ -11,12 +11,10 @@ The following query payload returns a list of Equipment Types (also known as SM 
 ```
 query equipmentTypeQuery {  
     equipmentTypes {  
-        nodes {  
-            displayName, 
-            subTypeOf {  
-                displayName 
-            }  
-        }  
+        displayName, 
+        subTypeOf {  
+            displayName 
+        }   
     } 
 }
 ```
@@ -28,11 +26,9 @@ The following query payload returns a list of Equipment instances in a given SMI
 ```
 query EquipmentListQuery { 
     equipments { 
-        nodes  { 
-            displayName, 
-            id 
-        }  
-    }  
+        displayName, 
+        id 
+    }   
 }
 ```
 
@@ -42,13 +38,11 @@ The following query payload returns a list of Locations in a given SMIP instance
 
 ```
 query placeQuery {  
-    places {    
-        nodes {     
+    places {        
+        displayName      
+        partOf {        
             displayName      
-            partOf {        
-                displayName      
-            }    
-        }  
+        }    
     }
 }
 ```
@@ -60,12 +54,10 @@ The following query payload returns a list of Attributes in a given SMIP instanc
 ```
 query AttributeQuery { 
     attributes { 
-        nodes  { 
-            displayName, 
-            id, 
-            partOfId, 
-            tagId
-        }  
+        displayName, 
+        id, 
+        partOfId, 
+        tagId 
     }  
 }
 ```
@@ -76,14 +68,11 @@ The following query payload returns a list of Time Series sample values for a gi
 
 ```
 query HistoryQuery {
-    getRawHistoryDataWithSampling(maxSamples: 10, ids: ["1690"], startTime: "2021-02-21 00:00:00+00", endTime: "2020-02-21 00:12:00+00") {
-        nodes {
-            id
-            status
-            stringvalue
-            dataType
-            ts
-        }
+    getRawHistoryDataWithSampling(maxSamples: 10, ids: ["1690"], startTime: "2021-02-20 00:00:00+00", endTime: "2021-02-21 00:12:00+00") {
+        id
+        floatvalue
+        dataType
+        ts
     }
 }
 ```
