@@ -1,10 +1,8 @@
-const fetch = require('node-fetch');
-
 /* Dependenices to install via npm
  - node-fetch
  Tested with Node.JS 12.6.3
 */
-
+const fetch = require('node-fetch');
 const instanceGraphQLEndpoint = "https://YOURINSTANCE.cesmii.net/graphql";
 
 /* You could opt to manually update the bearer token that you retreive from the Developer menu > GraphQL - Request Header token
