@@ -2,10 +2,10 @@
 
 a simple OPCUA sample client to demonstrate how to use the [node-opcua](https://github.com/node-opcua/node-opcua) SDK and send data to the SMIP via GraphQL.
 
-    * clone the repo
-    * enter the directory
-    * run `npm install`
-    * run `node ua-to-graphql.js`
+* clone the repo
+* enter the directory
+* run `npm install`
+* run `node ua-to-graphql.js`
 
 Note: This project was forked from https://github.com/node-opcua/node-opcua-sample -- which apparently has an old version of lodash with some security vulnerabilities. If you intend to use in production, you may wish to update the upstream repo, or try out other UA SDKs.
 
