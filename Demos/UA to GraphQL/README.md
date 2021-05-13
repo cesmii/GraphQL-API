@@ -1,5 +1,14 @@
 # UA-to-GraphQL Demo
 
+This is a super slim example demonstrating how an OPC UA client subscription can be bridged to the SMIP using GraphQL.
+
+## About the SMIP GraphQL Code
+
+A small subsection of sample code from CESMII's [Javascript sample](https://github.com/cesmii/API/tree/main/Samples/Javascript) was used to illustrate a basic GraphQL mutation. The full sample should be referenced, since it implements handling token expiry. 
+For this sample, you'll need a current Bearer token -- [see this doc for details](https://github.com/cesmii/API/blob/main/Docs/jwt.md).
+
+## About the UA Client
+
 A simple OPCUA sample client to demonstrate how to use the [node-opcua](https://github.com/node-opcua/node-opcua) SDK and send data to the SMIP via GraphQL.
 
 * clone the repo
