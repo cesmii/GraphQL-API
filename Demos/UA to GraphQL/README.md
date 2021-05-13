@@ -1,6 +1,6 @@
 # UA-to-GraphQL Demo
 
-This is a super slim example demonstrating how an OPC UA client subscription can be bridged to the SMIP using GraphQL.
+This is a super slim example demonstrating how an OPC UA client subscription can be bridged to the SMIP using GraphQL. Tested on NodeJS v12.22.
 
 ## About the SMIP GraphQL Code
 
