@@ -8,17 +8,20 @@ const {
 const fetch = require('node-fetch');
 
 //UA Server
-const endpointUrl = "opc.tcp://opcuademo.sterfive.com:26543";
-const nodeId = "ns=1;i=1002";
+const endpointUrl = "opc.tcp://milo.digitalpetri.com:62541/milo";	//https://github.com/digitalpetri/opc-ua-demo-server
+const nodeId = "ns=2;s=Dynamic/RandomFloat";
 
 //SMIP Instance
 //  Establish this info using your platform instance, see https://github.com/cesmii/API/blob/main/Docs/jwt.md
 const instanceGraphQLEndpoint = "https://demo.cesmii.net/graphql";
-var currentBearerToken = "Bearer GETTHISFROMYOURPLATFORMINSTANCE";
+
+var currentBearerToken = "Bearer GETBEARERTOKENFROMPLATFORMINSTANCE";
+
 const clientId = "demo";
 const clientSecret = "demo";
-const userName = "PLATFORMUSERTOWORKAS";
+const userName = "YOURUSERNAME";
 const role = "demo_owner";
+const attributeOrTagId = 893;	//See "Finding IDs" in https://github.com/cesmii/API/blob/main/Docs/mutations.md
 
 async function main() {
 
@@ -75,19 +78,17 @@ async function main() {
 
         monitoredItem.on("changed", function (dataValue) {
 
-                var newVal = dataValue.value.value;
-                console.log("New Value=", newVal);
-                //TODO: Make fix time stamp, need to see GraphQL response for debugging
+                var newVal = dataValue.value.value * 100;	//Multiplied by 100 for cooler looking trend lines
+				var newTS = makeUTCTimeStamp();
+                console.log("New Value=", newVal, "TimeStamp=", newTS);
                 var smpQuery = JSON.stringify({
                     query : `mutation {
                         replaceTimeSeriesRange(
                             input: {
-                              attributeOrTagId: "893"
+                              attributeOrTagId: "${attributeOrTagId}",
                               entries: [
-                                { timestamp: "2021-05-06T21:03:00Z", value: "${newVal}", status: "1" }
+                                { timestamp: "${newTS}", value: "${newVal}", status: "1" }
                               ]
-                              startTime: "2021-05-06"
-                              endTime: "2021-05-06"
                             }
                           ) {
                             clientMutationId
@@ -95,7 +96,7 @@ async function main() {
                           }
                     }`,
                 });
-
+				//console.log("Debug Query:", smpQuery);
                 performGraphQLRequest(smpQuery, instanceGraphQLEndpoint, currentBearerToken).then(function(res){
                     console.log("SMIP response: " + JSON.stringify(res));
                 });
@@ -145,8 +146,22 @@ async function performGraphQLRequest(query, endPoint, bearerToken) {
     if (bearerToken && bearerToken != "")
         opt.headers.Authorization = bearerToken;
     const response = await fetch(endPoint, opt);
-
+	//console.log("Debug Response:", response);
     return await response.json();
 
-    //TODO: Handle errors!
+    //TODO: Handle errors, including token expiry. See: https://github.com/cesmii/API/tree/main/Samples/Javascript
+}
+
+function makeUTCTimeStamp() {
+	//Must be like: 2021-05-11T15:03:00Z
+	var d = new Date();
+	var u = d.getUTCFullYear() + "-" + zeroLead(d.getUTCMonth()+1) + "-" + zeroLead(d.getUTCDate()) + "T" + zeroLead(d.getUTCHours()) + ":" + zeroLead(d.getUTCMinutes()) + ":" + zeroLead(d.getUTCSeconds()) + "Z";
+	return u;
+}
+
+function zeroLead(val) {
+	if (val < 10)
+		return "0" + val;
+	else
+		return val;
 }

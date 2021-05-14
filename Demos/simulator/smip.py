@@ -20,6 +20,7 @@ class graphql:
     def post(self, content):
         if self.current_bearer_token == "":
             self.current_bearer_token = self.get_bearer_token()
+        print("current token" + self.current_bearer_token);
         try:
             response = self.perform_graphql_request(content)
         except requests.exceptions.HTTPError as e:
@@ -74,4 +75,5 @@ class graphql:
                 }}
             """, True)
         jwt_claim = response['data']['authenticationValidation']['jwtClaim']
+        print("New token: {jwt_claim}")
         return f"Bearer {jwt_claim}"
