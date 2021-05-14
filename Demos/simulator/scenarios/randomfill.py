@@ -1,11 +1,7 @@
-from utils import mqtt_publish
+from utils import *
 
 import paho.mqtt.client as mqtt
 import time
-
-# def mqtt_publish(value, topic, mqtt_client):
-#     print (topic.capitalize() + " Value: " + str(value))
-#     mqtt_client.publish(topic, value)
 
 def simulate_randomfill(randomtanks, count_fill, lines, topic, mqtt_client):
     try:
