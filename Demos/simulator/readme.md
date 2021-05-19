@@ -21,9 +21,9 @@ The simulator is intended to act like an independent process unit, emitting data
 * **simulation-type**: the kind of simulation to perform, defaults to stepwise
   * stepwise: publishes each line of the config in a loop with a delay
   * random: determines the lowest and highest number in the config and publishes a random number in that range in a loop with a delay
-  * randomfill: fills in the randomly selected tanks , increment the tank value by 1.0 at each round, takes in an optional parameter current_flow 
-  * randomleak: has leaks in the randomly selected tanks untill they are empty, decrement the tank value by 1.0 at each round, takes in an optional parameter current_flow
-  * randomfillandleak: fills in the tank while it leaks, takes in optional current_flow as the fill rate, and current_flow as the leak rate
+  * randomfill: fills in the tank at a random flow rate, the flow rate changes every 5 rounds
+  * randomleak: leaks the tank till it's empty at a random flow rate, the flow rate changes every 5 rounds
+  * fillandleak: fills in the tank while it leaks, takes in optional current_flow as the fill rate, and current_flow as the leak rate
   * fill: fills in the tank until it reaches set_fill if provided, takes in optional parameters current_flow as the fill rate and set_fill as the designated volume
   * leak: fills in the leak until it reaches set_leak if provided, takes in optional parameters current_flow as the leak rate and set_leak as the designated volume
 
@@ -39,7 +39,7 @@ The simulator is intended to act like an independent process unit, emitting data
 * `python3 simulate.py tank randomfill`
 * `python3 simulate.py tank fill 1.0 20.0`
 * `python3 simulate.py tank leak 1.0 2.0`
-
+* `python3 simulate.py tank fillandleak 2.0 0.5`
 
 
 
