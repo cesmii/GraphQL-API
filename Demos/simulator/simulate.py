@@ -22,6 +22,8 @@ def main(args):
     config = ""
     simulation = "stepwise"
     num_simutank = 1
+    current_flow = 1.0
+    current_flow2 = 0.2
     #Figure out what arguments were specified
     for arg in args:
         if count == 1:
@@ -31,9 +33,12 @@ def main(args):
             simulation = arg
             #simulation=arg
         elif count == 3:
-            topic = arg
+            if simulation == "random":
+                topic = arg
+            else:
+                current_flow = float(arg)
         elif count == 4:
-            num_simutank = int(arg)
+            current_flow2 = float(arg)
         count += 1
 
     #Figure out what config file to use
@@ -69,6 +74,12 @@ def main(args):
     Lines = [float(ele.strip()) for ele in Lines]
     if simulation == "randomleak":
         simulate_randomleak(randomtanks, num_simutank, Lines, topic, mqtt_client)
+    elif simulation == "fill":
+        simulate_fill(current_flow, topic, mqtt_client)
+    elif simulation == "leak":
+        simulate_leak(current_flow, topic, mqtt_client) 
+    elif simulation == "fillandleak":
+        simulate_fillandleak(current_flow, current_flow2, topic, mqtt_client)
     elif simulation == "randomfill":
         simulate_randomfill(randomtanks, num_simutank, Lines, topic, mqtt_client)
     elif simulation == "fillwithhole":
@@ -218,23 +229,6 @@ def simulate_random(low, high, topic, mqtt_client):
         print("Simulation stopped")
         exit()
 
-def simulate_randomleak(randomtanks, count_leak, lines, topic, mqtt_client):
-    try:
-        while True:
-            count = 0
-            index_tank = 0
-            while count < len(lines):              
-                if index_tank < count_leak and count == randomtanks[index_tank]:
-                    lines[count] -= 1
-                    lines[count] = max(lines[count], 0)
-                    index_tank += 1
-                mqtt_publish(str(lines[count]), topic, mqtt_client)
-                time.sleep(1)
-                count += 1
-    except KeyboardInterrupt:
-        print()
-        print("Simulation stopped")
-        exit()
 
 def simulate_randomfillandleak(randomleaktanks, count_leak, randomfilltanks, count_fill, lines, topic, mqtt_client):
     try:
