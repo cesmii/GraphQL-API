@@ -16,25 +16,32 @@ The simulator is intended to act like an independent process unit, emitting data
 * Specify the MQTT section to match your Broker
 
 ## Run
-`python3 simulate.py [simulation-file] [`*optional*` simulation-type] [`*optional*` topic-name]` [`*optional*` num_simutank]`
+`python3 simulate.py [simulation-file] [`*optional*` topic-name] [`*optional*` simulation-type][`*optional*` current_flow] [`*optional*` current_flow2] [`*optional*` set_fill] [`*optional*` set_leak]`
 * **simulation-file**: name of simulation config file to use, no extension. eg: tank
 * **simulation-type**: the kind of simulation to perform, defaults to stepwise
   * stepwise: publishes each line of the config in a loop with a delay
   * random: determines the lowest and highest number in the config and publishes a random number in that range in a loop with a delay
-  * randomfill: fills in the randomly selected tanks untill they are full(set as 10.0), increment the tank value by 1.0 at each round 
-  * randomleak: has leaks in the randomly selected tanks untill they are empty, decrement the tank value by 1.0 at each round
-  * randomfillandleak: fills in the randomly selected tanks untill they are full(set as 10.0), and has leaks in another set of randomly selected tanks untill they are empty
-  * produce: simulates the assemblyline production by passing the product at each tank to the next tank for processing. The first tank contains the raw products, the last tank contains the final products, and the other tanks contain materials needed for processing at each step. the size of the first tank and the last tank is infinity while the others are of size 10.0
-  * producewithleak: like the normal produce process but has leaks in the randomly selected tanks
-  * producewithfill: like the normal produce process but fills in the randomly selected tanks until full
-  * producewithfillandleak: like the normal produce process but fills in the randomly selected tanks until full and has leaks in other set of random tanks
+  * randomfill: fills in the randomly selected tanks , increment the tank value by 1.0 at each round, takes in an optional parameter current_flow 
+  * randomleak: has leaks in the randomly selected tanks untill they are empty, decrement the tank value by 1.0 at each round, takes in an optional parameter current_flow
+  * randomfillandleak: fills in the tank while it leaks, takes in optional current_flow as the fill rate, and current_flow as the leak rate
+  * fill: fills in the tank until it reaches set_fill if provided, takes in optional parameters current_flow as the fill rate and set_fill as the designated volume
+  * leak: fills in the leak until it reaches set_leak if provided, takes in optional parameters current_flow as the leak rate and set_leak as the designated volume
 
 * **topic-name**: the MQTT topic to publish under, if left blank, uses the value of config
-* **num_simutank**: the number of the tanks that would be randomly selected to go through simulations like leaks and fills, defaults to 1 when not provided
+* **current_flow**: the current flow rate of fill or leak
+* **current_flow2**: used in the case of fillandleak, current_flow is the fill rate and current_flow2 is the leak rate
+* **set_fill**: the final volume that the tank is filled up to, current_flow has to be provided to use the parameter
+* **set_leak**: the final volume where the leaking stops, current_flow has to be provided to use the parameter
 
 ### Examples:
 * `python3 simulate.py tank`
 * `python3 simulate.py tank random MyTank1`
+* `python3 simulate.py tank randomfill`
+* `python3 simulate.py tank fill 1.0 20.0`
+* `python3 simulate.py tank leak 1.0 2.0`
+
+
+
 
 ### Notes:
 You can run multiple instances, but make sure they each have a unique topic on the Broker!

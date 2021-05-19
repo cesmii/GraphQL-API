@@ -6,16 +6,17 @@ import time
 
 tank_volume = 0
 
-def fill_tank(topic, mqtt_client, flow_rate):
+def fill_tank(topic, mqtt_client, flow_rate, set_fill):
 
     global tank_volume
     tank_volume += flow_rate
+    tank_volume = min(tank_volume, set_fill)
     mqtt_publish(str(tank_volume), topic, mqtt_client)
 
     print("flow_rate: " + str(flow_rate))
     time.sleep(1)
 
-def simulate_fill(flow_rate, topic, mqtt_client):
+def simulate_fill(flow_rate, set_fill, topic, mqtt_client):
     """Simulate fill with constant flow rate
 
     [description]
@@ -28,7 +29,7 @@ def simulate_fill(flow_rate, topic, mqtt_client):
 
     try:
         while True:
-            fill_tank(topic, mqtt_client, flow_rate);
+            fill_tank(topic, mqtt_client, flow_rate, set_fill);
 
     except KeyboardInterrupt:
         print()

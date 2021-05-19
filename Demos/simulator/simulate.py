@@ -24,6 +24,8 @@ def main(args):
     num_simutank = 1
     current_flow = 1.0
     current_flow2 = 0.2
+    set_fill = float('inf')
+    set_leak = 0.0
     #Figure out what arguments were specified
     for arg in args:
         if count == 1:
@@ -38,7 +40,12 @@ def main(args):
             else:
                 current_flow = float(arg)
         elif count == 4:
-            current_flow2 = float(arg)
+            if simulation == "fill":
+                set_fill = float(arg)
+            elif simulation == "leak":
+                set_leak = float(arg)
+            elif simulation == "fillandleak":
+                current_flow2 = float(arg)
         count += 1
 
     #Figure out what config file to use
@@ -75,9 +82,9 @@ def main(args):
     if simulation == "randomleak":
         simulate_randomleak(randomtanks, num_simutank, Lines, topic, mqtt_client)
     elif simulation == "fill":
-        simulate_fill(current_flow, topic, mqtt_client)
+        simulate_fill(current_flow, set_fill, topic, mqtt_client)
     elif simulation == "leak":
-        simulate_leak(current_flow, topic, mqtt_client) 
+        simulate_leak(current_flow, set_leak, topic, mqtt_client) 
     elif simulation == "fillandleak":
         simulate_fillandleak(current_flow, current_flow2, topic, mqtt_client)
     elif simulation == "randomfill":

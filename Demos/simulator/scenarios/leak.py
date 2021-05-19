@@ -6,17 +6,17 @@ import time
 
 tank_volume = 20.0
 
-def leak_tank(topic, mqtt_client, flow_rate):
+def leak_tank(topic, mqtt_client, flow_rate, set_leak):
 
     global tank_volume
     tank_volume -= flow_rate
-    tank_volume = max(tank_volume, 0.0)
+    tank_volume = max(tank_volume, 0.0, set_leak)
     mqtt_publish(str(tank_volume), topic, mqtt_client)
 
     print("flow_rate: " + str(flow_rate))
     time.sleep(1)
 
-def simulate_leak(flow_rate, topic, mqtt_client):
+def simulate_leak(flow_rate, set_leak, topic, mqtt_client):
     """Simulate fill with constant flow rate
 
     [description]
@@ -29,7 +29,7 @@ def simulate_leak(flow_rate, topic, mqtt_client):
 
     try:
         while True:
-            leak_tank(topic, mqtt_client, flow_rate);
+            leak_tank(topic, mqtt_client, flow_rate, set_leak);
 
     except KeyboardInterrupt:
         print()
