@@ -7,22 +7,22 @@ import time
 # max_tank_volume = 100
 change_interval = 5
 interval_count = 0
-current_flow_rate = 1
-tank_volume = 0
+current_flow_rate = 1.0
+tank_volume = 0.0
 
 def change_flow_rate():
     global current_flow_rate
     current_flow_rate = random.randint(1, 10)
 
-def fill_tank(topic, mqtt_client, flow_rate):
+def fill_tank(topic, mqtt_client):
     global interval_count
     global tank_volume
 
-    tank_volume += flow_rate
+    tank_volume += float(current_flow_rate)
     set_interval_count()
     mqtt_publish(str(tank_volume), topic, mqtt_client)
 
-    print("flow_rate: " + str(flow_rate))
+    print("flow_rate: " + str(float(current_flow_rate)))
     time.sleep(1)
 
 def set_interval_count(): 
@@ -35,7 +35,7 @@ def set_interval_count():
 
     interval_count += 1
 
-def simulate_randomfill(randomtanks, count_fill, lines, topic, mqtt_client):
+def simulate_randomfill(topic, mqtt_client):
     """Simulate random fill speeds
 
     [description]
@@ -54,7 +54,7 @@ def simulate_randomfill(randomtanks, count_fill, lines, topic, mqtt_client):
 
     try:
         while True:
-            fill_tank(topic, mqtt_client, current_flow_rate);
+            fill_tank(topic, mqtt_client);
 
     except KeyboardInterrupt:
         print()

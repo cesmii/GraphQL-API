@@ -14,16 +14,16 @@ def change_flow_rate():
     global current_flow_rate
     current_flow_rate = random.randint(1, 10)
 
-def leak_tank(topic, mqtt_client, flow_rate):
+def leak_tank(topic, mqtt_client):
     global interval_count
     global tank_volume
 
-    tank_volume -= flow_rate
+    tank_volume -= float(current_flow_rate)
     set_interval_count()
     tank_volume = max(tank_volume, 0)
     mqtt_publish(str(tank_volume), topic, mqtt_client)
 
-    print("flow_rate: " + str(flow_rate))
+    print("flow_rate: " + str(float(current_flow_rate)))
     time.sleep(1)
 
 def set_interval_count(): 
@@ -36,7 +36,7 @@ def set_interval_count():
 
     interval_count += 1
 
-def simulate_randomleak(randomtanks, count_fill, lines, topic, mqtt_client):
+def simulate_randomleak(topic, mqtt_client):
     """Simulate random fill speeds
 
     [description]
@@ -55,26 +55,8 @@ def simulate_randomleak(randomtanks, count_fill, lines, topic, mqtt_client):
 
     try:
         while True:
-            leak_tank(topic, mqtt_client, current_flow_rate)
+            leak_tank(topic, mqtt_client)
 
-    except KeyboardInterrupt:
-        print()
-        print("Simulation stopped")
-        exit()
-
-def simulate_randomfill_original(randomtanks, count_fill, lines, topic, mqtt_client):
-    try:
-        while True:
-            count = 0
-            index_tank = 0
-            while count < len(lines):              
-                if index_tank < count_fill and count == randomtanks[index_tank]:
-                    lines[count] += 1
-                    lines[count] = min(lines[count], 10)
-                    index_tank += 1
-                mqtt_publish(str(lines[count]), topic, mqtt_client)
-                time.sleep(1)
-                count += 1
     except KeyboardInterrupt:
         print()
         print("Simulation stopped")
