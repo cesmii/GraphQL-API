@@ -90,7 +90,7 @@ curl 'https://YOURINSTANCE.cesmii.thinkiq.net/graphql' -H 'Accept-Encoding: gzip
 
 ### Obtain a JWT token programmatically
 
-Token's can be acquired programmatically through GraphQL calls. See [mutation documentation on authentication here](mutations.md#authentication).
+Token's can be acquired programmatically through GraphQL calls. See [documentation for auth mutations here](mutations.md#authentication).
 
 # Conclusion
 
