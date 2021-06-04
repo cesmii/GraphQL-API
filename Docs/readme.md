@@ -21,4 +21,4 @@ Once applied by an adopting platform (such as the SMIP, or other commercial offe
 ### Mutations
 * [Inserting or updating time series samples](mutations.md#time-series)
 * [Creating a new tag](mutations.md#create-tag)
-* [Authorization mutations](mutations.md#authorization)
+* [Authentication mutations](mutations.md#authentication)
