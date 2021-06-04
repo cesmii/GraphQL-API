@@ -137,11 +137,11 @@ mutation get_token {
 }
 ```
 
-1. authenticator: This is same as "Authenticator Name" you created on this page: https://<yourorg>.cesmii.net/developer/graphql-authenticator
+1. authenticator: This is same as "Authenticator Name" you created on this page: https://_yourorg_.cesmii.net/developer/graphql-authenticator
 
-2. signedChallenge: This is the same as "challenge": "ca6df09059e7b68a9e07b8cdae95b937" output from get_challenge.  This string needs to be appended with "|<authenticatorpasswd>".  
+2. signedChallenge: This is the same as "challenge": "ca6df09059e7b68a9e07b8cdae95b937" output from get_challenge.  This string needs to be appended with "|_authenticatorpasswd_".  
 
-<authenticatorpasswd> is same as the one you used when you created the authenticator 
+_authenticatorpasswd_ is same as the one you used when you created the authenticator 
 
 ## Other Operations
 
