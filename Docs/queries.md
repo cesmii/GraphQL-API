@@ -102,7 +102,7 @@ query AttributeQuery {
 This query lists only the Attributes for a given Equipment Type definition:
 
 ```
-   query MyQuery {
+query EquipmentTypeAttributes {
   typeToAttributeTypes(filter: {displayName: {equalTo: "MyEquipmentTypeID"}}) {
     id
     displayName
