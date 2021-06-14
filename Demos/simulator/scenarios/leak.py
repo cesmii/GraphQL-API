@@ -1,3 +1,4 @@
+from os import readlink
 from utils import *
 
 import paho.mqtt.client as mqtt
@@ -11,17 +12,24 @@ def leak_tank(topic, mqtt_client, flow_rate, set_leak):
     global tank_volume
     tank_volume -= flow_rate
     tank_volume = max(tank_volume, 0.0, set_leak)
-    mqtt_publish(str(tank_volume), topic, mqtt_client)
+
+    jsonobj = {}
+    jsonobj["leak"] = 1
+    jsonobj["volume"] = tank_volume
+    jsonobj["temperature"] = tank_volume * 2 + 3
+    jsonobj["flowrate"] = flow_rate
+    mqtt_publish(str(jsonobj), topic, mqtt_client)
 
     print("flow_rate: " + str(flow_rate))
     time.sleep(1)
 
 def simulate_leak(flow_rate, set_leak, topic, mqtt_client):
-    """Simulate fill with constant flow rate
+    """Simulate leak with constant flow rate
 
     [description]
     
-    Arguments:
+    Arguments: 
+        set_leak {float} -- the fill level where the leaking stops
         flow_rate {float} -- the flow rate at which the tank is filled
         topic {str} -- mqtt topic name
         mqtt_client {class} -- mqtt class

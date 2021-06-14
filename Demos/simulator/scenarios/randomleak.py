@@ -21,7 +21,14 @@ def leak_tank(topic, mqtt_client):
     tank_volume -= float(current_flow_rate)
     set_interval_count()
     tank_volume = max(tank_volume, 0)
-    mqtt_publish(str(tank_volume), topic, mqtt_client)
+
+    jsonobj = {}
+    jsonobj["randomleak"] = 1
+    jsonobj["ratechange"] = 1 if (interval_count == 1) else 0
+    jsonobj["volume"] = tank_volume
+    jsonobj["temperature"] = tank_volume * 2 + 3
+    jsonobj["flowrate"] = current_flow_rate
+    mqtt_publish(str(jsonobj), topic, mqtt_client)
 
     print("flow_rate: " + str(float(current_flow_rate)))
     time.sleep(1)
@@ -37,18 +44,11 @@ def set_interval_count():
     interval_count += 1
 
 def simulate_randomleak(topic, mqtt_client):
-    """Simulate random fill speeds
+    """Simulate random leak speeds that change every 5 seconds
 
     [description]
 
-    TODO: 
-        - set a limit on the max fill
-        - use n tanks
-    
     Arguments:
-        randomtanks {int} -- [description]
-        count_fill {int} -- number of tanks
-        lines {list} -- lines in the .txt file
         topic {str} -- mqtt topic name
         mqtt_client {class} -- mqtt class
     """

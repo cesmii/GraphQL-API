@@ -26,6 +26,18 @@ The simulator is intended to act like an independent process unit, emitting data
   * fillandleak: fills in the tank while it leaks, takes in optional current_flow as the fill rate, and current_flow as the leak rate
   * fill: fills in the tank until it reaches set_fill if provided, takes in optional parameters current_flow as the fill rate and set_fill as the designated volume
   * leak: fills in the leak until it reaches set_leak if provided, takes in optional parameters current_flow as the leak rate and set_leak as the designated volume
+  * functionchange: fill level changes like the input math function trend line
+  * oneflood: one of the tanks floods which randomly increases fill level
+  * oneleak: one of the tanks leaks which randomly decreases fill level
+  * onestuck: one of the tanks stucks which doesn't flow out to the next tank
+  * leakandstuck: one of the tanks leaking that randomly decreases the fill level, and one of the tanks stuck that doesn't flow out to the next tank
+  * floodandleak: one of the tanks flooding that randomly increases the fill level, and one of the tanks leaking that randomly decreases the fill level
+  * floodandstuck: one of the tanks flooding that randomly increases the fill level, and one of the tanks stuck that doesn't flow out to the next tank
+  * randnumleak: random number of tanks are leaking that randomly decreases the fill level
+  * randnumflood: random number of tanks are flooding that randomly increases the fill level
+  * randnumstuck: random number of tanks are stuck which don't flow out to the next tank
+
+  
 
 * **topic-name**: the MQTT topic to publish under, if left blank, uses the value of config
 * **current_flow**: the current flow rate of fill or leak
@@ -36,10 +48,21 @@ The simulator is intended to act like an independent process unit, emitting data
 ### Examples:
 * `python3 simulate.py tank`
 * `python3 simulate.py tank random MyTank1`
+* `python3 simulate.py tank functionchange MyTank1 "|-2t+3|"`
 * `python3 simulate.py tank randomfill`
+* `python3 simulate.py tank randomleak`
 * `python3 simulate.py tank fill 1.0 20.0`
 * `python3 simulate.py tank leak 1.0 2.0`
 * `python3 simulate.py tank fillandleak 2.0 0.5`
+* `python3 simulate.py tank oneleak`
+* `python3 simulate.py tank onestuck`
+* `python3 simulate.py tank oneflood`
+* `python3 simulate.py tank leakandstuck`
+* `python3 simulate.py tank floodandleak`
+* `python3 simulate.py tank floodandstuck`
+* `python3 simulate.py tank randnumstuck`
+* `python3 simulate.py tank randnumleak`
+* `python3 simulate.py tank randnumflood`
 
 
 

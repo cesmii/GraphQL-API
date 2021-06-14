@@ -10,19 +10,27 @@ def fillandleak_tank(topic, mqtt_client, flow_rate_fill, flow_rate_leak):
 
     global tank_volume
     tank_volume = tank_volume + flow_rate_fill - flow_rate_leak
-    tank_volume = max(tank_volume, 0.0)
-    mqtt_publish(str(tank_volume), topic, mqtt_client)
+    tank_volume = round(max(tank_volume, 0.0), 1)
+
+    jsonobj = {}
+    jsonobj["fillandleak"] = 1
+    jsonobj["volume"] = tank_volume
+    jsonobj["temperature"] = tank_volume * 2 + 3
+    jsonobj["fillrate"] = flow_rate_fill
+    jsonobj["leakrate"] = flow_rate_leak
+    mqtt_publish(str(jsonobj), topic, mqtt_client)
 
     print("flow_rate_fill: " + str(flow_rate_fill), "flow_rate_leak: " + str(flow_rate_leak))
     time.sleep(1)
 
 def simulate_fillandleak(flow_rate_fill, flow_rate_leak, topic, mqtt_client):
-    """Simulate fill with constant flow rate
+    """Simulate fill while leaking with constant flow rate
 
     [description]
     
     Arguments:
-        flow_rate {float} -- the flow rate at which the tank is filled
+        flow_rate_fill {float} -- the flow rate at which the tank is filled
+        flow_rate_leak {float} -- the flow rate at which the tank is leaking
         topic {str} -- mqtt topic name
         mqtt_client {class} -- mqtt class
     """

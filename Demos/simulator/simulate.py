@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+from hashlib import new
 from scenarios import *
 from utils import *
 
@@ -12,6 +13,8 @@ import paho.mqtt.client as mqtt
 mqtt_broker = config.mqtt["broker"]
 uuid = str(uuid.uuid4())[:8]
 mqtt_clientid = config.mqtt["clientprefix"] + uuid
+tube_flowrate = 1.0
+
 
 def main(args):
     if len(args) <= 1:
@@ -26,6 +29,7 @@ def main(args):
     current_flow2 = 0.2
     set_fill = float('inf')
     set_leak = 0.0
+    function_rate = "0"
     #Figure out what arguments were specified
     for arg in args:
         if count == 1:
@@ -35,11 +39,13 @@ def main(args):
             simulation = arg
             #simulation=arg
         elif count == 3:
-            if simulation == "random":
-                topic = arg
+            topic = arg
+        elif count == 4:
+            if simulation == "functionchange":
+                function_rate = arg
             else:
                 current_flow = float(arg)
-        elif count == 4:
+        elif count == 5:
             if simulation == "fill":
                 set_fill = float(arg)
             elif simulation == "leak":
@@ -65,7 +71,6 @@ def main(args):
     if simulation == "random":
         high_num = 0.0
         low_num = 10000000000.0
-        count_tanks=0
         for line in Lines:
             count+=1
             currNum = float(line.strip())
@@ -86,19 +91,32 @@ def main(args):
         simulate_randomfill(topic, mqtt_client)
     elif simulation == "randomleak":
         simulate_randomleak(topic, mqtt_client)
+    elif simulation == "functionchange":
+        simulate_functionchange(function_rate, set_fill, topic, mqtt_client)
+
+    randnum = random.randint(1, len(Lines))  
+    randomtanks = sorted(random.sample(range(0,len(Lines)), randnum))
+    Lines = [float(n) for n in Lines]
+    if simulation == "oneleak":
+        simulate_oneleak(Lines, mqtt_client)
+    elif simulation == "onestuck":
+        simulate_onestuck(Lines, mqtt_client)
+    elif simulation == "oneflood":
+        simulate_oneflood(Lines, mqtt_client)
+    elif simulation == "leakandstuck":
+        simulate_leakandstuck(Lines, mqtt_client)
+    elif simulation == "floodandleak":
+        simulate_floodandleak(Lines, mqtt_client)
+    elif simulation == "floodandstuck":
+        simulate_floodandstuck(Lines, mqtt_client)
+    elif simulation == "randnumleak":
+        simulate_randnumleak(randomtanks, randnum, Lines, mqtt_client)
+    elif simulation == "randnumflood":        
+        simulate_randnumflood(randomtanks, randnum, Lines, mqtt_client)
+    elif simulation == "randnumstuck":
+        simulate_randnumstuck(randomtanks, randnum, Lines, mqtt_client)
 
 
-def simulate_random(low, high, topic, mqtt_client):
-    try:
-        while True:
-            for x in range(10):
-                new_num = round(random.uniform(low, high), 1)
-                mqtt_publish(new_num, topic, mqtt_client)
-                time.sleep(1)
-    except KeyboardInterrupt:
-        print()
-        print("Simulation stopped")
-        exit()
 
 if __name__ == "__main__":
     print()
