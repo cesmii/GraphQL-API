@@ -64,6 +64,12 @@ The simulator is intended to act like an independent process unit, emitting data
 * `python3 simulate.py tank randnumleak`
 * `python3 simulate.py tank randnumflood`
 
+### Test on SMIP:
+To test and see the trend lines on our platform:
+* 1. `python3 gateway.py` on a terminal
+* 2. add pens under "attribute trending" on our platform
+* 3. run one of the above example on another terminal
+
 
 
 ### Notes:

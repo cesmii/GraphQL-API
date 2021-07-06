@@ -24,7 +24,7 @@ def simulate_oneflood(lines, mqtt_client):
             topic = "Mytank"
             while count < len(lines):
                 lines[count] = lines[count] + flow_in - flow_out
-                jsonobj={}
+                jsonobj={'volume':0, 'temperature':0, 'leak':0, 'stuck':0, 'flood':0}
                 jsonobj["flood"] = 0
                 if count == flood_tube:
                     lines[count] += round(random.uniform(0.0, 1.0), 1)
@@ -57,7 +57,7 @@ def simulate_oneleak(lines, mqtt_client):
             flow_out = 1
             topic = "Mytank"
             while count < len(lines):
-                jsonobj={}
+                jsonobj={'volume':0, 'temperature':0, 'leak':0, 'stuck':0, 'flood':0}
                 jsonobj["leak"] = 0
                 if count == leak_tube:
                     lines[count] -= round(random.uniform(0.0, tube_flowrate), 1)
@@ -93,7 +93,7 @@ def simulate_onestuck(lines, mqtt_client):
             topic = "Mytank"
             while count < len(lines):
                 #time.sleep(1)
-                jsonobj = {}
+                jsonobj={'volume':0, 'temperature':0, 'leak':0, 'stuck':0, 'flood':0}
                 if count == stuck_tube:
                     lines[count] += flow_in
                     jsonobj["stuck"] = 1
@@ -140,12 +140,12 @@ def simulate_leakandstuck(lines, mqtt_client):
             flow_in = 1
             flow_out = 1
             topic = "Mytank"
+            jsonobj={'volume':0, 'temperature':0, 'leak':0, 'stuck':0, 'flood':0}
             while count < len(lines):
                 if count == leak_tube:
                     lines[count] = lines[count] + flow_in - flow_out
                     lines[count] -= round(random.uniform(0.0, tube_flowrate), 1)
                     lines[count] = round(max(lines[count], 0.0), 1)
-                    jsonobj = {}
                     jsonobj["leak"] = 1
                     jsonobj["stuck"] = 0
                     jsonobj["volume"] = lines[count]
@@ -155,7 +155,6 @@ def simulate_leakandstuck(lines, mqtt_client):
                 elif count == stuck_tube:
                     lines[count] += flow_in
                     lines[count] = round(lines[count], 1)
-                    jsonobj = {}
                     jsonobj["leak"] = 0
                     jsonobj["stuck"] = 1
                     jsonobj["volume"] = lines[count]
@@ -165,7 +164,6 @@ def simulate_leakandstuck(lines, mqtt_client):
                     while count < len(lines):
                         lines[count] -= flow_out
                         lines[count] = round(max(lines[count], 0.0), 1)
-                        jsonobj = {}
                         jsonobj["leak"] = 0
                         jsonobj["stuck"] = 0
                         jsonobj["volume"] = lines[count]
@@ -175,7 +173,6 @@ def simulate_leakandstuck(lines, mqtt_client):
                         #time.sleep(1)
                 else:
                     lines[count] = lines[count] + flow_in - flow_out
-                    jsonobj = {}
                     jsonobj["leak"] = 0
                     jsonobj["stuck"] = 0
                     jsonobj["volume"] = lines[count]
@@ -206,8 +203,8 @@ def simulate_floodandleak(lines, mqtt_client):
             flow_in = 1
             flow_out = 1
             topic = "Mytank"
-            while count < len(lines):
-                jsonobj = {} 
+            jsonobj={'volume':0, 'temperature':0, 'leak':0, 'stuck':0, 'flood':0}
+            while count < len(lines): 
                 jsonobj["flood"] = 0
                 jsonobj["leak"] = 0         
                 if count == flood_tank:
@@ -248,8 +245,8 @@ def simulate_floodandstuck(lines, mqtt_client):
             flow_in = 1
             flow_out = 1
             topic = "Mytank"
+            jsonobj={'volume':0, 'temperature':0, 'leak':0, 'stuck':0, 'flood':0}
             while count < len(lines):
-                jsonobj = {} 
                 jsonobj["flood"] = 0
                 jsonobj["stuck"] = 0         
                 if count == stuck_tank: 
@@ -297,8 +294,8 @@ def simulate_randnumleak(randomleaktanks, count_leak, lines, mqtt_client):
             count = 0
             index_leaktank = 0
             topic = "MyTank"
+            jsonobj={'volume':0, 'temperature':0, 'leak':0, 'stuck':0, 'flood':0}
             while count < len(lines):
-                jsonobj = {}
                 jsonobj["leak"] = 0  
                 if index_leaktank < count_leak and count == randomleaktanks[index_leaktank]:
                     jsonobj["leak"] = 1
@@ -332,8 +329,8 @@ def simulate_randnumflood(randomfloodtanks, count_flood, lines, mqtt_client):
             topic = "MyTank"
             flow_in = 1.0
             flow_out = 1.0
+            jsonobj={'volume':0, 'temperature':0, 'leak':0, 'stuck':0, 'flood':0}
             while count < len(lines):  
-                jsonobj ={}
                 jsonobj["flood"] = 0
                 if index_leaktank < count_flood and count == randomfloodtanks[index_leaktank]:
                     jsonobj["flood"] = 1          
@@ -368,8 +365,8 @@ def simulate_randnumstuck(randomstucktanks, count_stuck, lines, mqtt_client):
             flow_in = 1
             flow_out = 1
             topic = "Mytank"
+            jsonobj={'volume':0, 'temperature':0, 'leak':0, 'stuck':0, 'flood':0}
             while count < len(lines):
-                jsonobj = {}
                 if index_stucktank < count_stuck and count == randomstucktanks[index_stucktank]:
                     index_stucktank += 1
                     lines[count] += flow_in
