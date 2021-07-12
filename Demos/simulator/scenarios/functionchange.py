@@ -6,7 +6,7 @@ import time
 import math
 
 tank_volume = 0
-time_counter = 1
+time_counter = 0
 absolute = False
 
 def change_tank(topic, mqtt_client, function_rate, set_fill):
@@ -14,7 +14,8 @@ def change_tank(topic, mqtt_client, function_rate, set_fill):
     global tank_volume
     global time_counter
     
-    function_rate = function_rate.replace('t', str(time_counter))
+    function_rate = function_rate.replace('t', "*"+str(time_counter))
+    print(function_rate)
     pre_tank_volume = tank_volume
 
     tank_volume = eval(function_rate)
@@ -24,8 +25,7 @@ def change_tank(topic, mqtt_client, function_rate, set_fill):
     tank_volume = max(tank_volume, 0)
     flow_rate = tank_volume - pre_tank_volume
 
-    jsonobj = {}
-    jsonobj["leak"] = 1
+    jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
     jsonobj["volume"] = tank_volume
     jsonobj["temperature"] = tank_volume * 2 + 3
     jsonobj["flowrate"] = flow_rate

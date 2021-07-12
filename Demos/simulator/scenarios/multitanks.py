@@ -293,7 +293,7 @@ def simulate_randnumleak(randomleaktanks, count_leak, lines, mqtt_client):
         while True:
             count = 0
             index_leaktank = 0
-            topic = "MyTank"
+            topic = "Mytank"
             jsonobj={'volume':0, 'temperature':0, 'leak':0, 'stuck':0, 'flood':0}
             while count < len(lines):
                 jsonobj["leak"] = 0  
@@ -326,7 +326,7 @@ def simulate_randnumflood(randomfloodtanks, count_flood, lines, mqtt_client):
         while True:
             count = 0
             index_leaktank = 0
-            topic = "MyTank"
+            topic = "Mytank"
             flow_in = 1.0
             flow_out = 1.0
             jsonobj={'volume':0, 'temperature':0, 'leak':0, 'stuck':0, 'flood':0}

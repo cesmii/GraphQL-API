@@ -21,9 +21,7 @@ def fill_tank(topic, mqtt_client):
     tank_volume += float(current_flow_rate)
     set_interval_count()
 
-    jsonobj = {}
-    jsonobj["randomfill"] = 1
-    jsonobj["ratechange"] = 1 if (interval_count == 1) else 0
+    jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
     jsonobj["volume"] = tank_volume
     jsonobj["temperature"] = tank_volume * 2 + 3
     jsonobj["flowrate"] = current_flow_rate

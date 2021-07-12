@@ -12,13 +12,16 @@ def simulate_stepwise(lines, topic, mqtt_client):
         mqtt_client {class} -- mqtt class
     """
     try:
+        pre_volume = 0
+        flowrate = 0
         while True:
             count = 0
             for line in lines:
                 count += 1
                 volume = round(float(line.strip()), 1)
-                jsonobj = {}
-                jsonobj["stepwise"] = 1
+                flowrate = volume - pre_volume
+                jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
+                jsonobj["flowrate"] = flowrate
                 jsonobj["volume"] = volume
                 jsonobj["temperature"] = volume * 2 + 3
                 mqtt_publish(str(jsonobj), topic, mqtt_client)

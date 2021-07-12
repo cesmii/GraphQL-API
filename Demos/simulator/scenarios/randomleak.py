@@ -1,5 +1,4 @@
 from utils import *
-
 import paho.mqtt.client as mqtt
 import random
 import time
@@ -9,6 +8,7 @@ change_interval = 5
 interval_count = 0
 current_flow_rate = 1.0
 tank_volume = 20.0
+pre_volume = 20.0
 
 def change_flow_rate():
     global current_flow_rate
@@ -17,17 +17,18 @@ def change_flow_rate():
 def leak_tank(topic, mqtt_client):
     global interval_count
     global tank_volume
+    global pre_volume
 
     tank_volume -= float(current_flow_rate)
     set_interval_count()
     tank_volume = max(tank_volume, 0)
+    flowrate = tank_volume - pre_volume
+    pre_volume = tank_volume
 
-    jsonobj = {}
-    jsonobj["randomleak"] = 1
-    jsonobj["ratechange"] = 1 if (interval_count == 1) else 0
+    jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
     jsonobj["volume"] = tank_volume
     jsonobj["temperature"] = tank_volume * 2 + 3
-    jsonobj["flowrate"] = current_flow_rate
+    jsonobj["flowrate"] = flowrate
     mqtt_publish(str(jsonobj), topic, mqtt_client)
 
     print("flow_rate: " + str(float(current_flow_rate)))

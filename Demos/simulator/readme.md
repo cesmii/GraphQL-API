@@ -16,7 +16,7 @@ The simulator is intended to act like an independent process unit, emitting data
 * Specify the MQTT section to match your Broker
 
 ## Run
-`python3 simulate.py [simulation-file] [`*optional*` topic-name] [`*optional*` simulation-type][`*optional*` current_flow] [`*optional*` current_flow2] [`*optional*` set_fill] [`*optional*` set_leak]`
+`python3 simulate.py [simulation-file] [`*optional*` simulation-type][`*optional*` current_flow] [`*optional*` current_flow2] [`*optional*` set_fill] [`*optional*` set_leak]`
 * **simulation-file**: name of simulation config file to use, no extension. eg: tank
 * **simulation-type**: the kind of simulation to perform, defaults to stepwise
   * stepwise: publishes each line of the config in a loop with a delay
@@ -39,21 +39,24 @@ The simulator is intended to act like an independent process unit, emitting data
 
   
 
-* **topic-name**: the MQTT topic to publish under, if left blank, uses the value of config
+* **topic-name**: same as the simulation-file for simulations of onetank; for multitanks simulations, topic names are Mytank0-Mytank6
 * **current_flow**: the current flow rate of fill or leak
 * **current_flow2**: used in the case of fillandleak, current_flow is the fill rate and current_flow2 is the leak rate
 * **set_fill**: the final volume that the tank is filled up to, current_flow has to be provided to use the parameter
 * **set_leak**: the final volume where the leaking stops, current_flow has to be provided to use the parameter
 
 ### Examples:
+run with python3 gateway.py -m onetank:
 * `python3 simulate.py tank`
-* `python3 simulate.py tank random MyTank1`
-* `python3 simulate.py tank functionchange MyTank1 "|-2t+3|"`
-* `python3 simulate.py tank randomfill`
-* `python3 simulate.py tank randomleak`
+* `python3 simulate.py tank functionchange "|-2t+3|"`
 * `python3 simulate.py tank fill 1.0 20.0`
 * `python3 simulate.py tank leak 1.0 2.0`
 * `python3 simulate.py tank fillandleak 2.0 0.5`
+* `python3 simulate.py tank random`
+* `python3 simulate.py tank randomfill`
+* `python3 simulate.py tank randomleak`
+
+run with python3 gateway.py -m multitanks
 * `python3 simulate.py tank oneleak`
 * `python3 simulate.py tank onestuck`
 * `python3 simulate.py tank oneflood`
@@ -66,7 +69,7 @@ The simulator is intended to act like an independent process unit, emitting data
 
 ### Test on SMIP:
 To test and see the trend lines on our platform:
-* 1. `python3 gateway.py` on a terminal
+* 1. `python3 gateway.py -m onetank/multitanks` on a terminal
 * 2. add pens under "attribute trending" on our platform
 * 3. run one of the above example on another terminal
 
@@ -99,7 +102,9 @@ The Gateway functions as a "connector" from MQTT to the SM Innovation Platform, 
 ## Run
 
 ```
-python3 gateway.py
+python3 gateway.py -m onetank (for simulations of one tank)
+python3 gateway.py -m multitanks   (for simulations of multiple tanks)
+
 ```
 
 # Mosquitto

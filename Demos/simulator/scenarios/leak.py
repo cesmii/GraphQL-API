@@ -13,11 +13,10 @@ def leak_tank(topic, mqtt_client, flow_rate, set_leak):
     tank_volume -= flow_rate
     tank_volume = max(tank_volume, 0.0, set_leak)
 
-    jsonobj = {}
-    jsonobj["leak"] = 1
+    jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
     jsonobj["volume"] = tank_volume
     jsonobj["temperature"] = tank_volume * 2 + 3
-    jsonobj["flowrate"] = flow_rate
+    jsonobj["flowrate"] = -flow_rate
     mqtt_publish(str(jsonobj), topic, mqtt_client)
 
     print("flow_rate: " + str(flow_rate))

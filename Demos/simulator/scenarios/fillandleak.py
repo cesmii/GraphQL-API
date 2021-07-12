@@ -12,12 +12,10 @@ def fillandleak_tank(topic, mqtt_client, flow_rate_fill, flow_rate_leak):
     tank_volume = tank_volume + flow_rate_fill - flow_rate_leak
     tank_volume = round(max(tank_volume, 0.0), 1)
 
-    jsonobj = {}
-    jsonobj["fillandleak"] = 1
+    jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
     jsonobj["volume"] = tank_volume
     jsonobj["temperature"] = tank_volume * 2 + 3
-    jsonobj["fillrate"] = flow_rate_fill
-    jsonobj["leakrate"] = flow_rate_leak
+    jsonobj["flowrate"] = flow_rate_fill - flow_rate_leak
     mqtt_publish(str(jsonobj), topic, mqtt_client)
 
     print("flow_rate_fill: " + str(flow_rate_fill), "flow_rate_leak: " + str(flow_rate_leak))

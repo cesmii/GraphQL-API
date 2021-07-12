@@ -31,21 +31,19 @@ def main(args):
     set_leak = 0.0
     function_rate = "0"
     #Figure out what arguments were specified
+    print(args)
     for arg in args:
         if count == 1:
             config = arg
             topic = arg
         elif count == 2:
             simulation = arg
-            #simulation=arg
         elif count == 3:
-            topic = arg
-        elif count == 4:
             if simulation == "functionchange":
                 function_rate = arg
             else:
                 current_flow = float(arg)
-        elif count == 5:
+        elif count == 4:
             if simulation == "fill":
                 set_fill = float(arg)
             elif simulation == "leak":
