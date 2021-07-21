@@ -26,8 +26,8 @@ def change_tank(topic, mqtt_client, function_rate, set_fill):
     tank_volume = min(tank_volume, MAX_VOLUME)
     flow_rate = tank_volume - pre_tank_volume
 
-    tank_volume = round(tank_volume, 1)
-    flow_rate = round(flow_rate, 1)
+    tank_volume = round(tank_volume, 3)
+    flow_rate = round(flow_rate, 3)
 
 
     
@@ -39,7 +39,7 @@ def change_tank(topic, mqtt_client, function_rate, set_fill):
 
     print("flow_rate: " + str(flow_rate))
     time_counter += 1
-    time.sleep(1)
+    time.sleep(0.5)
 
 def simulate_functionchange(function_rate, set_fill, topic, mqtt_client):
     """Simulate fill level changes like the input math function trend line
