@@ -31,6 +31,7 @@ def fill_tank(topic, mqtt_client):
     tank_volume = min(tank_volume, MAX_VOLUME)
     tank_volume = max(tank_volume, 0.0)
     if tank_volume==MAX_VOLUME: drain = 1
+    if tank_volume==0: drain = 0
 
     if drain: tempflow = -tempflow
     jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
@@ -40,7 +41,7 @@ def fill_tank(topic, mqtt_client):
     mqtt_publish(str(jsonobj), topic, mqtt_client)
 
     print("flow_rate: " + str(float(current_flow_rate)))
-    time.sleep(1)
+    time.sleep(0.1)
 
 def set_interval_count(): 
     global change_interval
