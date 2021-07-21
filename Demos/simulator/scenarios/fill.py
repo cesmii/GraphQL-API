@@ -5,12 +5,13 @@ import random
 import time
 
 tank_volume = 0
+MAX_VOLUME = 20.0
 
 def fill_tank(topic, mqtt_client, flow_rate, set_fill):
 
     global tank_volume
     tank_volume += flow_rate
-    tank_volume = min(tank_volume, set_fill)
+    tank_volume = min(tank_volume, set_fill, MAX_VOLUME)
 
     jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
     jsonobj["volume"] = tank_volume

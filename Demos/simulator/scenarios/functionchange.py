@@ -8,14 +8,14 @@ import math
 tank_volume = 0
 time_counter = 0
 absolute = False
+MAX_VOLUME = 20.0
 
 def change_tank(topic, mqtt_client, function_rate, set_fill):
 
     global tank_volume
     global time_counter
     
-    function_rate = function_rate.replace('t', "*"+str(time_counter))
-    print(function_rate)
+    function_rate = function_rate.replace('t)', "*"+str(time_counter)+")")
     pre_tank_volume = tank_volume
 
     tank_volume = eval(function_rate)
@@ -23,8 +23,14 @@ def change_tank(topic, mqtt_client, function_rate, set_fill):
         tank_volume = abs(tank_volume) 
     tank_volume = min(tank_volume, set_fill)
     tank_volume = max(tank_volume, 0)
+    tank_volume = min(tank_volume, MAX_VOLUME)
     flow_rate = tank_volume - pre_tank_volume
 
+    tank_volume = round(tank_volume, 1)
+    flow_rate = round(flow_rate, 1)
+
+
+    
     jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
     jsonobj["volume"] = tank_volume
     jsonobj["temperature"] = tank_volume * 2 + 3
@@ -49,7 +55,7 @@ def simulate_functionchange(function_rate, set_fill, topic, mqtt_client):
 
     try:
         global absolute
-        function_rate = function_rate.replace('sin', "math.sin")
+        #function_rate = function_rate.replace('sin', "math.sin")
         function_rate = function_rate.replace('cos', "math.cos")
         function_rate = function_rate.replace('pi', "math.pi")
 

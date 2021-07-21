@@ -48,7 +48,7 @@ The simulator is intended to act like an independent process unit, emitting data
 ### Examples:
 run with python3 gateway.py -m onetank:
 * `python3 simulate.py tank`
-* `python3 simulate.py tank functionchange "|-2t+3|"`
+* `python3 simulate.py tank functionchange "math.sin(2t)"`
 * `python3 simulate.py tank fill 1.0 20.0`
 * `python3 simulate.py tank leak 1.0 2.0`
 * `python3 simulate.py tank fillandleak 2.0 0.5`

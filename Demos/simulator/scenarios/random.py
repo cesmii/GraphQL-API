@@ -5,6 +5,7 @@ import paho.mqtt.client as mqtt
 import random
 import time
 pre_volume = 0
+MAX_VOLUME = 20.0
 
 def simulate_random(low, high, topic, mqtt_client):
     """Simulate randomly changed fill level within the range from low to high
@@ -22,8 +23,10 @@ def simulate_random(low, high, topic, mqtt_client):
         flowrate = 0
         while True:
             new_num = round(random.uniform(low, high), 1)
+            new_num = min(new_num, MAX_VOLUME)
             flowrate = new_num - pre_volume
             pre_volume = new_num
+
             jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
 
             jsonobj["flowrate"] = flowrate

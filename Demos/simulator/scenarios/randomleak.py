@@ -9,6 +9,7 @@ interval_count = 0
 current_flow_rate = 1.0
 tank_volume = 20.0
 pre_volume = 20.0
+MAX_VOLUME = 20.0
 
 def change_flow_rate():
     global current_flow_rate
@@ -22,6 +23,7 @@ def leak_tank(topic, mqtt_client):
     tank_volume -= float(current_flow_rate)
     set_interval_count()
     tank_volume = max(tank_volume, 0)
+
     flowrate = tank_volume - pre_volume
     pre_volume = tank_volume
 

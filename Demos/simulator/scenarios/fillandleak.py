@@ -5,12 +5,15 @@ import random
 import time
 
 tank_volume = 20.0
+MAX_VOLUME = 20.0
 
 def fillandleak_tank(topic, mqtt_client, flow_rate_fill, flow_rate_leak):
 
     global tank_volume
     tank_volume = tank_volume + flow_rate_fill - flow_rate_leak
     tank_volume = round(max(tank_volume, 0.0), 1)
+    tank_volume = min(tank_volume, MAX_VOLUME)
+
 
     jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
     jsonobj["volume"] = tank_volume

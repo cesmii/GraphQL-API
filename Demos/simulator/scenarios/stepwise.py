@@ -1,7 +1,7 @@
 from utils import *
 
 import time
-
+MAX_VOLUME = 20.0
 def simulate_stepwise(lines, topic, mqtt_client):
     """Simulate fill level changes in the input file
 
@@ -19,6 +19,7 @@ def simulate_stepwise(lines, topic, mqtt_client):
             for line in lines:
                 count += 1
                 volume = round(float(line.strip()), 1)
+                volume = min(volume, MAX_VOLUME)
                 flowrate = volume - pre_volume
                 jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
                 jsonobj["flowrate"] = flowrate

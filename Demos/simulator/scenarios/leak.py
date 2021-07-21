@@ -1,4 +1,5 @@
 from os import readlink
+from types import MappingProxyType
 from utils import *
 
 import paho.mqtt.client as mqtt
@@ -6,13 +7,14 @@ import random
 import time
 
 tank_volume = 20.0
-
+MAX_VOLUME = 20.0
 def leak_tank(topic, mqtt_client, flow_rate, set_leak):
 
     global tank_volume
     tank_volume -= flow_rate
     tank_volume = max(tank_volume, 0.0, set_leak)
 
+    tank_volume = min(tank_volume, MAX_VOLUME)
     jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
     jsonobj["volume"] = tank_volume
     jsonobj["temperature"] = tank_volume * 2 + 3
