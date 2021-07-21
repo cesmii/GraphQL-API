@@ -40,7 +40,7 @@ def fill_tank(topic, mqtt_client):
     mqtt_publish(str(jsonobj), topic, mqtt_client)
 
     print("flow_rate: " + str(float(current_flow_rate)))
-    time.sleep(0.1)
+    time.sleep(1)
 
 def set_interval_count(): 
     global change_interval
