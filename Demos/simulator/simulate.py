@@ -89,6 +89,12 @@ def main(args):
         simulate_randomfill(topic, mqtt_client)
     elif simulation == "fillthendrain":
         simulate_fillthendrain(topic, mqtt_client)
+    elif simulation == "normalflow":
+        normalflow(topic, mqtt_client)
+    elif simulation == "flow_with_leak":
+        flow_with_leak(topic, mqtt_client)
+    elif simulation == "flow_with_cavitation":
+        flow_with_cavitation(topic, mqtt_client)
     elif simulation == "randomleak":
         simulate_randomleak(topic, mqtt_client)
     elif simulation == "functionchange":

@@ -21,6 +21,7 @@ mqtt_topic = "tank"			#This should be enumerated, not hard coded
 tank_counter = 0
 num_tanks = 0
 tanksID7 = [1318, 1324, 1282, 1289, 1295, 1301, 1307] #tanks's id for multitanks simulations
+tanks_dic = {"Mytank0": 1318, "Mytank1": 1324, "Mytank2": 1282, "Mytank3": 1289, "Mytank4":1295, "Mytank5":1301, "Mytank6":1307}
 tanksID1 = [2128] #tanks's id for onetank simulations
 tanksID = []
 attributes = [] 
@@ -29,6 +30,37 @@ attributes = []
 graphql = graphql(config.smip["authenticator"], config.smip["password"], config.smip["name"], config.smip["role"], config.smip["url"])
 
 print (f"Listening for MQTT messages on topic: {mqtt_topic} ...")
+
+
+def create_new_equipment(equipment_name="Batch Machine 001"):
+	smp_mutation = f'''
+				mutation MyNewEquipmentMutation {{
+				createEquipment(
+					input: {{
+						equipment: {{
+						displayName: "{equipment_name}"
+						typeId: "1042"
+						}}
+					}}
+					) {{
+						equipment {{
+							id
+							displayName
+						}}
+						}}
+					}}
+				'''
+		
+	smp_response = ""
+	try:
+		smp_response = graphql.post(smp_mutation)
+		equipment_id = smp_response['data']['createEquipment']['equipment']['id']
+		return int(equipment_id)
+	except requests.exceptions.HTTPError as e:
+		print("An error occured accessing the SM Platform!")
+		print(e)
+#create_new_equipment()
+
 
 
 
@@ -41,11 +73,19 @@ def make_datetime_utc():
 	return utc_time
 
 def update_smip(sample_value):
-	global tank_counter #number of sample_value sent so far
-	tank_id = tanksID[tank_counter % num_tanks] #current tank's ID
 	print("Posting Data to CESMII Smart Manufacturing Platform...")
 	print()
 	sample_value = parse_expr(sample_value)
+	tank_id = 0
+	if len(tanksID) == 1:
+		tank_id = tanksID1[0]
+	else:
+		tank_name = sample_value["tank_name"]
+		if tank_name in tanks_dic:
+			tank_id = tanks_dic[tank_name]
+		else:
+			tank_id = create_new_equipment(tank_name)
+			tanks_dic[tank_name] = tank_id
 	for j in range(len(attributes)):
 		attribute = attributes[j] #attribute name
 		value_send = str(sample_value[attribute]) # Value to be sent to the attribute ID
@@ -67,7 +107,6 @@ def update_smip(sample_value):
 			print("An error occured accessing the SM Platform!")
 			print(e)
 	
-	tank_counter += 1
 	print("Response from SM Platform was...")
 	#print(json.dumps(smp_response, indent=2))
 	print()
@@ -95,7 +134,8 @@ elif graphql.args.modeltype == "multitanks":
 	num_tanks = 7
 	tanksID = tanksID7
 	attributes = ['volume', 'leak', 'stuck', 'temperature', 'flood']
-	for i in range(7):
-		mqtt_client.subscribe('Mytank'+str(i))
+	"""for i in range(7):
+		mqtt_client.subscribe('Mytank'+str(i))"""
+	mqtt_client.subscribe('#')
 mqtt_client.on_message=on_message
 mqtt_client.loop_forever()

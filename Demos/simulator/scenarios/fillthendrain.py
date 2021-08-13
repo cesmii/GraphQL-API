@@ -21,27 +21,26 @@ def fill_tank(topic, mqtt_client):
     global tank_volume
     global drain
 
+    while True:
+        time.sleep(2)
+        tempflow = round(random.uniform(1.7, 3.0), 1)
+        if drain:
+            tank_volume -= tempflow
+        else:
+            tank_volume += tempflow
+        tank_volume = round(tank_volume, 1)
+        tank_volume = min(tank_volume, MAX_VOLUME)
+        tank_volume = max(tank_volume, 0.0)
+        if tank_volume==MAX_VOLUME: drain = 1
+        if tank_volume==0: drain = 0
 
-    tempflow = round(random.uniform(0.0, 3.0), 1)
-    if drain:
-        tank_volume -= tempflow
-    else:
-        tank_volume += tempflow
-    tank_volume = round(tank_volume, 1)
-    tank_volume = min(tank_volume, MAX_VOLUME)
-    tank_volume = max(tank_volume, 0.0)
-    if tank_volume==MAX_VOLUME: drain = 1
-    if tank_volume==0: drain = 0
-
-    if drain: tempflow = -tempflow
-    jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
-    jsonobj["volume"] = tank_volume
-    jsonobj["temperature"] = tank_volume * 2 + 3
-    jsonobj["flowrate"] = tempflow
-    mqtt_publish(str(jsonobj), topic, mqtt_client)
-
-    print("flow_rate: " + str(float(current_flow_rate)))
-    time.sleep(1)
+        if drain: tempflow = -tempflow
+        jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
+        jsonobj["volume"] = tank_volume
+        jsonobj["temperature"] = tank_volume * 2 + 32
+        jsonobj["flowrate"] = tempflow
+        mqtt_publish(str(jsonobj), topic, mqtt_client)
+    
 
 def set_interval_count(): 
     global change_interval
@@ -68,8 +67,7 @@ def simulate_fillthendrain(topic, mqtt_client):
     """
 
     try:
-        while True:
-            fill_tank(topic, mqtt_client);
+        fill_tank(topic, mqtt_client)
 
     except KeyboardInterrupt:
         print()
