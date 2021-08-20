@@ -17,35 +17,68 @@ from sympy.parsing.sympy_parser import parse_expr
 mqtt_broker = config.mqtt["broker"]
 uuid = str(uuid.uuid4())[:8]
 mqtt_clientid = config.mqtt["clientprefix"] + "GW" + uuid
-mqtt_topic = "tank"			#This should be enumerated, not hard coded
-tank_counter = 0
-num_tanks = 0
-tanksID7 = [1318, 1324, 1282, 1289, 1295, 1301, 1307] #tanks's id for multitanks simulations
-tanks_dic = {"Mytank0": 1318, "Mytank1": 1324, "Mytank2": 1282, "Mytank3": 1289, "Mytank4":1295, "Mytank5":1301, "Mytank6":1307}
-tanksID1 = [2128] #tanks's id for onetank simulations
-tanksID = []
-attributes = [] 
-
+mqtt_topic = ""			#This should be enumerated, not hard coded
+tanks_dic = {} # {tank_name: tank_id}
+attributes_dic = {} # {tank_name: {attribute:attritube_id}}
+type_id = 0
 # Connection information for your SMIP Instance GraphQL endpoint
 graphql = graphql(config.smip["authenticator"], config.smip["password"], config.smip["name"], config.smip["role"], config.smip["url"])
-
+mqtt_topic = graphql.args.modeltype
 print (f"Listening for MQTT messages on topic: {mqtt_topic} ...")
 
 
-def create_new_equipment(equipment_name="Batch Machine 001"):
+def get_tank_info(equipment_type_id):
+	smp_query = f'''query get_id {{
+				equipments(
+					filter: {{typeId: {{equalTo: "{equipment_type_id}"}}}}
+					) {{
+					displayName
+					id
+					attributes {{
+					displayName
+					id
+					}}
+				}}
+				}}'''		
+	smp_response = ""
+	try:
+		smp_response = graphql.post(smp_query)
+		equipments = smp_response['data']['equipments']
+		#print(equipments)
+		for ele in equipments:
+			tank_id = ele['id']
+			tank_name = ele['displayName']
+			tanks_dic[tank_name] = tank_id
+			attributes_dic[tank_name] = {'id': tank_id}
+			for attribute in ele['attributes']:
+				attributes_dic[tank_name][attribute['displayName']] = attribute['id']
+		print(attributes_dic)
+		print(tanks_dic)
+	except requests.exceptions.HTTPError as e:
+		print("An error occured accessing the SM Platform!")
+		print(e)
+
+
+
+def create_new_equipment(equipment_name, equipment_id):
+	print("im in")
 	smp_mutation = f'''
 				mutation MyNewEquipmentMutation {{
 				createEquipment(
 					input: {{
 						equipment: {{
 						displayName: "{equipment_name}"
-						typeId: "1042"
+						typeId: "{equipment_id}"
 						}}
 					}}
 					) {{
 						equipment {{
 							id
 							displayName
+							attributes {{
+							displayName
+							id
+							}}
 						}}
 						}}
 					}}
@@ -54,14 +87,23 @@ def create_new_equipment(equipment_name="Batch Machine 001"):
 	smp_response = ""
 	try:
 		smp_response = graphql.post(smp_mutation)
-		equipment_id = smp_response['data']['createEquipment']['equipment']['id']
+		print(smp_response)
+		equipment = smp_response['data']['createEquipment']['equipment']
+		equipment_id = equipment['id']
+		tanks_dic[equipment_name] = equipment_id
+		attributes = equipment['attributes']
+		attributes_dic[equipment_name] = {}
+		for each in attributes:
+			attr_name = each['displayName']
+			attr_id = each['id']
+			attributes_dic[equipment_name][attr_name] = attr_id
+		print(tanks_dic)
+		print(attributes_dic)
 		return int(equipment_id)
 	except requests.exceptions.HTTPError as e:
 		print("An error occured accessing the SM Platform!")
 		print(e)
-#create_new_equipment()
-
-
+#create_new_equipment("test2")
 
 
 def make_datetime_utc():
@@ -77,19 +119,16 @@ def update_smip(sample_value):
 	print()
 	sample_value = parse_expr(sample_value)
 	tank_id = 0
-	if len(tanksID) == 1:
-		tank_id = tanksID1[0]
+	tank_name = sample_value["tank_name"]
+	if tank_name in tanks_dic:
+		tank_id = tanks_dic[tank_name]
 	else:
-		tank_name = sample_value["tank_name"]
-		if tank_name in tanks_dic:
-			tank_id = tanks_dic[tank_name]
-		else:
-			tank_id = create_new_equipment(tank_name)
-			tanks_dic[tank_name] = tank_id
-	for j in range(len(attributes)):
-		attribute = attributes[j] #attribute name
+		tank_id = create_new_equipment(tank_name, type_id)
+		tanks_dic[tank_name] = tank_id
+	for attribute in sample_value:
+		if attribute == 'tank_name': continue
 		value_send = str(sample_value[attribute]) # Value to be sent to the attribute ID
-		write_attribute_id = str(tank_id+j+1) #The Equipment Attribute ID to be updated in your SMIP model
+		write_attribute_id = attributes_dic[tank_name][attribute] #The Equipment Attribute ID to be updated in your SMIP model
 		smp_query = f"""
 					mutation updateTimeSeries {{
 					replaceTimeSeriesRange(
@@ -126,16 +165,10 @@ mqtt_client.connect(mqtt_broker)
 
 
 if graphql.args.modeltype == "onetank":
-	mqtt_client.subscribe('tank')	
-	num_tanks = 1
-	tanksID = tanksID1
-	attributes = ['flowrate', 'volume', 'temperature']
+	type_id = "2123"
 elif graphql.args.modeltype == "multitanks":
-	num_tanks = 7
-	tanksID = tanksID7
-	attributes = ['volume', 'leak', 'stuck', 'temperature', 'flood']
-	"""for i in range(7):
-		mqtt_client.subscribe('Mytank'+str(i))"""
-	mqtt_client.subscribe('#')
+	type_id = "1042"
+get_tank_info(type_id)
+mqtt_client.subscribe('#')
 mqtt_client.on_message=on_message
 mqtt_client.loop_forever()

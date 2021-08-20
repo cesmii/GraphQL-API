@@ -31,7 +31,7 @@ def change_tank(topic, mqtt_client, function_rate, set_fill):
 
 
     
-    jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
+    jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0}
     jsonobj["volume"] = tank_volume
     jsonobj["temperature"] = tank_volume * 2 + 3
     jsonobj["flowrate"] = flow_rate

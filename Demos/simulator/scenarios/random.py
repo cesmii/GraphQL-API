@@ -26,8 +26,8 @@ def simulate_random(low, high, topic, mqtt_client):
             new_num = min(new_num, MAX_VOLUME)
             flowrate = new_num - pre_volume
             pre_volume = new_num
-
-            jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
+            flowrate = round(flowrate, 1)
+            jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0}
 
             jsonobj["flowrate"] = flowrate
             jsonobj["volume"] = new_num

@@ -8,7 +8,6 @@ import config
 tube_flowrate = 5.0
 MAX_VOLUME = 20.0
 tank_amount = config.tank_amount
-tanks = config.tanks
 tanks_relations = config.tanks_relations
 tanks_sizes = config.tanks_sizes
 tanks_fill_level = config.tanks_fill_level
@@ -21,16 +20,16 @@ def doTank(tank_volume, flow_rate, limit, tank, mqtt_client):
             flow_rate = round(random.uniform(1.2, flow_rate//2), 1) * 2
         tank_volume += flow_rate
         tank_volume = round(tank_volume, 1)
-        tank_volume = min(tank_volume, MAX_VOLUME)
+        tank_volume = min(tank_volume, tanks_sizes[tank])
         tank_volume = max(tank_volume, 0.0)
-        jsonobj={'tank_name': "Mytank"+str(tank), 'volume':0, 'temperature':0, 'leak':0, 'stuck':0, 'flood':0}
+        jsonobj={'tank_name': "mytank"+str(tank), 'volume':0, 'temperature':0, 'size': tanks_sizes[tank]}
         jsonobj["volume"] = tank_volume
         jsonobj["temperature"] = tank_volume * 2 + 32
         #jsonobj["flowrate"] = tube_flowrate
-        mqtt_publish(str(jsonobj), "Mytank"+str(tank), mqtt_client)
+        mqtt_publish(str(jsonobj), "mytank"+str(tank), mqtt_client)
         time.sleep(2)
     tanks_fill_level[tank] = tank_volume
-def drainandfill(drainTank, fillTank, cavitation, leak, mqtt_client):
+def drainandfill(drainTank, fillTank, mqtt_client):
     time.sleep(2)
     tankD_volume = tanks_fill_level[drainTank]
     flowrate = 5.0
@@ -41,21 +40,23 @@ def drainandfill(drainTank, fillTank, cavitation, leak, mqtt_client):
         tankD_volume -= flowrate
         tankD_volume = round(tankD_volume, 1)
         tanks_fill_level[drainTank] = tankD_volume
-        jsonobj={'tank_name': '', 'volume':0, 'temperature':0, 'leak':0, 'stuck':0, 'flood':0}
-        jsonobj['tank_name'] = "Mytank"+str(drainTank)
+        jsonobj={'tank_name': '', 'volume':0, 'temperature':0, 'size': tanks_sizes[drainTank]}
+        jsonobj['tank_name'] = "mytank"+str(drainTank)
         jsonobj["volume"] = tankD_volume
         jsonobj["temperature"] = tankD_volume * 2 + 32
-        mqtt_publish(str(jsonobj), "Mytank"+str(drainTank), mqtt_client)
+        mqtt_publish(str(jsonobj), "mytank"+str(drainTank), mqtt_client)
         
         if fillTank: flowrate = round(flowrate/len(fillTank), 1)
         for tank in fillTank:
             if leaks[tank]: 
                 flowrate = round(random.uniform(0, flowrate), 1)
             tanks_fill_level[tank] += flowrate
-            jsonobj['tank_name'] = "Mytank"+str(tank)
+            tanks_fill_level[tank] = round(tanks_fill_level[tank], 1)
+            jsonobj['tank_name'] = "mytank"+str(tank)
             jsonobj["volume"] = tanks_fill_level[tank]
             jsonobj["temperature"] = tanks_fill_level[tank] * 2 + 32
-            mqtt_publish(str(jsonobj), "Mytank"+str(tank), mqtt_client)
+            jsonobj['size'] = tanks_sizes[tank]
+            mqtt_publish(str(jsonobj), "mytank"+str(tank), mqtt_client)
             time.sleep(2)
         time.sleep(2)
     
@@ -99,7 +100,7 @@ def normalflow(topic, mqtt_client):
         while True:
             doTank(0.0, 5.0, 20.0, 0, mqtt_client)
             for i in range(tank_amount-1):
-                drainandfill(i, tanks_relations[i], False, False, mqtt_client)
+                drainandfill(i, tanks_relations[i], mqtt_client)
             doTank(tanks_fill_level[tank_amount-1], -5.0, 0.0, tank_amount-1, mqtt_client)
     except KeyboardInterrupt:
         print()

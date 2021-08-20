@@ -35,7 +35,7 @@ def fill_tank(topic, mqtt_client):
         if tank_volume==0: drain = 0
 
         if drain: tempflow = -tempflow
-        jsonobj={'flowrate':0, 'volume':0, 'temperature':0}
+        jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0}
         jsonobj["volume"] = tank_volume
         jsonobj["temperature"] = tank_volume * 2 + 32
         jsonobj["flowrate"] = tempflow
