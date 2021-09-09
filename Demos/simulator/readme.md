@@ -57,15 +57,8 @@ run with python3 gateway.py -m onetank:
 * `python3 simulate.py tank randomleak`
 
 run with python3 gateway.py -m multitanks
-* `python3 simulate.py tank oneleak`
-* `python3 simulate.py tank onestuck`
-* `python3 simulate.py tank oneflood`
-* `python3 simulate.py tank leakandstuck`
-* `python3 simulate.py tank floodandleak`
-* `python3 simulate.py tank floodandstuck`
-* `python3 simulate.py tank randnumstuck`
-* `python3 simulate.py tank randnumleak`
-* `python3 simulate.py tank randnumflood`
+* `python3 simulate.py tank normalflow`
+(during simualtion: pressing '0' causes a leak in tank1, and pressing '1' causes a cavitation in tank1)
 
 ### Test on SMIP:
 To test and see the trend lines on our platform:

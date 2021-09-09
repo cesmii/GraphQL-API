@@ -6,7 +6,7 @@ from utils import *
 import config   #copy config-example.py to config.py and set values
 import sys
 import time
-import random
+import random, config
 import uuid
 import paho.mqtt.client as mqtt
 
@@ -83,8 +83,6 @@ def main(args):
         simulate_fill(current_flow, set_fill, topic, mqtt_client)
     elif simulation == "leak":
         simulate_leak(current_flow, set_leak, topic, mqtt_client) 
-    elif simulation == "fillandleak":
-        simulate_fillandleak(current_flow, current_flow2, topic, mqtt_client)
     elif simulation == "randomfill":
         simulate_randomfill(topic, mqtt_client)
     elif simulation == "fillthendrain":

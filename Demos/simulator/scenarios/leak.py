@@ -3,19 +3,26 @@ from types import MappingProxyType
 from utils import *
 
 import paho.mqtt.client as mqtt
-import random
+import config
 import time
 
-tank_volume = 20.0
-MAX_VOLUME = 20.0
-def leak_tank(topic, mqtt_client, flow_rate, set_leak):
 
+MAX_VOLUME = config.one_tank_size
+tank_volume = MAX_VOLUME
+pre_volume = tank_volume
+def leak_tank(topic, mqtt_client, flow_rate, set_leak):
+    time.sleep(2)
     global tank_volume
+    global pre_volume
     tank_volume -= flow_rate
     tank_volume = max(tank_volume, 0.0, set_leak)
 
     tank_volume = min(tank_volume, MAX_VOLUME)
-    jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0}
+    tank_volume = round(tank_volume, 1)
+    flow_rate = round(tank_volume - pre_volume, 1)
+    pre_volume = tank_volume
+
+    jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0, 'size': MAX_VOLUME, 'one_tank_model': 1}
     jsonobj["volume"] = tank_volume
     jsonobj["temperature"] = tank_volume * 2 + 3
     jsonobj["flowrate"] = -flow_rate
@@ -37,8 +44,10 @@ def simulate_leak(flow_rate, set_leak, topic, mqtt_client):
     """
 
     try:
+        jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0, 'size': MAX_VOLUME, 'one_tank_model': 1}
+        mqtt_publish(str(jsonobj), topic, mqtt_client)
         while True:
-            leak_tank(topic, mqtt_client, flow_rate, set_leak);
+            leak_tank(topic, mqtt_client, flow_rate, set_leak)
 
     except KeyboardInterrupt:
         print()

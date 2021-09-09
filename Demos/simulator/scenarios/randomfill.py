@@ -1,7 +1,7 @@
 from utils import *
 
 import paho.mqtt.client as mqtt
-import random
+import random, config
 import time
 
 # max_tank_volume = 100
@@ -9,13 +9,14 @@ change_interval = 5
 interval_count = 0
 current_flow_rate = 1.0
 tank_volume = 0.0
-MAX_VOLUME = 20.0
+MAX_VOLUME = config.one_tank_size
 
 def change_flow_rate():
     global current_flow_rate
     current_flow_rate = random.randint(1, 10)
 
 def fill_tank(topic, mqtt_client):
+    time.sleep(2)
     global interval_count
     global tank_volume
 
@@ -23,7 +24,7 @@ def fill_tank(topic, mqtt_client):
     set_interval_count()
     tank_volume = round(tank_volume, 1)
     tank_volume = min(tank_volume, MAX_VOLUME)
-    jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0}
+    jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0, 'size': MAX_VOLUME, 'one_tank_model': 1}
     jsonobj["volume"] = tank_volume
     jsonobj["temperature"] = tank_volume * 2 + 3
     jsonobj["flowrate"] = current_flow_rate
@@ -57,6 +58,8 @@ def simulate_randomfill(topic, mqtt_client):
     """
 
     try:
+        jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0, 'size': MAX_VOLUME, 'one_tank_model': 1}
+        mqtt_publish(str(jsonobj), topic, mqtt_client)
         while True:
             fill_tank(topic, mqtt_client);
 

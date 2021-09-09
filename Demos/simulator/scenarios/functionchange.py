@@ -1,14 +1,14 @@
 from utils import *
 
 import paho.mqtt.client as mqtt
-import random
+import random, config
 import time
 import math
 
 tank_volume = 0
 time_counter = 0
 absolute = False
-MAX_VOLUME = 20.0
+MAX_VOLUME = config.one_tank_size
 
 def change_tank(topic, mqtt_client, function_rate, set_fill):
 

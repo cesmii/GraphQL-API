@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from ast import parse
 from types import new_class
+from typing import DefaultDict
 import config   #copy config-example.py to config.py and set values
 from datetime import datetime
 import paho.mqtt.client as mqtt
@@ -20,11 +21,43 @@ mqtt_clientid = config.mqtt["clientprefix"] + "GW" + uuid
 mqtt_topic = ""			#This should be enumerated, not hard coded
 tanks_dic = {} # {tank_name: tank_id}
 attributes_dic = {} # {tank_name: {attribute:attritube_id}}
-type_id = 0
+type_id = "1042"
 # Connection information for your SMIP Instance GraphQL endpoint
 graphql = graphql(config.smip["authenticator"], config.smip["password"], config.smip["name"], config.smip["role"], config.smip["url"])
 mqtt_topic = graphql.args.modeltype
+
+
+
 print (f"Listening for MQTT messages on topic: {mqtt_topic} ...")
+
+
+def delete_all():
+	for item in tanks_dic:
+		print(item)
+		delete_equipment(tanks_dic[item])
+
+def delete_equipment(equipment_id):
+	smp_mutation = f'''
+				mutation MyNewEquipmentMutation {{
+				deleteEquipment(
+					input: {{
+						id: "{equipment_id}"
+					}}
+					){{
+						equipment {{
+							id
+							displayName
+						}}
+					}}
+				}}	'''
+	smp_response = ""
+	try:
+		print("start deletion")
+		smp_response = graphql.post(smp_mutation)
+		print(smp_response)
+	except requests.exceptions.HTTPError as e:
+		print("An error occured accessing the SM Platform!")
+		print(e)
 
 
 def get_tank_info(equipment_type_id):
@@ -69,6 +102,7 @@ def create_new_equipment(equipment_name, equipment_id):
 						equipment: {{
 						displayName: "{equipment_name}"
 						typeId: "{equipment_id}"
+						partOfId: "3406"
 						}}
 					}}
 					) {{
@@ -156,18 +190,20 @@ def on_message(client, userdata, message):
 	update_smip(msg)
 
 
-print ("MQTT Broker:  " + mqtt_broker)
-print ("MQTT Client ID:  " + mqtt_clientid)
-print ("Publish Topic:   " + mqtt_topic)
 
+
+if mqtt_topic=="clean":
+	get_tank_info(type_id)
+	delete_all()
+	quit()
 mqtt_client = mqtt.Client(mqtt_clientid)
 mqtt_client.connect(mqtt_broker)
 
 
-if graphql.args.modeltype == "onetank":
-	type_id = "2123"
-elif graphql.args.modeltype == "multitanks":
-	type_id = "1042"
+
+print ("MQTT Broker:  " + mqtt_broker)
+print ("MQTT Client ID:  " + mqtt_clientid)
+print ("Publish Topic:   " + mqtt_topic)
 get_tank_info(type_id)
 mqtt_client.subscribe('#')
 mqtt_client.on_message=on_message

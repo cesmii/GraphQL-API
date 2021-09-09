@@ -3,13 +3,13 @@ from utils import *
 import paho.mqtt.client as mqtt
 import random
 import time
-
+import config
 # max_tank_volume = 100
 change_interval = 5
 interval_count = 0
 current_flow_rate = 1.0
 tank_volume = 0.0
-MAX_VOLUME = 20.0
+MAX_VOLUME = config.one_tank_size
 drain = 0
 
 def change_flow_rate():
@@ -17,7 +17,6 @@ def change_flow_rate():
     current_flow_rate = random.randint(1, 10)
 
 def fill_tank(topic, mqtt_client):
-    global interval_count
     global tank_volume
     global drain
 
@@ -35,22 +34,13 @@ def fill_tank(topic, mqtt_client):
         if tank_volume==0: drain = 0
 
         if drain: tempflow = -tempflow
-        jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0}
+        jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0, 'size': MAX_VOLUME, 'one_tank_model': 1}
         jsonobj["volume"] = tank_volume
         jsonobj["temperature"] = tank_volume * 2 + 32
         jsonobj["flowrate"] = tempflow
         mqtt_publish(str(jsonobj), topic, mqtt_client)
     
 
-def set_interval_count(): 
-    global change_interval
-    global interval_count
-
-    if interval_count == change_interval:
-        change_flow_rate()
-        interval_count = 0
-
-    interval_count += 1
 
 def simulate_fillthendrain(topic, mqtt_client):
     """Simulate random fill speeds that changes every 5 seconds
@@ -67,6 +57,8 @@ def simulate_fillthendrain(topic, mqtt_client):
     """
 
     try:
+        jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0, 'size': MAX_VOLUME, 'one_tank_model': 1}
+        mqtt_publish(str(jsonobj), topic, mqtt_client)
         fill_tank(topic, mqtt_client)
 
     except KeyboardInterrupt:
