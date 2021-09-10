@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 mqtt = {
-    "broker": "192.168.1.109",
+    "broker": "lab.cesmii.net",
     "clientprefix": "CESMII-Sim-"
 }
 smip = {
@@ -12,7 +12,7 @@ smip = {
 }
 
 
-tank_amount = 8
+tank_amount = 5
 tank_name_prefix = "mytank"
 tanks_relations = [[i+1] for i in range(tank_amount-1)] + [[]]
 tanks_relations[1] = [2, 3]
@@ -23,7 +23,7 @@ tanks_sizes[3] = 10
 tanks_fill_level = [0 for i in range(tank_amount)]
 cavitations = [False for i in range(tank_amount)]
 leaks = [False for i in range(tank_amount)]
-cavitations[1] = True
+#cavitations[1] = True
 #cavitations[2] = True
 #leaks[1] = True
 
