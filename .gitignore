@@ -351,3 +351,4 @@ MigrationBackup/
 Samples/Javascript/JavascriptGraphQLRequestSample.html
 Samples/Javascript/package-lock.json
 Demos/simulator/config.py
+Demos/Excel/config.py
