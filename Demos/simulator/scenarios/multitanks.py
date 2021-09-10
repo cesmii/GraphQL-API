@@ -5,7 +5,6 @@ import paho.mqtt.client as mqtt
 import random
 import time
 import config
-import threading
 
 tube_flowrate = 5.0
 MAX_VOLUME = config.one_tank_size

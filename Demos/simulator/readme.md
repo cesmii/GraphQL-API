@@ -1,9 +1,11 @@
 # Install
 * Requires Python3
-* Requires Paho-MQTT:
+* Requires Paho-MQTT, pynput and sympy:
 
 ```
 sudo pip3 install paho-mqtt
+sudo pip3 install pynput
+sudo pip3 install sympy
 ```
 
 * Modify line 8 to point to your MQTT Broker
