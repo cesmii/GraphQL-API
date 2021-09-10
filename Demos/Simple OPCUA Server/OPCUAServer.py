@@ -1,10 +1,11 @@
 #! /usr/bin/env python3
 
-''' Dependenices to install via pip
+''' Dependenices to install via pip:
       pip install pyspectator
       pip install opcua 
     Note: This generally works on Windows (including WSL) with some warnings, however pyspectator 
-    requires VisualStudio C++ Build tools, and the script may require elevated execution.
+    requires VisualStudio C++ Build tools, and an additional Python package:
+      pip install wmi
 '''
 
 from opcua import Server
