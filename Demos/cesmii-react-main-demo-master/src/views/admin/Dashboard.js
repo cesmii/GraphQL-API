@@ -7,6 +7,8 @@ import CardBarChart from "components/Cards/CardBarChart.js";
 import HeaderStats from "components/Headers/HeaderStats.js";
 import CardPageVisits from "components/Cards/CardPageVisits.js";
 import CardSocialTraffic from "components/Cards/CardSocialTraffic.js";
+import Plotly from 'plotly.js-dist-min'
+
 
 export default function Dashboard() {
   return (

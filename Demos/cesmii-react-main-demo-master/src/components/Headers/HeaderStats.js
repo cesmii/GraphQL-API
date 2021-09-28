@@ -24,59 +24,33 @@ export default function HeaderStats() {
 
   //let tanks = ["2129", "2130", "2131"];
 
-
+  
+  let today = new Date().toISOString().slice(0, 10)
+  today +=  "T00:00:00+00:00"
+  console.log(today)
+  const date = new Date(today)
+  console.log(date);
+  
   const GET_TANK_DATA = gql`
-    query Tank($tank: [BigInt]) {
+    query Tank($tank: [BigInt], $date: Datetime) {
       getRawHistoryDataWithSampling(
         ids: $tank
-        startTime: "2021-08-24 00:00:00+00"
+        startTime: $date
         endTime: "2021-09-29 00:00:00+00"
-        maxSamples: 1
+        filter: {ts: {greaterThan: $date}}
+        maxSamples: 0
       ) {
         floatvalue
+        ts
       }
     }
   `;
-
-
-
-
-  /*const GET_TANKS = gql`
-    query Tank($typeid: BigInt) {
-      equipments( filter:{typeId: {equalTo: $typeid}}
-      ) {
-        displayName
-        id
-        attributes {
-        displayName
-        id
-        }
-      }
-    }
-  `;
-
-  const { loading1, error1, tanks_info } = useQuery(GET_TANKS, {
-    variables: {type_id},
-  });
-
-  if (loading1) {
-    console.log("we are loading");
-    return null;
-  }
-  if (error1) return `Error! ${error1}`;
-  console.log(
-    "got the info",
-    JSON.stringify(tanks_info)
-  );
-  */
-
-
 
 
   function TankData(tank, index, divisor, unit_symbol, title) {
     console.log(`tank: ${tank}`);
     const { loading, error, data } = useQuery(GET_TANK_DATA, {
-      variables: { tank },
+      variables: { tank: tank, date: today},
       pollInterval: 1000,
     });
 
@@ -85,10 +59,21 @@ export default function HeaderStats() {
       return null;
     }
     if (error) return `Error! ${error}`;
+    var stats = data.getRawHistoryDataWithSampling
+    console.log(stats);
     console.log(
       "data.getRawHistoryDataWithSampling[1].floatvalue",
-      JSON.stringify(data.getRawHistoryDataWithSampling, null, 2)
+      JSON.stringify(stats, null, 2)
     );
+    /*var value_send_index = 0;
+    for(let i =0; i<stats.length;i++){
+      var anyTime = new Date(stats[i].ts);
+      console.log(anyTime, date)
+      if (anyTime > date){
+        value_send_index = i
+      }
+    }*/
+
     return (
       <div className="w-full lg:w-6/12 xl:w-4/12 px-2 pb-4" key={index}>
         <LiquidGauge
@@ -97,8 +82,8 @@ export default function HeaderStats() {
           gaugeTitle={title}
           unit = {unit_symbol}
           tank_size = {divisor}
-          val= {data.getRawHistoryDataWithSampling[0].floatvalue}
-          state={ data.getRawHistoryDataWithSampling[0].floatvalue*100/divisor}
+          val= {data.getRawHistoryDataWithSampling[data.getRawHistoryDataWithSampling.length-1].floatvalue}
+          state={data.getRawHistoryDataWithSampling[data.getRawHistoryDataWithSampling.length-1].floatvalue*100/divisor}
         />
       </div>
     );
