@@ -23,15 +23,23 @@ export default function HeaderStats() {
   const divisors = [20.0, 20.0, 120.0]
 
 
+  let today = new Date().toISOString().slice(0, 10)
+  today +=  "T00:00:00+00:00"
+  console.log(today)
+  const date = new Date(today)
+  console.log(date);
+  
   const GET_TANK_DATA = gql`
-    query Tank($tank: [BigInt]) {
+    query Tank($tank: [BigInt], $date: Datetime) {
       getRawHistoryDataWithSampling(
         ids: $tank
-        startTime: "2021-08-24 10:00:00+00"
-        endTime: "2021-09-29 00:00:00+00"
-        maxSamples: 1
+        startTime: $date
+        endTime: "2021-10-29 00:00:00+00"
+        filter: {ts: {greaterThan: $date}}
+        maxSamples: 0
       ) {
         floatvalue
+        ts
       }
     }
   `;
@@ -39,7 +47,7 @@ export default function HeaderStats() {
   function TankData(tank, index, divisor, unit_symbol, title) {
     console.log(`tank: ${tank}`);
     const { loading, error, data } = useQuery(GET_TANK_DATA, {
-      variables: { tank },
+      variables: { tank: tank, date: today},
       pollInterval:1000,
     });
 
@@ -60,8 +68,8 @@ export default function HeaderStats() {
           gaugeTitle={title}
           unit = {unit_symbol}
           tank_size = {20.0}
-          val= {data.getRawHistoryDataWithSampling[0].floatvalue}
-          state={ data.getRawHistoryDataWithSampling[0].floatvalue*100/divisor}
+          val= {data.getRawHistoryDataWithSampling[data.getRawHistoryDataWithSampling.length-1].floatvalue}
+          state={ data.getRawHistoryDataWithSampling[data.getRawHistoryDataWithSampling.length-1].floatvalue*100/divisor}
         />
       </div>
     );

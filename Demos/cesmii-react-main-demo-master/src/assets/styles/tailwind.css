@@ -1108,6 +1108,11 @@ select {
   background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 }
 
+.bg-cesmii-blue {
+  --tw-bg-opacity: 1;
+  background-color: rgba(62,133,239, var(--tw-bg-opacity));
+}
+
 .bg-lightBlue-200 {
   --tw-bg-opacity: 1;
   background-color: rgba(186, 230, 253, var(--tw-bg-opacity));
@@ -1518,6 +1523,10 @@ select {
 
 .h-350-px {
   height: 350px;
+}
+
+.h-card{
+  height: 200px;
 }
 
 .h-500-px {
@@ -2073,6 +2082,15 @@ select {
 
 .top-0 {
   top: 0px;
+}
+
+
+.top-logo{
+  top:700px;
+}
+
+.top-swoosh {
+  top: 300px;
 }
 
 .right-0 {

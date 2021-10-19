@@ -25,10 +25,11 @@ export default function LiquidGauge({
   statDescripiron,
   statIconName,
   statIconColor,
+  liquidColor,
 }) {
   const radius = Math.round(Math.sqrt(tank_size/20.0) * 50);
   const interpolate = interpolateRgb({ startColor }, { endColor });
-  const fillColor = interpolate({ state } / 100);
+  const fillColor = liquidColor//interpolate({ state } / 100);
   const gradientStops = [
     {
       key: "0%",
@@ -52,7 +53,7 @@ export default function LiquidGauge({
 
   return (
     <>
-      <div className="flex-child min-w-0 bg-white rounded shadow-lg">
+      <div className="flex-child min-w-0 bg-white rounded shadow-lg h-card">
         <div className="flex-auto p-4">
           <div className="flex flex-nowrap">
             <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
@@ -97,7 +98,7 @@ export default function LiquidGauge({
                   gradient
                   gradientStops={gradientStops}
                   circleStyle={{
-                    fill: fillColor,
+                    fill: "black",
                   }}
                   waveStyle={{
                     fill: fillColor,
@@ -157,6 +158,7 @@ LiquidGauge.defaultProps = {
   statDescripiron: "Since last month",
   statIconName: "far fa-chart-bar",
   statIconColor: "bg-red-500",
+  liquidColor: "red",
 };
 
 LiquidGauge.propTypes = {
@@ -180,4 +182,5 @@ LiquidGauge.propTypes = {
   // can be any of the background color utilities
   // from tailwindcss
   statIconColor: PropTypes.string,
+  liquidColor: PropTypes.string,
 };

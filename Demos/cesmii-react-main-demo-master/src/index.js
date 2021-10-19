@@ -33,6 +33,7 @@ const tank_info = [];
 const tank_flowrateID = [];
 const tank_temperatureID = [];
 const tank_serialNumber = [];
+var tank_colors = [];
 let one_tank_info = [];
 
 
@@ -240,6 +241,12 @@ async function doMain() {
     tank_serialNumber.push(tank.serialNumber);
 
   }
+  var tank_amount = tank_volumesID.length;
+  var randomColor = '';
+  for(var i=0;i<tank_amount;i++){
+    randomColor = '#'+Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
+    tank_colors.push(randomColor);
+  }
   console.log(one_tank_info);
   console.log(tank_info);
   //console.log(JSON.stringify(smpResponse, null, 2));
@@ -270,4 +277,4 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-export {tempvar, tank_names, tank_sizes, tank_volumesID, tank_flowrateID, tank_temperatureID, tank_serialNumber, one_tank_info} ;
+export {tempvar, tank_names, tank_sizes, tank_volumesID, tank_flowrateID, tank_temperatureID, tank_serialNumber, one_tank_info, tank_colors, doMain} ;
