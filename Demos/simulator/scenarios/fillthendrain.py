@@ -21,7 +21,7 @@ def fill_tank(topic, mqtt_client):
     global drain
 
     while True:
-        time.sleep(2)
+        time.sleep(3)
         tempflow = round(random.uniform(1.7, 3.0), 1)
         if drain:
             tank_volume -= tempflow
@@ -37,7 +37,7 @@ def fill_tank(topic, mqtt_client):
         jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0, 'size': MAX_VOLUME, 'one_tank_model': 1}
         jsonobj["volume"] = tank_volume
         jsonobj["temperature"] = tank_volume * 2 + 32
-        jsonobj["flowrate"] = tempflow
+        jsonobj["flowrate"] = abs(tempflow)
         mqtt_publish(str(jsonobj), topic, mqtt_client)
     
 
