@@ -130,7 +130,7 @@ async function doMain(tank) {
 }
 
 
-console.log("res",doMain("8519"));
+console.log("res",doMain(tank_volumesID[0]));
 
 var lastDate = 0;
 

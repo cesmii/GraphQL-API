@@ -10,16 +10,23 @@ import CardSocialTraffic from "components/Cards/CardSocialTraffic.js";
 import {one_tank_info} from "index.js";
 //console.log(one_tank_info)
 export default function Demo_oneTank() {
+  function create_chart(index){
+    if (index==0){
+      return(
+          <CardChart 
+        tank_volumesID={one_tank_info}
+        ymax = {80}
+          />
+      )
+    }
+  }
   return (
     <>
       <HeaderStats_oneTank />
       <div className="flex flex-wrap">
         
         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-        <CardChart 
-          tank_volumesID = {one_tank_info}
-          ymax= {80}
-          />
+        {one_tank_info.map((tank,index)=>create_chart(index))}
         </div>
 
       </div>

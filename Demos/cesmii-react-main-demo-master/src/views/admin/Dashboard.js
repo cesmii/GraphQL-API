@@ -17,11 +17,10 @@ export default function Dashboard() {
   function create_chart(index){
     if (index==0){
       return(
-        <div>
           <CardChart 
         tank_volumesID={tank_volumesID}
+        ymax = {20}
           />
-        </div>
       )
     }
   }
@@ -32,10 +31,7 @@ export default function Dashboard() {
       <div className="flex flex-wrap">
         
         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-        <CardChart 
-        tank_volumesID={tank_volumesID}
-        ymax = {20}
-          />
+        {tank_volumesID.map((tank,index)=>create_chart(index))}
         </div>
         
       </div>
