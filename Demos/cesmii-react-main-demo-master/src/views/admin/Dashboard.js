@@ -12,6 +12,20 @@ import {tank_volumesID, tank_colors} from "index.js"
 
 
 export default function Dashboard() {
+
+
+  function create_chart(index){
+    if (index==0){
+      return(
+        <div>
+          <CardChart 
+        tank_volumesID={tank_volumesID}
+          />
+        </div>
+      )
+    }
+  }
+
   return (
     <>
       <HeaderStats />
@@ -20,9 +34,10 @@ export default function Dashboard() {
         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
         <CardChart 
         tank_volumesID={tank_volumesID}
+        ymax = {20}
           />
         </div>
-
+        
       </div>
       {/*<div className="flex flex-wrap mt-4">
         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">

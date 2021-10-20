@@ -9,7 +9,7 @@ import CardChart from "components/Cards/CardLineChart1.js";
 
 import { gql, useQuery } from "@apollo/client";
 import {tempvar, tank_names, tank_sizes, tank_volumesID, tank_serialNumber} from "index.js"
-const tank_colors = ["#a5778a", "#a7f199", "#87ad86", "#cb3f93", "#cb7460"];
+const tank_colors = ["#a5778a", "#a7f199", "#87ad86", "#cb3f93", "#cb7460","#9300c0", "#89cff0", "#3f3252", "#9f1141", "#6de137"];
 
 export default function HeaderStats() {
   // All Tanks
@@ -43,7 +43,7 @@ export default function HeaderStats() {
         startTime: $date
         endTime: "2021-10-29 00:00:00+00"
         filter: {ts: {greaterThan: $date}}
-        maxSamples: 0
+        maxSamples: 1
       ) {
         floatvalue
         ts

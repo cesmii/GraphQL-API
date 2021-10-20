@@ -26,7 +26,7 @@ const httpLink = createHttpLink({
 console.log("before auth");
 
 const tempvar = 99999;
-const tank_volumesID = [];
+var tank_volumesID = [];
 const tank_sizes = [];
 const tank_names = [];
 const tank_info = [];
@@ -256,6 +256,7 @@ async function doMain() {
   console.log(tank_flowrateID);
   console.log(tank_temperatureID);
   console.log(tank_serialNumber);
+  console.log("colors",tank_colors);
 }
 
 ReactDOM.render(

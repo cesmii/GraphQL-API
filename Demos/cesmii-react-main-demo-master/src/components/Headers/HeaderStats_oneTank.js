@@ -4,11 +4,13 @@ import React from "react";
 
 import CardStats from "components/Cards/CardStats.js";
 import LiquidGauge from "components/Gauges/LiquidGauge.js";
+import CardChart from "components/Cards/CardLineChart.js";
 
 import { gql, useQuery } from "@apollo/client";
 import {one_tank_info} from "index.js";
-
+const tank_colors = ["#a5778a", "#a7f199", "#87ad86", "#cb3f93", "#cb7460"];
 export default function HeaderStats() {
+  console.log("one",one_tank_info)
   // All Tanks
   // let tanks = ["1319", "1325", "1283", "1290", "1296", "1302", "1308", "2129"];
 
@@ -36,7 +38,7 @@ export default function HeaderStats() {
         startTime: $date
         endTime: "2021-10-29 00:00:00+00"
         filter: {ts: {greaterThan: $date}}
-        maxSamples: 0
+        maxSamples: 1
       ) {
         floatvalue
         ts
@@ -68,10 +70,14 @@ export default function HeaderStats() {
           gaugeTitle={title}
           unit = {unit_symbol}
           tank_size = {20.0}
+          liquidColor = {tank_colors[index]}
           val= {data.getRawHistoryDataWithSampling[data.getRawHistoryDataWithSampling.length-1].floatvalue}
           state={ data.getRawHistoryDataWithSampling[data.getRawHistoryDataWithSampling.length-1].floatvalue*100/divisor}
         />
+
       </div>
+
+
     );
   }
 
@@ -88,8 +94,10 @@ export default function HeaderStats() {
         {one_tank_info.map((tank, index) => TankData(tank, index, divisors[index], units[index], tag_names[index]))}
                  
       </div>
+
         </div>
       </div>
+      
     </>
   );
 }

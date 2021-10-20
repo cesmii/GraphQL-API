@@ -6,8 +6,9 @@ import { getConfigFileParsingDiagnostics } from "typescript";
 import { gql, useQuery } from "@apollo/client";
 const fetch = require('node-fetch');
 const instanceGraphQLEndpoint = "https://demo.cesmii.net/graphql";
+export default function CardChart({tank_volumesID, ymax}){
 var last = 0
-const color_set = ["#a5778a", "#a7f199", "#87ad86", "#cb3f93", "#cb7460"];
+const color_set = ["#a5778a", "#a7f199", "#87ad86", "#cb3f93", "#cb7460","#9300c0", "#89cff0", "#3f3252", "#9f1141", "#6de137"];
 //console.log("ids",tank_volumesID)
 /* You could opt to manually update the bearer token that you retreive from the Developer menu > GraphQL - Request Header token
       But be aware this is short-lived (you set the expiry, see Authenticator comments below) and you will need to handle
@@ -27,54 +28,6 @@ const userName = "cesmiihq";
 const role = "demo_owner";
 
 
-
-
-
-
-let today = new Date().toISOString().slice(0, 10)
-  today +=  "T00:00:00+00:00"
-  console.log(today)
-  const date = new Date(today)
-  console.log(date);
-  
-  const GET_TANK_DATA = gql`
-    query Tank($tank: [BigInt], $date: Datetime) {
-      getRawHistoryDataWithSampling(
-        ids: $tank
-        startTime: $date
-        endTime: "2021-10-29 00:00:00+00"
-        filter: {ts: {greaterThan: $date}}
-        maxSamples: 0
-      ) {
-        floatvalue
-        ts
-      }
-    }
-  `;
-
-  /*function TankData(tank) {
-    console.log(`tank: ${tank}`);
-    const { loading, error, data } = useQuery(GET_TANK_DATA, {
-      variables: { tank: tank, date: today},
-    });
-
-    if (loading) {
-      console.log("we are loading");
-      return null;
-    }
-    if (error) return `Error! ${error}`;
-    console.log(
-      "data.getRawHistoryDataWithSampling[1].floatvalue",
-      JSON.stringify(data.getRawHistoryDataWithSampling, null, 2)
-    );
-    return data.getRawHistoryDataWithSampling[data.getRawHistoryDataWithSampling.length-1].floatvalue
-    }
-*/
-
-
-
-//Call main program function
-//doMain();
 
 //Forms and sends a GraphQL request (query or mutation) and returns the response
 async function performGraphQLRequest(query, endPoint, bearerToken) {
@@ -134,9 +87,9 @@ async function doMain(tank) {
     var smpQuery = JSON.stringify({
         query: `{
           getRawHistoryDataWithSampling(
-            maxSamples: 0
+            maxSamples: 1
             ids: ["${tank}"]
-            startTime: "2021-09-24 00:00:00+00"
+            startTime: "2021-10-18 00:00:00+00"
             endTime: "2021-10-29 00:12:00+00"
           ) {
             id
@@ -171,7 +124,7 @@ async function doMain(tank) {
     last = smpResponse.data.getRawHistoryDataWithSampling.length - 1
     console.log("Response from SM Platform was... ");
     //console.log(JSON.stringify(smpResponse, null, 2));
-    console.log();
+    console.log("last", last);
     console.log("ok",parseFloat(smpResponse.data.getRawHistoryDataWithSampling[last].floatvalue));
     return parseFloat(smpResponse.data.getRawHistoryDataWithSampling[last].floatvalue);
 }
@@ -221,59 +174,61 @@ function getDayWiseTimeSeries(baseval, count, yrange, tank_amount) {
     i++;
   }
   
+  
   for(var j =0;j<tank_amount; j++){
     series1.push({data: data1.slice()});
   }
+  console.log("first create", tank_amount, series1)
 }
 
 
 
-console.log("series",JSON.stringify(series1));
+console.log("series at first",JSON.stringify(series1));
 
 
 
 
 
-function getNewSeries(baseval, tank_volumesID, tank_amount) {
-    console.log("im in ")
+function getNewSeries(baseval, tank_volumesID) {
+    console.log("in getnew ", tank_volumesID, tank_volumesID.length)
+    var tank_amount = tank_volumesID.length;
     var newDate = baseval + TICKINTERVAL;
     lastDate = newDate
-    var j = 0;
-    for(var i = 0; i< data1.length - 10; i++) {
-      // IMPORTANT
-      // we reset the x and y of the data which is out of drawing area
-      // to prevent memory leaks
-      data1.x = newDate - XAXISRANGE - TICKINTERVAL
-      data1.y = 0
-      data2.x = newDate - XAXISRANGE - TICKINTERVAL
-      data2.y = 0
-      data3.x = newDate - XAXISRANGE - TICKINTERVAL
-      data3.y = 0
-      data4.x = newDate - XAXISRANGE - TICKINTERVAL
-      data4.y = 0
-      data5.x = newDate - XAXISRANGE - TICKINTERVAL
-      data5.y = 0
+
+  
+  
+  //this loop is for dynamic
+    for(var j =0; j<tank_amount;j++){
+        for(var k = 0; k< data1.length - 10; k++) {
+        // IMPORTANT
+        // we reset the x and y of the data which is out of drawing area
+        // to prevent memory leaks
+            series1[j].data.x = newDate - XAXISRANGE - TICKINTERVAL
+            series1[j].data.y = 0
+        }
     }
-  
-  
-  
-   /*function loop(i) {
+
+    (function loop(i) {
+        console.log("loop")
+        console.log("i0",i, tank_amount)
       if (i >= tank_amount) return; // all done
+      console.log("i",i)
       doMain(tank_volumesID[i]).then((result) => {
-        console.log("series",series1)
+        console.log("series in here changing",series1)
         series1[i].data.push({
           x: newDate,
           y: parseFloat(result)
         })
         loop(i+1);
       });
-  }
-  loop(0);
-*/
+  })(0);
+
+
+
 
   
   
- 
+ /*
     doMain(tank_volumesID[0]).then((result) => {
       console.log(parseFloat(result))
       series1[0].data.push({
@@ -311,39 +266,18 @@ function getNewSeries(baseval, tank_volumesID, tank_amount) {
       y: parseFloat(result)
     })
   });
-  
-      
-    /*doMain("8531").then((result) => {
-      console.log(parseFloat(result))
-      data2.push({
-        x: newDate,
-        y: parseFloat(smpResponse.data.getRawHistoryDataWithSampling[last].floatvalue)
-    })
-    series1[1].data = data2
-    });*/
-  
-      /*
-      doMain("8543");
-      data3.push({
-        x: newDate,
-        y: parseFloat(smpResponse.data.getRawHistoryDataWithSampling[last].floatvalue)
-      })
-      doMain("8555");
-      data4.push({
-        x: newDate,
-        y: parseFloat(smpResponse.data.getRawHistoryDataWithSampling[last].floatvalue)
-      })
-      doMain("8567");
-      data5.push({
-        x: newDate,
-        y: parseFloat(smpResponse.data.getRawHistoryDataWithSampling[last].floatvalue)
-      })
   */
-  }
-export default function CardChart({tank_volumesID}){
+      
 
-    const[series2,setSeries2] = React.useState(series1);//[{data:data1.slice()},{data: data2.slice()}],//series1,
-    const tank_amount = tank_volumesID.length;
+  
+  }
+
+    //console.log(tank_volumesID.tank_volumesID);
+    //console.log("len",tank_volumesID.tank_volumesID.length);
+
+    //const[series2,setSeries2] = React.useState(series1);//[{data:data1.slice()},{data: data2.slice()}],//series1,
+    var tank_amount = tank_volumesID.length;
+    console.log("len",tank_amount)
     const state = {   
       options: {
         chart: {
@@ -354,7 +288,7 @@ export default function CardChart({tank_volumesID}){
             enabled: true,
             easing: 'linear',
             dynamicAnimation: {
-              speed: 1000
+              speed: 2000
             }
           },
           toolbar: {
@@ -387,7 +321,7 @@ export default function CardChart({tank_volumesID}){
           range: XAXISRANGE/9*5,
         },
         yaxis: {
-          max: 20
+          max: ymax
         },
         legend: {
           show: false
@@ -402,18 +336,19 @@ export default function CardChart({tank_volumesID}){
         max: 30
       }, tank_amount)
 
+      console.log("first seires1 here", series1);
     React.useEffect(() => {
     
         const intervalId = setInterval(() => {
             
-          getNewSeries(lastDate, tank_volumesID, tank_amount);
+          getNewSeries(lastDate, tank_volumesID);
           console.log("seires1 here", series1);
           //console.log("val1", TankData(tank_volumesID[0]))
-          setSeries2(series1);
+          //setSeries2(series1);
           ApexCharts.exec('realtime', 'updateSeries', 
       series1)
-          console.log("seires2 here", series2);
-        }, 1000) // in milliseconds
+          //console.log("seires2 here", series2);
+        }, 2000) // in milliseconds
         return () => clearInterval(intervalId)
       }, [])
 
