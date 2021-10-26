@@ -16,6 +16,6 @@
 
 ### Run with simulation
 - 1. run `python3 gateway.py -m multitanks` in one terminal
-- 2. for multitank model: run `python3 simulate.py tank normalflow` in another terminal
-     for onetank model: run `python3 simulate.py tank fillthendrain` in another terminal
-- 3. a. check on the gateway terminal -> after you get all the responses of the first sierie of queries -> go on the animation page -> refresh -> click on multitanks tab on the left
+- 2. - for multitank model: run `python3 simulate.py tank normalflow` in another terminal
+     - for onetank model: run `python3 simulate.py tank fillthendrain` in another terminal
+- 3. check on the gateway terminal -> after you get all the responses of the first sierie of queries -> go on the animation page -> refresh -> click on multitanks tab on the left

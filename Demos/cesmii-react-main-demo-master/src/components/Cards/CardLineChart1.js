@@ -87,7 +87,7 @@ async function doMain(tank) {
     var smpQuery = JSON.stringify({
         query: `{
           getRawHistoryDataWithSampling(
-            maxSamples: 1
+            maxSamples: 0
             ids: ["${tank}"]
             startTime: "2021-10-18 00:00:00+00"
             endTime: "2021-10-29 00:12:00+00"
@@ -198,7 +198,7 @@ function getNewSeries(baseval, tank_volumesID) {
   
   
   //this loop is for dynamic
-    for(var j =0; j<tank_amount;j++){
+    /*for(var j =0; j<tank_amount;j++){
         for(var k = 0; k< data1.length - 10; k++) {
         // IMPORTANT
         // we reset the x and y of the data which is out of drawing area
@@ -222,52 +222,30 @@ function getNewSeries(baseval, tank_volumesID) {
         loop(i+1);
       });
   })(0);
+*/
+  var promises 
+  promises = tank_volumesID.map((id) => {
+    return doMain(id)
+  })
+  Promise.all(promises).then((resolutions) => {
+    console.log("resolutions",resolutions)
+    for(var j =0; j<tank_amount;j++){
+        for(var k = 0; k< data1.length - 10; k++) {
+        // IMPORTANT
+        // we reset the x and y of the data which is out of drawing area
+        // to prevent memory leaks
+            series1[j].data.x = newDate - XAXISRANGE - TICKINTERVAL
+            series1[j].data.y = 0
+        }
+        series1[j].data.push({
+            x: newDate,
+            y: resolutions[j]
+          })
 
-
-
-
-  
-  
- /*
-    doMain(tank_volumesID[0]).then((result) => {
-      console.log(parseFloat(result))
-      series1[0].data.push({
-        x: newDate,
-        y: parseFloat(result)
-      })
+    }
+    //resolutions.map((i, data) => {
+    //  series[i].push({x:newDate, y:parseFloat(data)})
   });
-  
-  doMain(tank_volumesID[1]).then((result) => {
-    console.log(parseFloat(result))
-    series1[1].data.push({
-      x: newDate,
-      y: parseFloat(result)
-    })
-  });
-  
-  doMain(tank_volumesID[2]).then((result) => {
-    console.log(parseFloat(result))
-    series1[2].data.push({
-      x: newDate,
-      y: parseFloat(result)
-    })
-  });
-  doMain(tank_volumesID[3]).then((result) => {
-    console.log(parseFloat(result))
-    series1[3].data.push({
-      x: newDate,
-      y: parseFloat(result)
-    })
-  });
-  doMain(tank_volumesID[4]).then((result) => {
-    console.log(parseFloat(result))
-    series1[4].data.push({
-      x: newDate,
-      y: parseFloat(result)
-    })
-  });
-  */
-      
 
   
   }
@@ -305,13 +283,15 @@ function getNewSeries(baseval, tank_volumesID) {
         stroke: {
           curve: 'smooth'
         },
-        title: {
-          text: 'Dynamic Updating Chart',
-          align: 'left'
-        },
+
         markers: {
           size: 0
         },
+        /*grid: {
+            row: {
+              colors: ['#415a65']
+            }
+          },*/
         xaxis: {
           labels: {
             show: false,
@@ -343,8 +323,6 @@ function getNewSeries(baseval, tank_volumesID) {
             
           getNewSeries(lastDate, tank_volumesID);
           console.log("seires1 here", series1);
-          //console.log("val1", TankData(tank_volumesID[0]))
-          //setSeries2(series1);
           ApexCharts.exec('realtime', 'updateSeries', 
       series1)
           //console.log("seires2 here", series2);

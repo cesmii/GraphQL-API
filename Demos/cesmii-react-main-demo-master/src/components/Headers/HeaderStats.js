@@ -43,7 +43,7 @@ export default function HeaderStats() {
         startTime: $date
         endTime: "2021-10-29 00:00:00+00"
         filter: {ts: {greaterThan: $date}}
-        maxSamples: 1
+        maxSamples: 0
       ) {
         floatvalue
         ts
