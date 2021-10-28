@@ -5,6 +5,7 @@ import paho.mqtt.client as mqtt
 import random
 import time
 import config
+import threading
 
 tube_flowrate = 5.0
 MAX_VOLUME = config.one_tank_size
@@ -67,6 +68,9 @@ def doTank(tank_volume, flow_rate, limit, tank, mqtt_client):
         mqtt_publish(str(jsonobj), tank_name_prefix+str(tank), mqtt_client)
         time.sleep(2)
     tanks_fill_level[tank] = tank_volume
+
+
+
 def drainandfill(drainTank, fillTank, mqtt_client):
     time.sleep(2)
     tankD_volume = tanks_fill_level[drainTank]
@@ -99,7 +103,15 @@ def drainandfill(drainTank, fillTank, mqtt_client):
         time.sleep(2)
     
     
-    
+def cause_leakage(topic, mqtt_client):
+    random_tank = random.randint(1,tank_amount-1)
+    msg = {'leak_tank': 1}
+    mqtt_publish(str(msg), topic, mqtt_client)
+
+def cause_cavitation(topic, mqtt_client):
+    random_tank = random.randint(1,tank_amount-1)
+    msg = {'cavitation_tank': random_tank}
+    mqtt_publish(str(msg), topic, mqtt_client)
 
 def flow_with_leak(topic, mqtt_client):
     try:
@@ -141,23 +153,42 @@ def flow_with_cavitation(topic, mqtt_client):
         exit()
 
 def normalflow(topic, mqtt_client):
-
-    try:
-        listener = keyboard.Listener(
-            on_press=on_press,
-            on_release=on_release)
-        listener.start()
+    def get_input():
+        while True:
+            problem = input()
+            if problem == "cavitation":
+                config.cavitations[1] = True
+                print(config.cavitations)
+            if problem == "leak":
+                config.leaks[1] = True
+                print(config.leaks)
+    def tank_op():
         for tank in range(tank_amount):
             topic = tank_name_prefix+str(tank)
             jsonobj={'tank_name': topic, 'volume':0, 'temperature':0, 'size': tanks_sizes[tank], 'one_tank_model': 0, 'serialNumber': str(tanks_serialNumber[tank])}
             mqtt_publish(str(jsonobj), topic, mqtt_client)
         time.sleep(tank_amount*3)
-        print(config.leaks)
+        #print(config.leaks)
         while True:
             doTank(0.0, 5.0, tanks_sizes[0], 0, mqtt_client)
             for i in range(tank_amount-1):
                 drainandfill(i, tanks_relations[i], mqtt_client)
             doTank(tanks_fill_level[tank_amount-1], -5.0, 0.0, tank_amount-1, mqtt_client)
+    try:
+        """listener = keyboard.Listener(
+            on_press=on_press,
+            on_release=on_release)
+        listener.start()"""
+        t1 = threading.Thread(target=get_input)
+        t2 = threading.Thread(target=tank_op)
+    
+        # starting thread 2
+        t2.start()
+        # starting thread 1
+        t1.start()
+        
+        
+        
     except KeyboardInterrupt:
         print()
         print("Simulation stopped")

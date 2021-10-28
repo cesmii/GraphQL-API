@@ -97,6 +97,10 @@ def main(args):
         simulate_randomleak(topic, mqtt_client)
     elif simulation == "functionchange":
         simulate_functionchange(function_rate, set_fill, topic, mqtt_client)
+    elif simulation == "cavitation":
+        cause_cavitation(topic, mqtt_client)
+    elif simulation == "leakage":
+        cause_leakage(topic, mqtt_client)
 
     randnum = random.randint(1, len(Lines))  
     randomtanks = sorted(random.sample(range(0,len(Lines)), randnum))

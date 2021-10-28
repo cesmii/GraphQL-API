@@ -60,7 +60,7 @@ run with python3 gateway.py -m onetank:
 
 run with python3 gateway.py -m multitanks
 * `python3 simulate.py tank normalflow`
-(during simualtion: pressing '0' causes a leak in tank1, and pressing '1' causes a cavitation in tank1)
+(during simualtion: type 'leak' to triger a leak in tank1, and type 'cavitation' to triger a cavitation in tank1)
 
 ### Test on SMIP:
 To test and see the trend lines on our platform:

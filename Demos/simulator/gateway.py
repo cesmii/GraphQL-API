@@ -153,6 +153,14 @@ def update_smip(sample_value):
 	print()
 	sample_value = parse_expr(sample_value)
 	tank_id = 0
+	if "cavitation_tank" in sample_value:
+		cav_tank = sample_value["cavitation_tank"]
+		config.cavitations = True
+		return
+	elif "leak_tank" in sample_value:
+		cav_tank = sample_value["leak_tank"]
+		config.leaks = True
+		return
 	tank_name = sample_value["tank_name"]
 	if tank_name in tanks_dic:
 		tank_id = tanks_dic[tank_name]
