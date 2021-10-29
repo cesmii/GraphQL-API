@@ -214,13 +214,7 @@ async function doMain() {
       else if(attribute.displayName=="one_tank_model" && attribute.floatValue==1) one = true;
       else if(attribute.displayName=="serialNumber") temp["serialNumber"] = attribute.stringValue;
     }
-    if (one) {
-      one_tank_info=[temp["flowrateID"], temp["volumeID"], temp["temperatureID"]];
-      one = false;
-    }
-    else{
-      tank_info.push(temp);
-    }
+    tank_info.push(temp);
     
     }
 
@@ -241,12 +235,9 @@ async function doMain() {
     tank_serialNumber.push(tank.serialNumber);
 
   }
+
+  one_tank_info = [tank_volumesID[0], tank_flowrateID[0], tank_temperatureID[0]]
   var tank_amount = tank_volumesID.length;
-  var randomColor = '';
-  for(var i=0;i<tank_amount;i++){
-    randomColor = '#'+Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
-    tank_colors.push(randomColor);
-  }
   console.log(one_tank_info);
   console.log(tank_info);
   //console.log(JSON.stringify(smpResponse, null, 2));

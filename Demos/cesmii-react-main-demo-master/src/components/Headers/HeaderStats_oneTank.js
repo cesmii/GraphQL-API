@@ -20,8 +20,8 @@ export default function HeaderStats() {
   // let tanks = ["1283", "1302"];
 
   //let tanks = ["2129", "2130", "2131"];
-  const tag_names = ["Flowrate", "Fill Level", "Temperature"];
-  const units = ["L/s", "L", "°F"];
+  const tag_names = ["Fill Level", "Flowrate", "Temperature"];
+  const units = ["L", "L/s", "°F"];
   const divisors = [20.0, 20.0, 120.0]
 
 
@@ -37,7 +37,6 @@ export default function HeaderStats() {
         ids: $tank
         startTime: $date
         endTime: "2021-11-29 00:00:00+00"
-        filter: {ts: {greaterThan: $date}}
         maxSamples: 0
       ) {
         floatvalue
