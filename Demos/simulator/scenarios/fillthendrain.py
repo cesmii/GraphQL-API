@@ -10,12 +10,15 @@ current_flow_rate = 1.0
 tank_volume = 0.0
 MAX_VOLUME = config.one_tank_size
 drain = 0
+tank_name = config.one_tank_name
 
 def change_flow_rate():
     global current_flow_rate
     current_flow_rate = random.randint(1, 10)
 
 def fill_tank(topic, mqtt_client):
+
+    topic = tank_name
     global tank_volume
     global drain
 
