@@ -4,14 +4,16 @@ import paho.mqtt.client as mqtt
 import random, config
 import time
 import math
+import json
 
 tank_volume = 0
 time_counter = 0
 absolute = False
 MAX_VOLUME = config.one_tank_size
+tank_name = config.one_tank_name
 
-def change_tank(topic, mqtt_client, function_rate, set_fill):
-
+def change_tank(mqtt_client, function_rate, set_fill):
+    topic = tank_name
     global tank_volume
     global time_counter
     
@@ -62,7 +64,7 @@ def simulate_functionchange(function_rate, set_fill, topic, mqtt_client):
             absolute = True
         
         while True:
-            change_tank(topic, mqtt_client, function_rate, set_fill);
+            change_tank(mqtt_client, function_rate, set_fill);
 
     except KeyboardInterrupt:
         print()

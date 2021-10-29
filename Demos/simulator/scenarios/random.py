@@ -4,9 +4,10 @@ from utils import *
 import paho.mqtt.client as mqtt
 import random, config
 import time
+import json
 pre_volume = 0
 MAX_VOLUME = config.one_tank_size
-
+tank_name = config.one_tank_name
 def simulate_random(low, high, topic, mqtt_client):
     """Simulate randomly changed fill level within the range from low to high
 
@@ -19,6 +20,7 @@ def simulate_random(low, high, topic, mqtt_client):
         mqtt_client {class} -- mqtt class
     """
     try:
+        topic = tank_name
         global pre_volume
         flowrate = 0
         jsonobj=make_default_json(topic, MAX_VOLUME, True)

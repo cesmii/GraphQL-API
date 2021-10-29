@@ -3,6 +3,7 @@ import config
 import time
 import json
 MAX_VOLUME = config.one_tank_size
+tank_name = config.one_tank_name
 def simulate_stepwise(lines, topic, mqtt_client):
     """Simulate fill level changes in the input file
 
@@ -13,6 +14,7 @@ def simulate_stepwise(lines, topic, mqtt_client):
         mqtt_client {class} -- mqtt class
     """
     try:
+        topic = tank_name
         pre_volume = 0
         flowrate = 0
         jsonobj=make_default_json(topic, MAX_VOLUME, True)

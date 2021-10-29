@@ -16,7 +16,7 @@ def change_flow_rate():
     global current_flow_rate
     current_flow_rate = random.randint(1, 10)
 
-def fill_tank(topic, mqtt_client):
+def fill_tank(mqtt_client):
 
     topic = tank_name
     global tank_volume
@@ -57,10 +57,9 @@ def simulate_fillthendrain(topic, mqtt_client):
     """
 
     try:
-        topic = tank_name
-        jsonobj=make_default_json(topic, MAX_VOLUME, True)
+        jsonobj=make_default_json(tank_name, MAX_VOLUME, True)
         mqtt_publish(json.dumps(jsonobj), topic, mqtt_client)
-        fill_tank(topic, mqtt_client)
+        fill_tank(mqtt_client)
 
     except KeyboardInterrupt:
         print()

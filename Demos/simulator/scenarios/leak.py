@@ -11,10 +11,12 @@ import json
 MAX_VOLUME = config.one_tank_size
 tank_volume = MAX_VOLUME
 pre_volume = tank_volume
-def leak_tank(topic, mqtt_client, flow_rate, set_leak):
+tank_name = config.one_tank_name
+def leak_tank(mqtt_client, flow_rate, set_leak):
     time.sleep(2)
     global tank_volume
     global pre_volume
+    topic = tank_name
     tank_volume -= flow_rate
     tank_volume = max(tank_volume, 0.0, set_leak)
 
@@ -45,6 +47,7 @@ def simulate_leak(flow_rate, set_leak, topic, mqtt_client):
     """
 
     try:
+        topic = tank_name
         jsonobj=make_default_json(topic, MAX_VOLUME, True)
         mqtt_publish(json.dumps(jsonobj), topic, mqtt_client)
         while True:

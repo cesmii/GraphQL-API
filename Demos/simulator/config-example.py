@@ -13,7 +13,7 @@ smip = {
 
 
 tank_amount = 7
-tank_name_prefix = "mytank"
+tank_name_prefix = "Tank"
 tanks_relations = [[i+1] for i in range(tank_amount-1)] + [[]]
 tanks_sizes= [20 for i in range(tank_amount)]
 
