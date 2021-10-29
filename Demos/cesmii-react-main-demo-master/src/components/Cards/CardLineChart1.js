@@ -90,7 +90,7 @@ async function doMain(tank) {
             maxSamples: 0
             ids: ["${tank}"]
             startTime: "2021-10-18 00:00:00+00"
-            endTime: "2021-10-29 00:12:00+00"
+            endTime: "2021-11-29 00:12:00+00"
           ) {
             id
             floatvalue
@@ -130,7 +130,7 @@ async function doMain(tank) {
 }
 
 
-console.log("res",doMain(tank_volumesID[0]));
+//console.log("res",doMain(tank_volumesID[0]));
 
 var lastDate = 0;
 

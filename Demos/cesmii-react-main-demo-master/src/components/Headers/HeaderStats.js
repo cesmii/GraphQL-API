@@ -41,7 +41,7 @@ export default function HeaderStats() {
       getRawHistoryDataWithSampling(
         ids: $tank
         startTime: $date
-        endTime: "2021-10-29 00:00:00+00"
+        endTime: "2021-11-29 00:00:00+00"
         filter: {ts: {greaterThan: $date}}
         maxSamples: 0
       ) {
