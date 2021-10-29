@@ -26,7 +26,7 @@ def simulate_stepwise(lines, topic, mqtt_client):
                 volume = min(volume, MAX_VOLUME)
                 flowrate = volume - pre_volume
                 pre_volume = volume
-                jsonobj=make_default_json(topic, MAX_VOLUME)
+                jsonobj=make_default_json(topic, MAX_VOLUME, True)
                 jsonobj["flowrate"] = flowrate
                 jsonobj["volume"] = volume
                 jsonobj["temperature"] = volume * 2 + 3
