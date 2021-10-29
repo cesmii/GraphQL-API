@@ -105,7 +105,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  oneTank
+                  Tank Detail
                 </Link>
                 <Link
                   className={
@@ -124,7 +124,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  multiTanks
+                  Tank Overview
                 </Link>
                 <div>
                 <button 

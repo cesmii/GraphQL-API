@@ -20,10 +20,10 @@ export default function Index() {
         />
         </div>
                 <Link
-                  to="/admin/dashboard"
+                  to="/admin/Demo_oneTank"
                   className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-cesmii-blue uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
                 >
-                  Get started
+                  Log-In
                 </Link>
               </div>
 
