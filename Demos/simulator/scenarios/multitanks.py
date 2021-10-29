@@ -69,13 +69,13 @@ def doTank(tank_volume, flow_rate, limit, tank, mqtt_client):
         tank_volume = min(tank_volume, tanks_sizes[tank])
         tank_volume = max(tank_volume, 0.0)
         updateTank(tank, tank_volume, mqtt_client)        
-        time.sleep(2)
+        time.sleep(1)
     tanks_fill_level[tank] = tank_volume
 
 
 
 def drainandfill(drainTank, fillTank, mqtt_client):
-    time.sleep(2)
+    time.sleep(1)
     tankD_volume = tanks_fill_level[drainTank]
     flowrate = 5.0
     cavitation_counter = 0
@@ -97,8 +97,8 @@ def drainandfill(drainTank, fillTank, mqtt_client):
             tanks_fill_level[tank] += flowrate2
             tanks_fill_level[tank] = round(tanks_fill_level[tank], 1)
             updateTank(tank, tanks_fill_level[tank], mqtt_client)
-            time.sleep(2)
-        time.sleep(2)
+            time.sleep(1)
+        time.sleep(1)
     
     
 
