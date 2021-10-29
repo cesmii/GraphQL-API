@@ -7,8 +7,10 @@ import time
 tank_volume = 0
 pre_volume = 0
 MAX_VOLUME = config.one_tank_size
+tank_name = config.one_tank_name
 
-def fill_tank(topic, mqtt_client, flow_rate, set_fill):
+def fill_tank(mqtt_client, flow_rate, set_fill):
+    topic = tank_name
     time.sleep(1)
     global tank_volume
     global pre_volume
@@ -42,10 +44,10 @@ def simulate_fill(flow_rate, set_fill, topic, mqtt_client):
     """
 
     try:
-        jsonobj=make_default_json(topic, MAX_VOLUME, True)
+        jsonobj=make_default_json(tank_name, MAX_VOLUME, True)
         mqtt_publish(json.dumps(jsonobj), topic, mqtt_client)
         while True:
-            fill_tank(topic, mqtt_client, flow_rate, set_fill);
+            fill_tank(mqtt_client, flow_rate, set_fill)
 
     except KeyboardInterrupt:
         print()
