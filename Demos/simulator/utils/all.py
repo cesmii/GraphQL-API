@@ -4,7 +4,7 @@ tank_name_prefix = config.tank_name_prefix
 tanks_sizes = config.tanks_sizes
 
 def mqtt_publish(value, topic, mqtt_client):
-    #print (topic.capitalize() + " Value: " + str(value))
+    print (topic.capitalize() + " Value: " + str(value))
     mqtt_client.publish(topic, value)
 
 def make_default_json(topic, MAX_VOLUME, is_onetank):

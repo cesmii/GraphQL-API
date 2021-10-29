@@ -18,7 +18,7 @@ cavitations = config.cavitations
 leaks = config.leaks
 tank_name_prefix = config.tank_name_prefix
 tanks_serialNumber = random.sample(range(1,100), tank_amount)
-
+cavitation_movement = [4, 0.5, 1.5, 5, 1, 4.6, 0.8, 6]
 
 """from pynput import keyboard
 def on_press(key):
@@ -54,7 +54,7 @@ def checkChangeValue():
             print(config.leaks)
 
 def updateTank(tank_num, volume, mqtt_client):
-    topic = tank_name_prefix+str(tank_num)
+    topic = tank_name_prefix+str(tank_num+1)
     jsonobj = make_json_multitanks(topic, tank_num)
     jsonobj["volume"] = volume
     jsonobj["temperature"] = volume * 2 + 32
@@ -78,9 +78,12 @@ def drainandfill(drainTank, fillTank, mqtt_client):
     time.sleep(2)
     tankD_volume = tanks_fill_level[drainTank]
     flowrate = 5.0
+    cavitation_counter = 0
+    len_cavitation = len(cavitation_movement)
     while tankD_volume != 0.0:
         if cavitations[drainTank]:
-            flowrate = round(random.uniform(1.4, flowrate//2), 1) * 2
+            flowrate = cavitation_movement[cavitation_counter]
+            cavitation_counter = (cavitation_counter+1) % len_cavitation
         flowrate = min(flowrate, tankD_volume)
         tankD_volume -= flowrate
         tankD_volume = round(tankD_volume, 1)
@@ -151,7 +154,7 @@ def normalflow(topic, mqtt_client):
                 print(config.leaks)
     def tank_op():
         for tank in range(tank_amount):
-            topic = tank_name_prefix+str(tank)
+            topic = tank_name_prefix+str(tank+1)
             jsonobj = make_json_multitanks(topic, tank)
             jsonobj["serialNumber"] = str(tanks_serialNumber[tank])
             mqtt_publish(json.dumps(jsonobj), topic, mqtt_client)

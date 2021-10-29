@@ -31,4 +31,4 @@ tanks_relations[2] = [4]"""
 
 
 one_tank_size = 20
-one_tank_name = tank_name_prefix + "0"
+one_tank_name = tank_name_prefix + "1"
