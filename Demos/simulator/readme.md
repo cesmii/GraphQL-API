@@ -29,15 +29,7 @@ The simulator is intended to act like an independent process unit, emitting data
   * fill: fills in the tank until it reaches set_fill if provided, takes in optional parameters current_flow as the fill rate and set_fill as the designated volume
   * leak: fills in the leak until it reaches set_leak if provided, takes in optional parameters current_flow as the leak rate and set_leak as the designated volume
   * functionchange: fill level changes like the input math function trend line
-  * oneflood: one of the tanks floods which randomly increases fill level
-  * oneleak: one of the tanks leaks which randomly decreases fill level
-  * onestuck: one of the tanks stucks which doesn't flow out to the next tank
-  * leakandstuck: one of the tanks leaking that randomly decreases the fill level, and one of the tanks stuck that doesn't flow out to the next tank
-  * floodandleak: one of the tanks flooding that randomly increases the fill level, and one of the tanks leaking that randomly decreases the fill level
-  * floodandstuck: one of the tanks flooding that randomly increases the fill level, and one of the tanks stuck that doesn't flow out to the next tank
-  * randnumleak: random number of tanks are leaking that randomly decreases the fill level
-  * randnumflood: random number of tanks are flooding that randomly increases the fill level
-  * randnumstuck: random number of tanks are stuck which don't flow out to the next tank
+  * normalflow: creates fill level flows based on the tanks innitiation in config
 
   
 
@@ -67,6 +59,7 @@ To test and see the trend lines on our platform:
 * 1. `python3 gateway.py -m onetank/multitanks` on a terminal
 * 2. add pens under "attribute trending" on our platform
 * 3. run one of the above example on another terminal
+* 4. `python3 gateway.py -m clean` will clear all the tanks
 
 
 

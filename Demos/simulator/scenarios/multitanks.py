@@ -147,7 +147,7 @@ def normalflow(topic, mqtt_client):
                 config.cavitations[1] = True
                 print(config.cavitations)
             if problem == "leak":
-                config.leaks[1] = True
+                config.leaks[4] = True
                 print(config.leaks)
     def tank_op():
         for tank in range(tank_amount):
