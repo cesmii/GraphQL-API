@@ -57,6 +57,7 @@ def simulate_fillthendrain(topic, mqtt_client):
     """
 
     try:
+        topic = tank_name
         jsonobj=make_default_json(topic, MAX_VOLUME, True)
         mqtt_publish(json.dumps(jsonobj), topic, mqtt_client)
         fill_tank(topic, mqtt_client)
