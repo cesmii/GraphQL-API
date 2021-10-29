@@ -28,11 +28,11 @@ def leak_tank(topic, mqtt_client):
     flowrate = tank_volume - pre_volume
     pre_volume = tank_volume
 
-    jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0, 'size': MAX_VOLUME, 'one_tank_model': 1}
+    jsonobj=make_default_json(topic, MAX_VOLUME, True)
     jsonobj["volume"] = tank_volume
     jsonobj["temperature"] = tank_volume * 2 + 3
     jsonobj["flowrate"] = flowrate
-    mqtt_publish(str(jsonobj), topic, mqtt_client)
+    mqtt_publish(json.dumps(jsonobj), topic, mqtt_client)
 
     print("flow_rate: " + str(float(current_flow_rate)))
     time.sleep(1)
@@ -58,8 +58,8 @@ def simulate_randomleak(topic, mqtt_client):
     """
 
     try:
-        jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0, 'size': MAX_VOLUME, 'one_tank_model': 1}
-        mqtt_publish(str(jsonobj), topic, mqtt_client)
+        jsonobj=make_default_json(topic, MAX_VOLUME, True)
+        mqtt_publish(json.dumps(jsonobj), topic, mqtt_client)
         while True:
             leak_tank(topic, mqtt_client)
 

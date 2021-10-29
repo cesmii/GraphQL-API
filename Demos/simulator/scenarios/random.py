@@ -21,8 +21,8 @@ def simulate_random(low, high, topic, mqtt_client):
     try:
         global pre_volume
         flowrate = 0
-        jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0, 'size': MAX_VOLUME, 'one_tank_model': 1}
-        mqtt_publish(str(jsonobj), topic, mqtt_client)
+        jsonobj=make_default_json(topic, MAX_VOLUME, True)
+        mqtt_publish(json.dumps(jsonobj), topic, mqtt_client)
         while True:
             time.sleep(2)
             new_num = round(random.uniform(low, high), 1)
@@ -30,12 +30,12 @@ def simulate_random(low, high, topic, mqtt_client):
             flowrate = new_num - pre_volume
             pre_volume = new_num
             flowrate = round(flowrate, 1)
-            jsonobj={'tank_name': topic, 'flowrate':0, 'volume':0, 'temperature':0, 'size': MAX_VOLUME, 'one_tank_model': 1}
-
+            
+            jsonobj=make_default_json(topic, MAX_VOLUME, True)
             jsonobj["flowrate"] = flowrate
             jsonobj["volume"] = new_num
             jsonobj["temperature"] = new_num * 2 + 3
-            mqtt_publish(str(jsonobj), topic, mqtt_client)
+            mqtt_publish(json.dumps(jsonobj), topic, mqtt_client)
             time.sleep(1)
     except KeyboardInterrupt:
         print()
