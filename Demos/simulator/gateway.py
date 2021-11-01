@@ -11,8 +11,6 @@ import uuid
 import argparse
 import json
 import sys
-from sympy.parsing.sympy_parser import parse_expr
-
 #print(sys.argv)
 
 mqtt_broker = config.mqtt["broker"]
@@ -150,17 +148,9 @@ def make_datetime_utc():
 
 def update_smip(sample_value):
 	print("Posting Data to CESMII Smart Manufacturing Platform...")
-	print()
-	sample_value = parse_expr(sample_value)
+	print("in update")
+	sample_value = json.loads(sample_value)
 	tank_id = 0
-	if "cavitation_tank" in sample_value:
-		cav_tank = sample_value["cavitation_tank"]
-		config.cavitations = True
-		return
-	elif "leak_tank" in sample_value:
-		cav_tank = sample_value["leak_tank"]
-		config.leaks = True
-		return
 	tank_name = sample_value["tank_name"]
 	if tank_name in tanks_dic:
 		tank_id = tanks_dic[tank_name]
@@ -199,7 +189,7 @@ def on_message(client, userdata, message):
 
 
 
-
+# python3 ga
 if mqtt_topic=="clean":
 	get_tank_info(type_id)
 	delete_all()
