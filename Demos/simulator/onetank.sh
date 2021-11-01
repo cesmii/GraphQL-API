@@ -1,3 +1,6 @@
 #!/bin/bash
 echo "Starting One Tank System..."
-python3 simulate.py tank fillthendrain
+rm config.py
+cp config-onetank.py config.py
+#python3 simulate.py tank fillthendrain
+python3 simulate.py tank normalflow
