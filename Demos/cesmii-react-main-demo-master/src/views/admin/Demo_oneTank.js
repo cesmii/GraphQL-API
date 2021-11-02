@@ -8,8 +8,9 @@ import HeaderStats_oneTank from "components/Headers/HeaderStats_oneTank.js";
 import CardPageVisits from "components/Cards/CardPageVisits.js";
 import CardSocialTraffic from "components/Cards/CardSocialTraffic.js";
 import {one_tank_info} from "index.js";
-//console.log(one_tank_info)
+
 export default function Demo_oneTank() {
+  console.log("one_tank",one_tank_info)
   function create_chart(index){
     if (index==0){
       return(
