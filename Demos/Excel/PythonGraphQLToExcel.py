@@ -3,7 +3,7 @@
 ''' Dependenices to install via pip
       pip install requests 
       pip install pandas '''
-import os, argparse, json
+import os, argparse, json, requests
 import pandas as pd
 from datetime import datetime
 import config   #copy config-example.py to config.py and set values
@@ -25,7 +25,7 @@ parser.add_argument("-v", "--verbose", type=str, default=config.smip["verbose"],
 args = parser.parse_args()
 
 # Setup SMIP Connection
-graphql = graphql(config.smip["authenticator"], config.smip["password"], config.smip["name"], config.smip["role"], config.smip["url"])
+graphql = graphql(config.smip["authenticator"], config.smip["password"], config.smip["name"], config.smip["role"], config.smip["url"], config.smip["barrer_token"])
 #   Format Input
 tags = args.tags.strip('][').split(', ')
 tag_list = ""

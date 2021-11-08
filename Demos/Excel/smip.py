@@ -6,8 +6,8 @@ import datetime
 
 class graphql:
 
-    def __init__(self, authenticator, password, username, role, endpoint):
-        self.current_bearer_token = ""
+    def __init__(self, authenticator, password, username, role, endpoint, barrer_token):
+        self.current_bearer_token = barrer_token
         self.authenticator = authenticator
         self.password = password
         self.username = username
