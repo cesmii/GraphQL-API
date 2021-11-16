@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 mqtt = {
     "broker": "mqtt.cesmii.net",
     "clientprefix": "CESMII-JWSim-"

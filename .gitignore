@@ -350,6 +350,6 @@ MigrationBackup/
 .ionide/
 Samples/Javascript/JavascriptGraphQLRequestSample.html
 Samples/Javascript/package-lock.json
-Demos/simulator/config.py
+Demos/Simulator/backend/config.py
 Demos/Excel/config.py
 Demos/cesmii-react-main-demo-master/package-lock.json
