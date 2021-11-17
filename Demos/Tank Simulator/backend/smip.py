@@ -15,6 +15,7 @@ class graphql:
         self.parser.add_argument("-n", "--name", type=str, default=username)
         self.parser.add_argument("-r", "--role", type=str, default=role)
         self.parser.add_argument("-u", "--url", type=str, default=endpoint)
+        self.parser.add_argument("-m", "--modeltype", type=str, required=True)
         self.args = self.parser.parse_args()
 
     def post(self, content):

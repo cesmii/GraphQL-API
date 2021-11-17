@@ -16,16 +16,51 @@ The simulator is intended to act like an independent process unit, emitting data
 * Specify the MQTT section to match your Broker
 
 ## Run
-`python3 simulate.py [simulation-file] [`*optional*` simulation-type] [`*optional*` topic-name]`
+`python3 simulate.py [simulation-file] [`*optional*` simulation-type][`*optional*` current_flow] [`*optional*` current_flow2] [`*optional*` set_fill] [`*optional*` set_leak]`
 * **simulation-file**: name of simulation config file to use, no extension. eg: tank
 * **simulation-type**: the kind of simulation to perform, defaults to stepwise
   * stepwise: publishes each line of the config in a loop with a delay
   * random: determines the lowest and highest number in the config and publishes a random number in that range in a loop with a delay
-* **topic-name**: the MQTT topic to publish under, if left blank, uses the value of config
+  * randomfill: fills in the tank at a random flow rate, the flow rate changes every 5 rounds
+  * randomleak: leaks the tank till it's empty at a random flow rate, the flow rate changes every 5 rounds
+  * fillandleak: fills in the tank while it leaks, takes in optional current_flow as the fill rate, and current_flow as the leak rate
+  * fill: fills in the tank until it reaches set_fill if provided, takes in optional parameters current_flow as the fill rate and set_fill as the designated volume
+  * leak: fills in the leak until it reaches set_leak if provided, takes in optional parameters current_flow as the leak rate and set_leak as the designated volume
+  * functionchange: fill level changes like the input math function trend line
+  * normalflow: creates fill level flows based on the tanks innitiation in config
+
+  
+
+* **topic-name**: same as the simulation-file for simulations of onetank; for multitanks simulations, topic names are Mytank0-Mytank6
+* **current_flow**: the current flow rate of fill or leak
+* **current_flow2**: used in the case of fillandleak, current_flow is the fill rate and current_flow2 is the leak rate
+* **set_fill**: the final volume that the tank is filled up to, current_flow has to be provided to use the parameter
+* **set_leak**: the final volume where the leaking stops, current_flow has to be provided to use the parameter
 
 ### Examples:
+run with tank_amount set to 1 in config.py:
 * `python3 simulate.py tank`
-* `python3 simulate.py tank random MyTank1`
+* `python3 simulate.py tank functionchange "math.sin(2t)"`
+* `python3 simulate.py tank fill 1.0 20.0`
+* `python3 simulate.py tank leak 1.0 2.0`
+* `python3 simulate.py tank fillandleak 2.0 0.5`
+* `python3 simulate.py tank random`
+* `python3 simulate.py tank randomfill`
+* `python3 simulate.py tank randomleak`
+
+run with tank_amount set to more than 1 in config.py
+* `python3 simulate.py tank normalflow`
+(during simualtion: type 'leak' to triger a leak in tank1, and type 'cavitation' to triger a cavitation in tank1)
+
+### Test on SMIP:
+To test and see the trend lines on our platform:
+* 1. `python3 gateway.py -m build` on a terminal
+* 2. add pens under "attribute trending" on our platform
+* 3. run one of the above example on another terminal
+* 5. see the trend on platform
+* 4. `python3 gateway.py -m clean` will clear all the tanks
+
+
 
 ### Notes:
 You can run multiple instances, but make sure they each have a unique topic on the Broker!
@@ -54,7 +89,9 @@ The Gateway functions as a "connector" from MQTT to the SM Innovation Platform, 
 ## Run
 
 ```
-python3 gateway.py
+python3 gateway.py -m build  (start the gateway)
+python3 gateway.py -m clean  (clear all the equipments of the type_id in config)
+
 ```
 
 # Mosquitto
