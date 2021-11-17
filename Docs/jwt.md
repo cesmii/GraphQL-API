@@ -88,6 +88,10 @@ Finally we can add the Authorization header with our Bearer JWT token to make a 
 curl 'https://YOURINSTANCE.cesmii.thinkiq.net/graphql' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'Origin: altair://-' -H 'Authorization: Bearer eyJhbGc<< your JWT token here >>9xlC3gM' --data-binary '{"query":"{\n  organizations {\n    displayName\n    childPlaces {\n      displayName\n    }\n  }\n}\n","variables":{}}' --compressed
 ~~~
 
+### Obtain a JWT token programmatically
+
+Token's can be acquired programmatically through GraphQL calls. See [documentation for auth mutations here](mutations.md#authentication).
+
 # Conclusion
 
 This concludes the overview of making SMIP GraphQL API calls using JWT tokens. We hope you find this information useful. Contact your project sponsors for any additional questions you may have.

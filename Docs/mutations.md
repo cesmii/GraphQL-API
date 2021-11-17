@@ -11,7 +11,7 @@ In these examples, you need to know the ID of the element you are mutating. You 
 
 ## Example Mutations
 
-**<a name="time-series">Mutating Time Series Sample Values**
+**<a name="time-series">Mutating Time Series Sample Values</a>**
 
 The following query payload mutates time series sample values for a given Instance Attribute Tag, with the provided time stamp. If values already exist, they will be updated (replaced). If values did not previously exist, they will be inserted:
 
@@ -37,7 +37,7 @@ mutation MyTimeSeriesMutation {
 
 Replace ## with your tag or attribute ID.
 
-**<a name="create-tag">Creating New Tags**
+**<a name="create-tag">Creating New Tags</a>**
 
 ```
 mutation CreateTag_Mutation {
@@ -68,7 +68,7 @@ mutation CreateTag_Mutation {
 
 Replace ## with the ID of the connector you want to attach the tag to.
 
-**<a name="create-equipment">Creating New Equipment**
+**<a name="create-equipment">Creating New Equipment</a>**
   
   ```
   mutation MyNewEquipmentMutation {
@@ -91,6 +91,57 @@ Replace ## with the ID of the connector you want to attach the tag to.
   }
 }
 ```
+
+## <a name="authentication">Authentication Mutations</a>
+
+If your token has expired, getting a new one is a two step process where you request a challenge, then respond to the challenge:
+
+### Authentication Challenge
+
+```
+mutation get_challenge {
+  authenticationRequest(
+    input: {
+      authenticator: "cesmiidemoauthenticator"
+      role: "demo_owner"
+      userName: "cesmiiloginname"
+    }
+  ) {
+    jwtRequest {
+      challenge
+      message
+    }
+  }
+}
+```
+
+1. authenticator: This is same as "Authenticator Name" you created on this page: https://<yourinstance>.cesmii.net/developer/graphql-authenticator
+
+2. role: This is same as "Roles" you created on this page https://<yourinstance>.cesmii.net/developer/graphql-authenticator
+
+3. userName:  This is the same as your login name for https://<yourinstance>.cesmii.net/
+
+
+### Authentication Challenge Response
+
+```
+mutation get_token {
+  authenticationValidation(
+    input: {
+      authenticator: "cesmiidemoauthenticator"
+      signedChallenge: "f13bc155e5233f26ef4e1dc45eeded2f|authenticatorpasswd"
+    }
+  ) {
+    jwtClaim
+  }
+}
+```
+
+1. authenticator: This is same as "Authenticator Name" you created on this page: https://_yourorg_.cesmii.net/developer/graphql-authenticator
+
+2. signedChallenge: This is the same as "challenge": "ca6df09059e7b68a9e07b8cdae95b937" output from get_challenge.  This string needs to be appended with "|_authenticatorpasswd_".  
+
+_authenticatorpasswd_ is same as the one you used when you created the authenticator 
 
 ## Other Operations
 

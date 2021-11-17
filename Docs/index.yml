@@ -14,6 +14,7 @@ nav:
     - Mutations:
       - Inserting or Updating Time Series samples: mutations.md#time-series
       - Creating a New Tag: mutations.md#create-tag
+      - Authentication: mutations.md#authentication
 
 theme:
   name: readthedocs

@@ -86,7 +86,7 @@ query placeQuery {
 
 **<a name="query-attributes">Querying Attributes**
 
-The following query payload returns a list of Attributes in a given SMIP instance:
+The following query payload returns a list of all Attributes in a given SMIP instance:
 
 ```
 query AttributeQuery { 
@@ -98,10 +98,35 @@ query AttributeQuery {
     }  
 }
 ```
+   
+This query lists only the Attributes for a given Equipment Type definition:
+
+```
+query EquipmentTypeAttributes {
+  typeToAttributeTypes(filter: {displayName: {equalTo: "MyEquipmentTypeID"}}) {
+    id
+    displayName
+    partOf {
+      displayName
+      description
+      id
+      thingsByTypeId {
+        displayName
+        id
+        updatedTimestamp
+        attributesByPartOfId {
+          displayName
+          id
+        }
+      }
+    }
+  }
+}
+```
 
 **<a name="query-timeseries">Querying Time Series Values**
 
-The following query payload returns a list of Time Series sample values for a given Instance Attribute Tag within the specified time range
+The following query returns a list of Time Series sample values for a given Instance Attribute Tag within the specified time range
 
 ```
 query HistoryQuery {
