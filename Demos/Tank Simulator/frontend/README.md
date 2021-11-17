@@ -1,5 +1,5 @@
 ### Get Started
-
+- In frontend/src/index.js: Change line 18-32 accordingly
 - Install NodeJS **LTS** version from <a href="https://nodejs.org/en/?ref=creativetim">NodeJs Official Page</a>
 - Download the product on this page
 - Unzip the downloaded file to a folder in your computer

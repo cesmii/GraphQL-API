@@ -15,20 +15,21 @@ import Admin from "layouts/Admin.js";
 
 import Index from "views/Index.js";
 
-const instanceGraphQLEndpoint = "https://sandbox.cesmii.net/graphql";
+const instanceGraphQLEndpoint = "YOUR INSTANCE ENDPOINT";
 /* You could opt to manually update the bearer token that you retreive from the Developer menu > GraphQL - Request Header token
 But be aware this is short-lived (you set the expiry, see Authenticator comments below) and you will need to handle
 expiry and renewal -- as shown below. As an alternative, you could start your life-cycle with authentication, or
 you could authenticate with each request (assuming bandwidth and latency aren't factors in your use-case). */
-var currentBearerToken = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2FuZGJveF9yb19ncm91cCIsImV4cCI6MTYzNzA4MzE5MywidXNlcl9uYW1lIjoid2VuamllIiwiYXV0aGVudGljYXRvciI6InNhbmRib3giLCJhdXRoZW50aWNhdGlvbl9pZCI6IjEyOSIsImlhdCI6MTYzNzA4MTM5MiwiYXVkIjoicG9zdGdyYXBoaWxlIiwiaXNzIjoicG9zdGdyYXBoaWxlIn0.Da-zvXQqLXORsDpxIHHerZt-7ZAxkwMNGXOjjR-aFvQ";
+var currentBearerToken = "BEAR TOKEN AT YOUR PLATFORM"
 /* These values come from your Authenticator, which you configure in the Developer menu > GraphQL Authenticator
     Rather than binding this connectivity directly to a user, we bind it to an Authenticator, which has its own
     credentials. The Authenticator, in turn, is linked to a user -- sort of like a Service Principle.
     In the Authenticator setup, you will also configure role, and Token expiry. */
-const clientId = "cesmii_tank_demo";
-const clientSecret = "8BvMcF3ibGqDjRm";
-const userName = "Wenjie Liu";
-const role = "sandbox_group";
+const clientId = "CLIENTID";
+const clientSecret = "CLIENTSECRET";
+const userName = "USERNAME";
+const role = "ROLE SHOWN ON AUTHENTICATOR IN PLATFORM";
+const equipment_type_id = "YOUR EQUIPMENT TYPE ID"
 
 console.log("before http");
 const httpLink = createHttpLink({
@@ -158,7 +159,7 @@ async function doMain() {
         Or find additional samples at https://github.com/cesmii/API/wiki/GraphQL-Queries */
   const smpQuery = JSON.stringify({
     query: `{
-          equipments( filter:{typeId: {equalTo: "37024"}}
+          equipments( filter:{typeId: {equalTo: "${equipment_type_id}"}}
             ) {
             id
             displayName
@@ -265,4 +266,4 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-export {tempvar, tank_names, tank_sizes, tank_volumesID, tank_flowrateID, tank_temperatureID, tank_serialNumber, one_tank_info, tank_colors, doMain} ;
+export {instanceGraphQLEndpoint, currentBearerToken, clientId, clientSecret, userName, role, tempvar, tank_names, tank_sizes, tank_volumesID, tank_flowrateID, tank_temperatureID, tank_serialNumber, one_tank_info, tank_colors, doMain} ;

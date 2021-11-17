@@ -5,8 +5,9 @@ import React, { Component } from "react";
 import { getConfigFileParsingDiagnostics } from "typescript";
 import { gql, useQuery } from "@apollo/client";
 const fetch = require('node-fetch');
-const instanceGraphQLEndpoint = "https://sandbox.cesmii.net/graphql";
-export default function CardChart({tank_volumesID, ymax}){
+
+
+export default function CardChart({instanceGraphQLEndpoint, currentBearerToken, clientId, clientSecret, userName, role,tank_volumesID, ymax}){
 var last = 0
 const color_set = ["#a5778a", "#a7f199", "#87ad86", "#cb3f93", "#cb7460","#9300c0", "#89cff0", "#3f3252", "#9f1141", "#6de137"];
 //console.log("ids",tank_volumesID)
@@ -14,18 +15,8 @@ const color_set = ["#a5778a", "#a7f199", "#87ad86", "#cb3f93", "#cb7460","#9300c
       But be aware this is short-lived (you set the expiry, see Authenticator comments below) and you will need to handle
       expiry and renewal -- as shown below. As an alternative, you could start your life-cycle with authentication, or
       you could authenticate with each request (assuming bandwidth and latency aren't factors in your use-case). */
-var currentBearerToken = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2FuZGJveF9yb19ncm91cCIsImV4cCI6MTYzNzA4MzE5MywidXNlcl9uYW1lIjoid2VuamllIiwiYXV0aGVudGljYXRvciI6InNhbmRib3giLCJhdXRoZW50aWNhdGlvbl9pZCI6IjEyOSIsImlhdCI6MTYzNzA4MTM5MiwiYXVkIjoicG9zdGdyYXBoaWxlIiwiaXNzIjoicG9zdGdyYXBoaWxlIn0.Da-zvXQqLXORsDpxIHHerZt-7ZAxkwMNGXOjjR-aFvQ";
-
-/* These values come from your Authenticator, which you configure in the Developer menu > GraphQL Authenticator
-    Rather than binding this connectivity directly to a user, we bind it to an Authenticator, which has its own
-    credentials. The Authenticator, in turn, is linked to a user -- sort of like a Service Principle.
-    In the Authenticator setup, you will also configure role, and Token expiry. */
 
 var smpResponse = ""
-const clientId = "cesmii_tank_demo";
-const clientSecret = "8BvMcF3ibGqDjRm";
-const userName = "Wenjie Liu";
-const role = "sandbox_group";
 
 let today = new Date().toISOString().slice(0, 10)
 today +=  "T00:00:00+00:00"

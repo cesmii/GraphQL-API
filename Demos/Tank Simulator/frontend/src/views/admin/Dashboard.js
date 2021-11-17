@@ -4,7 +4,7 @@ import {render} from 'react-dom';
 
 import CardChart from "components/Cards/CardLineChart.js";
 import HeaderStats from "components/Headers/HeaderStats.js";
-import {tank_volumesID} from "index.js"
+import {instanceGraphQLEndpoint, tank_volumesID ,currentBearerToken, clientId, clientSecret, userName, role} from "index.js"
 
 
 export default function Dashboard() {
@@ -16,6 +16,12 @@ export default function Dashboard() {
           <CardChart 
         tank_volumesID={tank_volumesID}
         ymax = {20}
+        currentBearerToken = {currentBearerToken}
+        clientId = {clientId}
+        clientSecret = {clientSecret}
+        userName = {userName}
+        role ={role}
+        instanceGraphQLEndpoint = {instanceGraphQLEndpoint}
           />
       )
     }
