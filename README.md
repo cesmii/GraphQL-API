@@ -6,3 +6,4 @@ Code samples and documentation for the CESMII Smart Manufacturing Innovation Pla
 
 # Related Projects
 - [MQTT to GraphQL Connector](https://github.com/richardphi1618/MQTT-to-GraphQL-Connector-for-SMP)
+
