@@ -130,7 +130,12 @@ The following query returns a list of Time Series sample values for a given Inst
 
 ```
 query HistoryQuery {
-    getRawHistoryDataWithSampling(maxSamples: 10, ids: ["1690"], startTime: "2021-02-20 00:00:00+00", endTime: "2021-02-21 00:12:00+00") {
+    getRawHistoryDataWithSampling(
+            maxSamples: 10, 
+            ids: ["1690"], 
+            startTime: "2021-02-20 00:00:00+00", 
+            endTime: "2021-02-21 00:12:00+00"
+    ) {
         id
         floatvalue
         dataType
@@ -154,7 +159,6 @@ query RelationshipQueryBySubjectId {
     relationshipTypeId
   }
 }
-
 ```
 
 ## Other Operations
