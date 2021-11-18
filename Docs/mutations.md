@@ -37,7 +37,7 @@ mutation MyTimeSeriesMutation {
 
 Replace ## with your tag or attribute ID.
 
-**<a name="create-tag">Creating New Tags</a>**
+### Creating New Tags
 
 ```
 mutation CreateTag_Mutation {
@@ -68,7 +68,7 @@ mutation CreateTag_Mutation {
 
 Replace ## with the ID of the connector you want to attach the tag to.
 
-**<a name="create-equipment">Creating New Equipment</a>**
+### Creating New Equipment
   
   ```
   mutation MyNewEquipmentMutation {
@@ -87,6 +87,24 @@ Replace ## with the ID of the connector you want to attach the tag to.
     equipment {
       id
       displayName
+    }
+  }
+}
+```
+### Creating Relationships Between Equipment
+
+```
+mutation CreateRelationshipMutation {
+  createRelationship(
+    input: {relationship: {
+      subjectId: "5184", 
+      typeName: "relationship", 
+      relationshipTypeName: "can_feed", 
+      objectId: "5166", 
+      relationshipTypeId: "874"}}
+  ) {
+    relationship {
+      id
     }
   }
 }
