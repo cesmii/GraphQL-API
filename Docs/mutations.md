@@ -11,7 +11,7 @@ In these examples, you need to know the ID of the element you are mutating. You 
 
 ## Example Mutations
 
-**<a name="time-series">Mutating Time Series Sample Values</a>**
+### Mutating Time Series Sample Values
 
 The following query payload mutates time series sample values for a given Instance Attribute Tag, with the provided time stamp. If values already exist, they will be updated (replaced). If values did not previously exist, they will be inserted:
 
