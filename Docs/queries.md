@@ -4,7 +4,7 @@ In GraphQL, the endpoint is always the same, but the query payload changes to in
 
 ## Example Queries
 
-**<a name="query-types">Querying Equipment Types (SM Profiles)**
+### Querying Equipment Types (SM Profiles)
 
 The following query payload returns a list of Equipment Types (also known as SM Profiles) in a given SMIP instance:
 
@@ -56,7 +56,7 @@ query MyLocalEquipmentQuery {
 ```
 
 
-**<a name="query-equipment">Querying Equipment**
+### Querying Equipment
 
 The following query payload returns a list of Equipment instances in a given SMIP instance, independent of Type:
 
@@ -69,7 +69,7 @@ query EquipmentListQuery {
 }
 ```
 
-**<a name="query-locations">Querying Locations**
+### Querying Locations
 
 The following query payload returns a list of Locations in a given SMIP instance:
 
@@ -84,7 +84,7 @@ query placeQuery {
 }
 ```
 
-**<a name="query-attributes">Querying Attributes**
+### Querying Attributes
 
 The following query payload returns a list of all Attributes in a given SMIP instance:
 
@@ -124,7 +124,7 @@ query EquipmentTypeAttributes {
 }
 ```
 
-**<a name="query-timeseries">Querying Time Series Values**
+### Querying Time Series Values
 
 The following query returns a list of Time Series sample values for a given Instance Attribute Tag within the specified time range
 
@@ -137,6 +137,24 @@ query HistoryQuery {
         ts
     }
 }
+```
+
+### Querying Relationships Between Equipment
+
+The following query returns a list of relationships the equipment with the ID 5184 has with other equipment
+
+```
+query RelationshipQueryBySubjectId {
+  relationships(filter: {subjectId: {equalTo: "5184"}}) {
+    id
+    objectId
+    typeName
+    relationshipTypeName
+    subjectId
+    relationshipTypeId
+  }
+}
+
 ```
 
 ## Other Operations
