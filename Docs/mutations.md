@@ -75,9 +75,8 @@ Replace ## with the ID of the connector you want to attach the tag to.
   createEquipment(
     input: {
       equipment: {
-        description: "My machine based on a batch tank type definition"
         displayName: "Batch Machine 001"
-        notes: "Created programmatically, derived from the batch tank type, which is id 358, and part of physical location with id 1362"
+        description: "My machine based on a batch tank type definition"
         partOfId: "1362"
         relativeName: "batch_machine_001"
         typeId: "358"
@@ -101,7 +100,8 @@ mutation CreateRelationshipMutation {
       typeName: "relationship", 
       relationshipTypeName: "can_feed", 
       objectId: "5166", 
-      relationshipTypeId: "874"}}
+      relationshipTypeId: "874",
+      description: "equipment with ID 5184 can feed equipment with ID 5166"}}
   ) {
     relationship {
       id
