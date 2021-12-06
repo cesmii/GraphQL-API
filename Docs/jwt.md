@@ -6,9 +6,9 @@ CESMII's Smart Manufacturing Innovation Platform™ (SMIP™, or "the platform" 
 
 This document explains how to obtain such tokens, first interactively from within the platform, then from outside using a desktop client application. We are accessing three menu items available in the platform: 
 
-- GraphQL - Request Header Token *to obtain a JWT token*
-- GraphiQL *to interactively explore the GraphQL API*
-- Authenticators *to manage and register authenticators for remote access*
+- GraphQL > Request Header Token *to obtain a JWT token*
+- GraphQL > GraphiQL *to interactively explore the GraphQL API*
+- GraphQL > Authentication Management *to manage and register authenticators for remote access*
 
 ![SMIP menu](images/dev_menu.png)
 
