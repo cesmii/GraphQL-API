@@ -15,21 +15,21 @@ import Admin from "layouts/Admin.js";
 
 import Index from "views/Index.js";
 
-const instanceGraphQLEndpoint = "YOUR INSTANCE ENDPOINT";
+const instanceGraphQLEndpoint = "https://sandbox.cesmii.net/graphql";
 /* You could opt to manually update the bearer token that you retreive from the Developer menu > GraphQL - Request Header token
 But be aware this is short-lived (you set the expiry, see Authenticator comments below) and you will need to handle
 expiry and renewal -- as shown below. As an alternative, you could start your life-cycle with authentication, or
 you could authenticate with each request (assuming bandwidth and latency aren't factors in your use-case). */
-var currentBearerToken = "BEAR TOKEN AT YOUR PLATFORM"
+var currentBearerToken = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2FuZGJveF9yb19ncm91cCIsImV4cCI6MTY0MTg2ODUwNCwidXNlcl9uYW1lIjoid2VuamllIiwiYXV0aGVudGljYXRvciI6InNhbmRib3giLCJhdXRoZW50aWNhdGlvbl9pZCI6IjU1MSIsImlhdCI6MTY0MTg2NjcwNCwiYXVkIjoicG9zdGdyYXBoaWxlIiwiaXNzIjoicG9zdGdyYXBoaWxlIn0.5wtTQZBEv33dPSHnQqA7OneVfds5DunIzN1Zyb_YAa4"
 /* These values come from your Authenticator, which you configure in the Developer menu > GraphQL Authenticator
     Rather than binding this connectivity directly to a user, we bind it to an Authenticator, which has its own
     credentials. The Authenticator, in turn, is linked to a user -- sort of like a Service Principle.
     In the Authenticator setup, you will also configure role, and Token expiry. */
-const clientId = "CLIENTID";
-const clientSecret = "CLIENTSECRET";
-const userName = "USERNAME";
-const role = "ROLE SHOWN ON AUTHENTICATOR IN PLATFORM";
-const equipment_type_id = "YOUR EQUIPMENT TYPE ID"
+const clientId = "cesmiidemoapp";
+const clientSecret = "cesmii";
+const userName = "cesmiihq";
+const role = "sandbox_group";
+const equipment_type_id = "37024"
 
 console.log("before http");
 const httpLink = createHttpLink({
@@ -39,7 +39,7 @@ console.log("before auth");
 
 const tempvar = 99999;
 var tank_volumesID = [];
-const tank_sizes = [];
+var tank_sizes = [];
 const tank_names = [];
 const tank_info = [];
 const tank_flowrateID = [];
@@ -150,6 +150,9 @@ async function getBearerToken() {
 }
 
 //Main Program Function
+var smpResponse = ""
+
+
 async function doMain() {
   console.log("Requesting Data from CESMII Smart Manufacturing Platform...");
   console.log();
@@ -157,17 +160,32 @@ async function doMain() {
   /* Request some data -- this is an equipment query.
         Use Graphiql on your instance to experiment with additional queries
         Or find additional samples at https://github.com/cesmii/API/wiki/GraphQL-Queries */
-  const smpQuery = JSON.stringify({
+    let today = new Date().toISOString().slice(0, 10)
+    today +=  "T00:00:00+00:00"
+    console.log(today)
+    let new_day = new Date()
+    var tomorrow = new Date(new_day)
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    tomorrow = tomorrow.toISOString().slice(0, 10) + "T00:00:00+00:00"
+    console.log("tomorrow", tomorrow)
+    const smpQuery = JSON.stringify({
     query: `{
           equipments( filter:{typeId: {equalTo: "${equipment_type_id}"}}
             ) {
-            id
-            displayName
+              displayName
+              id
             attributes{
               displayName
               id
-              floatValue
-              stringValue
+              getTimeSeries(
+                startTime: "${today}"
+                endTime: "${tomorrow}"
+                maxSamples: 1
+              ) {
+                floatvalue
+                stringvalue
+                ts
+              }
             }
           }
         }`,
@@ -200,19 +218,18 @@ async function doMain() {
     );
   }
 
-  console.log("Response from SM Platform was... ");
+  console.log("Response from SM Platform was... ", smpResponse.data);
   for (let ele of smpResponse.data.equipments){
     console.log(ele);
     const attributes = ele.attributes;
     let temp = {"name": ele.displayName};
     let one = false;
     for (let attribute of attributes){
-      if(attribute.displayName=="size") temp["size"] = attribute.floatValue;
+      if(attribute.displayName=="size") temp["size"] = attribute.getTimeSeries[0].floatvalue;
       else if(attribute.displayName=="volume") temp["volumeID"] = attribute.id;
       else if(attribute.displayName=="flowrate") temp["flowrateID"] = attribute.id;
       else if(attribute.displayName=="temperature") temp["temperatureID"] = attribute.id;
-      else if(attribute.displayName=="one_tank_model" && attribute.floatValue==1) one = true;
-      else if(attribute.displayName=="serialNumber") temp["serialNumber"] = attribute.stringValue;
+      else if(attribute.displayName=="serialNumber") temp["serialNumber"] = attribute.getTimeSeries[0].stringvalue;
     }
     tank_info.push(temp);
     
@@ -235,7 +252,7 @@ async function doMain() {
     tank_serialNumber.push(tank.serialNumber);
 
   }
-
+  //tank_sizes = [20, 20, 10, 10, 20]
   one_tank_info = [tank_volumesID[0], tank_flowrateID[0], tank_temperatureID[0]]
   var tank_amount = tank_volumesID.length;
   console.log(one_tank_info);
@@ -267,3 +284,4 @@ ReactDOM.render(
 );
 
 export {instanceGraphQLEndpoint, currentBearerToken, clientId, clientSecret, userName, role, tempvar, tank_names, tank_sizes, tank_volumesID, tank_flowrateID, tank_temperatureID, tank_serialNumber, one_tank_info, tank_colors, doMain} ;
+

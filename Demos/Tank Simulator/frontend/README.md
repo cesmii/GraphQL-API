@@ -9,7 +9,7 @@
 - (If not) Run in terminal `npm install apexcharts --save`     
 - (If not) Run in terminal `npm install react-apexcharts apexcharts`
 - (If not) Run in terminal `npm install`
-- (If not) Run in terminal `npm run build:tailwind` (each time you add a new class, a class that does not exist in `src/assets/styles/tailwind.css`, you will need to run this command)
+- (If not) Run in terminal `npm run build:tailwind` (do not run this at the first time. each time you add a new class, a class that does not exist in `src/assets/styles/tailwind.css`, you will need to run this command)
 - (If not) Run in terminal `npm start`
 - Navigate to https://localhost:3000
 
