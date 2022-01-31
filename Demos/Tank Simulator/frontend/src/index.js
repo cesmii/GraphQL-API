@@ -15,21 +15,21 @@ import Admin from "layouts/Admin.js";
 
 import Index from "views/Index.js";
 
-const instanceGraphQLEndpoint = "https://sandbox.cesmii.net/graphql";
+const instanceGraphQLEndpoint = "YOUR INSTANCE ENDPOINT";
 /* You could opt to manually update the bearer token that you retreive from the Developer menu > GraphQL - Request Header token
 But be aware this is short-lived (you set the expiry, see Authenticator comments below) and you will need to handle
 expiry and renewal -- as shown below. As an alternative, you could start your life-cycle with authentication, or
 you could authenticate with each request (assuming bandwidth and latency aren't factors in your use-case). */
-var currentBearerToken = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2FuZGJveF9yb19ncm91cCIsImV4cCI6MTY0MTg2ODUwNCwidXNlcl9uYW1lIjoid2VuamllIiwiYXV0aGVudGljYXRvciI6InNhbmRib3giLCJhdXRoZW50aWNhdGlvbl9pZCI6IjU1MSIsImlhdCI6MTY0MTg2NjcwNCwiYXVkIjoicG9zdGdyYXBoaWxlIiwiaXNzIjoicG9zdGdyYXBoaWxlIn0.5wtTQZBEv33dPSHnQqA7OneVfds5DunIzN1Zyb_YAa4"
+var currentBearerToken = "BEAR TOKEN AT YOUR PLATFORM"
 /* These values come from your Authenticator, which you configure in the Developer menu > GraphQL Authenticator
     Rather than binding this connectivity directly to a user, we bind it to an Authenticator, which has its own
     credentials. The Authenticator, in turn, is linked to a user -- sort of like a Service Principle.
     In the Authenticator setup, you will also configure role, and Token expiry. */
-const clientId = "cesmiidemoapp";
-const clientSecret = "cesmii";
-const userName = "cesmiihq";
-const role = "sandbox_group";
-const equipment_type_id = "37024"
+const clientId = "CLIENTID";
+const clientSecret = "CLIENTSECRET";
+const userName = "USERNAME";
+const role = "ROLE SHOWN ON AUTHENTICATOR IN PLATFORM";
+const equipment_type_id = "YOUR EQUIPMENT TYPE ID"
 
 console.log("before http");
 const httpLink = createHttpLink({
