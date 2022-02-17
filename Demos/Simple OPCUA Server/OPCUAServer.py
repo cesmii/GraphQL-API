@@ -36,11 +36,12 @@ my_object = my_ua_node.add_object(my_ua_namespace, "MyObject")
 print("MyObject ID:", my_object)
 
 # Add some attributes (of type variable) to MyObject
-attrib_load = my_object.add_variable(my_ua_namespace, "CPU Load", 0)
-attrib_press = my_object.add_variable(my_ua_namespace, "Memory Pressure", 0)
-attrib_time = my_object.add_variable(my_ua_namespace, "Time", 0)
+#     Make sure the variable value is of the datatype you plan to send later
+attrib_load = my_object.add_variable(my_ua_namespace, "CPU Load", 0.0)  #0.0 since this will be a float
+attrib_press = my_object.add_variable(my_ua_namespace, "Memory Pressure", 0)  #0 since this will be an int
+attrib_time = my_object.add_variable(my_ua_namespace, "Time", datetime.datetime.now())
 # This attribute value can be written to by a client
-attrib_toggler = my_object.add_variable(my_ua_namespace, "Toggle Bit", False)
+attrib_toggler = my_object.add_variable(my_ua_namespace, "Toggle Bit", False) #false since this will be a bool
 attrib_toggler.set_writable()
 
 try:
