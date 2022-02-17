@@ -98,6 +98,29 @@ query AttributeQuery {
     }  
 }
 ```
+
+### Querying Attributes and their values
+
+The following query payload returns a list of all Attributes and their floatvalue in a given SMIP instance:
+
+```
+query AttributeQuery {
+    attributes {
+        displayName,
+        id,
+        partOfId,
+        tagId
+	getTimeSeries(
+   	startTime: "2022-01-01 00:00:00+00"
+      	endTime: "2022-01-30 00:12:00+00"
+      	maxSamples: 1
+    	) {
+      		floatvalue
+      		ts
+    	}	
+    }
+}
+```
    
 This query lists only the Attributes for a given Equipment Type definition:
 

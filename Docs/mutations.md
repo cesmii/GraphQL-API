@@ -37,6 +37,38 @@ mutation MyTimeSeriesMutation {
 
 Replace ## with your tag or attribute ID.
 
+#### Updating Multiple Attribute Sample Values in a Single Mutation
+
+It is possible to update time series sample values for multiple attributes in a single mutation call by assigning an "alias" to each segment:
+
+```
+mutation MyMutation1 {
+  ts123: replaceTimeSeriesRange(
+    input: {
+      entries: [
+        { status: "0", timestamp: "2021-12-10T14:10:00Z", value: "2.5" }
+        { status: "0", timestamp: "2021-12-10T14:20:00Z", value: "3.5" }
+      ]
+      attributeOrTagId: "123"
+    }
+  ) {
+    json
+  }
+
+  ts789: replaceTimeSeriesRange(
+    input: {
+      entries: [
+        { status: "0", timestamp: "2021-12-10T14:10:00Z", value: "one" }
+        { status: "0", timestamp: "2021-12-10T14:20:00Z", value: "two" }
+      ]
+      attributeOrTagId: "789"
+    }
+  ) {
+    json
+  }
+} 
+```
+
 ### Creating New Tags
 
 ```
