@@ -9,12 +9,11 @@ In GraphQL, the endpoint is always the same, but the query payload changes to in
 The following query payload returns a list of Equipment Types (also known as SM Profiles) in a given SMIP instance:
 
 ```
-query EquipmentListQuery {
-   things(condition: {typeName: "type"}, filter: {displayName: {isNull: false}}) {
+query EquipmentTypesQuery {
+  equipmentTypes {
     id
     displayName
     relativeName
-    description
   }
 }
 ```
@@ -22,19 +21,21 @@ query EquipmentListQuery {
 We can expand this query to ask it to also return a list of the Equipment (instance object) of each Equipment Type (SM Profile):
 
 ```
-query EquipmentListQuery {
-   things(condition: {typeName: "type"}, filter: {displayName: {isNull: false}}) {
+query EquipmentTypesAndInstancesQuery {
+  equipmentTypes {
     id
     displayName
     relativeName
-    description
-    equipmentByTypeId {
-      id
-      displayName
-      systemType
+    asThing {
+      equipmentByTypeId {
+        id
+        displayName
+        relativeName
+      }
     }
   }
 }
+
 ```
 
 If you only want Equipment Types defined locally, you can query your library for type definitions:
@@ -61,10 +62,11 @@ query MyLocalEquipmentQuery {
 The following query payload returns a list of Equipment instances in a given SMIP instance, independent of Type:
 
 ```
-query EquipmentListQuery { 
+query EquipmentInstancesQuery { 
     equipments { 
-        displayName, 
-        id 
+        id,
+        displayName
+       	relativeName
     }   
 }
 ```
@@ -102,7 +104,7 @@ query AttributeQuery {
 ### Querying Attributes and their values
 
 The following query payload returns a list of all Attributes and their floatvalue in a given SMIP instance:
-
+TODO: FIX THIS
 ```
 query AttributeQuery {
     attributes {
@@ -126,25 +128,16 @@ This query lists only the Attributes for a given Equipment Type definition:
 
 ```
 query EquipmentTypeAttributes {
-  typeToAttributeTypes(filter: {displayName: {equalTo: "MyEquipmentTypeID"}}) {
+  equipmentTypes(filter: {displayName: {equalTo: "Boiler Drum"}}) {
     id
     displayName
-    partOf {
-      displayName
-      description
+    typeToAttributeTypes {
       id
-      thingsByTypeId {
-        displayName
-        id
-        updatedTimestamp
-        attributesByPartOfId {
-          displayName
-          id
-        }
-      }
+      displayName
     }
   }
 }
+
 ```
 
 ### Querying Time Series Values
