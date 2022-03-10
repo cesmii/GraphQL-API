@@ -8,17 +8,17 @@ Once applied by an adopting platform (such as the SMIP, or other commercial offe
 * [GraphQL applied to Smart Manufacturing](graphql-and-manufacturing.md)
 * [SMIP GraphQL Endpoint](smip-graphql.md)
 
-### Security and Authentication
+### [Security and Authentication](jwt.md)
 * [Acquiring a JSON Web Token (JWT)](jwt.md)
 
-### Queries
+### [Queries](queries.md)
 * [Type (SM Profile) list](queries.md#query-types)
 * [Equipment list](queries.md#query-equipment)
 * [Location list](queries.md#query-locations)
 * [Attribute list](queries.md#query-attributes)
 * [Time Series Values](queries.md#query-timeseries)
 
-### Mutations
+### [Mutations](mutations.md)
 * [Inserting or updating time series samples](mutations.md#time-series)
 * [Creating a new tag](mutations.md#create-tag)
 * [Authentication mutations](mutations.md#authentication)
