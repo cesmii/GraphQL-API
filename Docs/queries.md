@@ -104,7 +104,7 @@ query AttributeQuery {
 ### Querying Attributes and their values
 
 The following query payload returns a list of all Attributes and their floatvalue in a given SMIP instance:
-TODO: FIX THIS
+
 ```
 query AttributeQuery {
     attributes {
