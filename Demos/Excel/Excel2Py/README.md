@@ -8,12 +8,12 @@ This demo was tested on Windows with Python 3.7.0
 
 ## 1. Set up *.xlsm file to run Python code
 You must Developer module in Excel spreadsheet that save the file with macros as *.xlsm
-   a. In command prompt Run `pip install xlwings==0.25.3`
-   b. Add the xlwings Add-In to Excel: In command prompt run `.\xlwings.xlam addin install` then `.\xlwings.xlam runpython install`. Agree to any Excel prompt. 
-   d. Add Developer Tab (Options => Customize Ribbon => Choose commands from: Main Tabs => Developer)
-   e. From the Developer Tab click "Excel Add-Ins" and browse the location of xlwings.xlam file and add
-   f. From Developer Tab, Click the Visual Basic Interface and then ==> Tools ==> References ==> Add xlwings (tick mark)
-   g. Add the Python Function that calls Python from Excel.
+* In command prompt Run `pip install xlwings==0.25.3`
+* Add the xlwings Add-In to Excel: In command prompt run `.\xlwings.xlam addin install` then `.\xlwings.xlam runpython install`. Agree to any Excel prompt. 
+* Add Developer Tab (Options => Customize Ribbon => Choose commands from: Main Tabs => Developer)
+* From the Developer Tab click "Excel Add-Ins" and browse the location of xlwings.xlam file and add
+* From Developer Tab, Click the Visual Basic Interface and then ==> Tools ==> References ==> Add xlwings (tick mark)
+* Add the Python Function that calls Python from Excel.
 
       Sub Call_Python_Function()
         RunPython ("import query_cesmii_plot; query_cesmii_plot.read_data()")
