@@ -13,7 +13,7 @@ You must Developer module in Excel spreadsheet that save the file with macros as
 * Add Developer Tab (Options => Customize Ribbon => Choose commands from: Main Tabs => Developer)
 * From the Developer Tab click "Excel Add-Ins" and browse the location of xlwings.xlam file and add
 * From Developer Tab, Click the Visual Basic Interface and then ==> Tools ==> References ==> Add xlwings (tick mark)
-* Add the Python Function that calls Python from Excel.
+* From Developer Tab, Click the Visual Basic Interface, Add the following Python Function to Modules. This will call Python from Excel.
 
       Sub Call_Python_Function()
         RunPython ("import query_cesmii_plot; query_cesmii_plot.read_data()")
@@ -25,12 +25,13 @@ You must Developer module in Excel spreadsheet that save the file with macros as
 Copy the file `cesmii_credentials_example.py` as `cesmii_credentials.py` and change the following on the right side of each equal sign (=):
 
 Replace the content of the 5 variables below with actual value 
-
+```
 authenticator_name="From https://yourinstance.cesmii.net/developer/graphql/authentication-management"
 authenticator_passwd="From https://yourinstance.cesmii.net/developer/graphql/authentication-management"
 user_name="Login info from https://yourinstance.cesmii.net/"
 authenticator_role="From https://yourinstance.cesmii.net/developer/graphql/authentication-management"
 instance_graphql_endpoint = "https://yourinstance.cesmii.net/graphql"
+```
 
 ## 3. Setup Python Script
 
