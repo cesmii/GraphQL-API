@@ -125,7 +125,7 @@ namespace CESMII.Samples
             {
                 //An exception was thrown indicating the current bearer token is no longer allow.
                 //  Authenticate and get a new token, then try again
-                if (ex.Message.ToLower().IndexOf("forbidden") != -1 || ex.Message.ToLower().IndexOf("unauthorized") != -1)
+                if (ex.Message.ToLower().IndexOf("forbidden") != -1 || ex.Message.ToLower().IndexOf("unauthorized") != -1 || ex.Message.ToLower().IndexOf("badrequest") != -1)
                 {
                     Console.WriteLine("Bearer Token expired!");
                     Console.WriteLine("Attempting to retreive a new GraphQL Bearer Token...");
