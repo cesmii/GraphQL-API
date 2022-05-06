@@ -142,7 +142,9 @@ query EquipmentTypeAttributes {
 
 ### Querying Time Series Values
 
-The following query returns a list of Time Series sample values for a given Instance Attribute Tag within the specified time range
+The following query returns a list of Time Series sample values for a given Instance Attribute Tag within the specified time range.
+
+**Note:** to turn off down-sampling, you can set `maxSamples` to 0.
 
 ```
 query HistoryQuery {
