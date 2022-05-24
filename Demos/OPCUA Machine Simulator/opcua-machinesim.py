@@ -12,7 +12,7 @@ import csv
 
 # TODO: These could be command line arguments
 data_file = "FestoData.csv"
-server_url = "opc.tcp://localhost:62549"
+server_url = "opc.tcp://localhost:62544"
 server_name = "CESMII_UA_Machine_SIM"
 sample_rate = 2
 simulation_data = []
