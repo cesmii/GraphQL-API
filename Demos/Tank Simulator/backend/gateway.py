@@ -165,7 +165,7 @@ def update_smip(sample_value):
 		smp_query = f"""
 					mutation updateTimeSeries {{
 					replaceTimeSeriesRange(
-						input: {{attributeOrTagId: "{write_attribute_id}", entries: [ {{timestamp: "{make_datetime_utc()}", value: "{value_send}", status: "1"}} ] }}
+						input: {{attributeOrTagId: "{write_attribute_id}", entries: [ {{timestamp: "{make_datetime_utc()}", value: "{value_send}", status: "0"}} ] }}
 						) {{
 						clientMutationId,
 						json
