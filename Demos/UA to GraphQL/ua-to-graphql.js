@@ -87,7 +87,7 @@ async function main() {
                             input: {
                               attributeOrTagId: "${attributeOrTagId}",
                               entries: [
-                                { timestamp: "${newTS}", value: "${newVal}", status: "1" }
+                                { timestamp: "${newTS}", value: "${newVal}", status: "0" }
                               ]
                             }
                           ) {

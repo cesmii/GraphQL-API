@@ -21,9 +21,9 @@ mutation MyTimeSeriesMutation {
     input: {
       attributeOrTagId: "##"
       entries: [
-        { timestamp: "2021-02-02T02:00:00Z", value: "1.5", status: "1" }
-        { timestamp: "2021-02-02T03:00:00Z", value: "2.5", status: "1" }
-        { timestamp: "2021-02-02T04:00:00Z", value: "3.5", status: "1" }
+        { timestamp: "2021-02-02T02:00:00Z", value: "1.5", status: "0" }
+        { timestamp: "2021-02-02T03:00:00Z", value: "2.5", status: "0" }
+        { timestamp: "2021-02-02T04:00:00Z", value: "3.5", status: "0" }
       ]
       startTime: "2021-02-02"
       endTime: "2021-02-03"

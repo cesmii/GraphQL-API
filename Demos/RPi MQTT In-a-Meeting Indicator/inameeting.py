@@ -29,7 +29,7 @@ def update_smip(light_on):
 	smp_query = f"""
                 mutation updateTimeSeries {{
                 replaceTimeSeriesRange(
-                    input: {{attributeOrTagId: "{inmeeting_attribute_id}", entries: [ {{timestamp: "{make_datetime_utc()}", value: "{light_on}", status: "1"}} ] }}
+                    input: {{attributeOrTagId: "{inmeeting_attribute_id}", entries: [ {{timestamp: "{make_datetime_utc()}", value: "{light_on}", status: "0"}} ] }}
                     ) {{
                     clientMutationId,
                     json
