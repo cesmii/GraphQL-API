@@ -6,7 +6,7 @@ cip = {
 }
 
 smip = {
-    "authenticator": "AUTHENTICATOR",
+    "authenticator": "",
     "password": "PASSWORD",
     "name": "NAME",
     "role": "ROLE",
