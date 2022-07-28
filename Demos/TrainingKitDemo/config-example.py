@@ -11,7 +11,8 @@ smip = {
     "password": "AUTHENTICATOR_PASSWORD",
     "name": "AUTHENTICATOR_USERNAME",
     "role": "AUTHENTICATOR_ROLE",
-    "url": "INSTANCE_ENDPOINT"
+    "url": "INSTANCE_ENDPOINT",
+    "yellow_light": 21833
 }
 
 mqtt = {
@@ -20,6 +21,7 @@ mqtt = {
 }
 
 toggler = {
+    # set to False for manual (physical) toggle
     "toggle": True,
     # set to -1 for randomized toggle
     "every": 2  

@@ -37,7 +37,6 @@ async function main() {
         });
         client.on("backoff", () => console.log("retrying connection"));
 
-
         await client.connect(endpointUrl);
 
         const session = await client.createSession();

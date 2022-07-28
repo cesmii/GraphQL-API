@@ -1,15 +1,19 @@
 import argparse
 import requests
 import json
+import time
+from datetime import datetime
 
 class graphql:
 
-    def __init__(self, authenticator, password, username, role, endpoint):
+    def __init__(self, authenticator, password, username, role, endpoint, verbose=True):
         self.current_bearer_token = ""
         self.parser = None
         self.args = None
+        self.verbose = verbose
 
         self.parser = argparse.ArgumentParser()
+        self.parser.add_argument("-smip", "--smip", type=int, default=True)    # this is only here for outer wrapper
         self.parser.add_argument("-a", "--authenticator", type=str, default=authenticator)
         self.parser.add_argument("-p", "--password", type=str, default=password)
         self.parser.add_argument("-n", "--name", type=str, default=username)
@@ -34,9 +38,10 @@ class graphql:
         return response
 
     def perform_graphql_request(self, content, auth=False):
-        print("Performing request with content: ")
-        print(content)
-        print()
+        if self.verbose:
+            print("Posting request with content: ")
+            print(content)
+            print()
         if auth == True:
             header=None
         else:
@@ -58,12 +63,17 @@ class graphql:
                 }}
             """, True) 
         jwt_request = response['data']['authenticationRequest']['jwtRequest']
-        print ("got auth request response")
+        if self.verbose:
+            print ("got auth request response")
         if jwt_request['challenge'] is None:
             print ("no challenge in response")
             raise requests.exceptions.HTTPError(jwt_request['message'])
         else:
-            print("Challenge received: " + jwt_request['challenge'])
+            if self.verbose:
+                print("Auth challenge received: " + jwt_request['challenge'])
+            else:
+                print("\033[36mAuthorizing with the SMIP\033[0m")
+
             response=self.perform_graphql_request(f"""
                 mutation authValidation {{
                 authenticationValidation(
@@ -75,3 +85,11 @@ class graphql:
             """, True)
         jwt_claim = response['data']['authenticationValidation']['jwtClaim']
         return f"Bearer {jwt_claim}"
+
+    def make_datetime_utc(self):
+        utc_time = str(datetime.utcnow())
+        time_parts = utc_time.split(" ")
+        utc_time = "T".join(time_parts)
+        time_parts = utc_time.split(".")
+        utc_time = time_parts[0] + "Z"
+        return utc_time
