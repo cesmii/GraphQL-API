@@ -5,11 +5,12 @@ cip = {
     "samplerate": 2
 }
 
+# See: https://github.com/cesmii/API/blob/main/Docs/jwt.md
 smip = {
-    "authenticator": "",
-    "password": "PASSWORD",
-    "name": "NAME",
-    "role": "ROLE",
+    "authenticator": "YOUR_AUTHENTICATOR_NAME",
+    "password": "AUTHENTICATOR_PASSWORD",
+    "name": "AUTHENTICATOR_USERNAME",
+    "role": "AUTHENTICATOR_ROLE",
     "url": "INSTANCE_ENDPOINT"
 }
 
