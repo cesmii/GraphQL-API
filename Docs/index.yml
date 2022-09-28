@@ -1,0 +1,24 @@
+site_name: SMIP GraphQL Docs
+nav:
+    - Home: readme.md
+    - Getting Started:
+      - Intro to GraphQL: intro.md
+      - GraphQL applied to Smart Manufacturing: graphql-and-manufacturing.md
+      - SMIP GraphQL Endpoint: smip-graphql.md
+    - Queries:
+      - Type (SM Profile) list: queries.md#query-types
+      - Equipment: queries.md#query-equipment
+      - Locations: queries.md#query-locations
+      - Attributes: queries.md#query-attributes
+      - Time Series Values: queries.md#query-timeseries
+    - Mutations:
+      - Inserting or Updating Time Series samples: mutations.md#time-series
+      - Creating a New Tag: mutations.md#create-tag
+      - Authentication: mutations.md#authentication
+
+theme:
+  name: readthedocs
+  favicon: images/icon.ico
+  icon: 
+    logo: material/book-check
+  custom_dir: overrides
