@@ -20,11 +20,16 @@ machine_column = 1
 station_column = 2
 use_smip = False
 
+def debug(verbose, message, sleep=0):
+        if verbose:
+                print (message)
+        if sleep:
+                time.sleep(sleep)
+
 #Show config
 print("\nCESMII FIS Data Block Simulator")
 print("===============================")
-if verbose:
-        print("Verbose mode: on")
+debug(verbose, "Verbose mode: on")
 if bool(args.smip):
         print("\033[36mCESMII SMIP publishing enabled at: " + config.smip["url"] + "\033[0m")
         use_smip = True
@@ -55,11 +60,9 @@ with open(data_file, newline='') as f:
                 simulation_data.append(row)
 
 # Debugging info
-if verbose:
-        print("rows: " + str(len(simulation_data)))
-        print("machine id column: " + str(machine_column))
-        print("station id column: " + str(station_column))
-        time.sleep(1)
+debug(verbose, "rows: " + str(len(simulation_data)))
+debug(verbose, "machine id column: " + str(machine_column))
+debug(verbose, "station id column: " + str(station_column), 1)
 print("===============================")
 
 # Load SMIP Data
@@ -95,8 +98,12 @@ while True:
         machine_id = curr_row[use_machine_column]
         station_id = curr_row[use_station_column]
 
+        # Remember important types once discovered
+        machine_type_id = None
+        station_type_id = None
+
         # Start randomizing machine number after 10 events (if configured)
-        if config.simulator["max_machines"] >= len(machine_pool) and sim_count >= config.simulator["wait_between_machines"] and machine_add_count >= config.simulator["wait_between_machines"]:
+        if len(machine_pool) <= config.simulator["max_machines"] and sim_count >= config.simulator["wait_between_machines"] and machine_add_count >= config.simulator["wait_between_machines"]:
                 # Add a new machine
                 new_machine = machine_pool[len(machine_pool)-1] + 1
                 machine_count += 1
@@ -104,9 +111,7 @@ while True:
                 for i in range(machine_count):
                         machine_pool.append(new_machine)
                 machine_add_count = 0
-                if verbose:
-                        print("Adding new machine to pool: " + str(new_machine))
-                        time.sleep(1)
+                debug(verbose, "Adding new machine to pool: " + str(new_machine), 1)
         else:
                 machine_add_count += 1
         
@@ -124,9 +129,8 @@ while True:
         payload_data = mqttutils.utils.make_json_payload(curr_row, simulation_keys)
         mqtt_client.user_data_set(topic)
         mqtt_client.publish(topic, payload_data)
-        if verbose:
-                print(topic)
-                print(payload_data)
+        debug(verbose, topic)
+        debug(verbose, payload_data)
 
         # Send to SMIP (if configured)
         #       TODO: To make this even more real, this would be seperate code that lives in an MQTT client
@@ -134,36 +138,40 @@ while True:
         #       both MQTT and SMIP share the incoming message and dispatch them individually in this demo.
         if use_smip:
                 # Check if this equipment already exists in smip:
+                found_machine = None
                 machines = sm_utils.find_smip_equipment_of_type(config.smip["machine_type"])
-                if verbose:
-                        print (machines)
-                found_machine = False
+                debug (verbose, machines)
                 for machine in machines:
                         if ("Machine " + str(machine_id)) == machine["displayName"]:
                                 found_machine = machine["id"]
+                if found_machine == None:
+                        if machine_type_id == None:
+                                machine_type_id = sm_utils.find_smip_type_id("fis_machine")
+                        print ("\033[96mDiscovered new equipment, Machine " + str(machine_id) + " of type " + str(machine_type_id) + " in Location ID: " + config.smip["parent_equipment_id"] + ". Creating...\033[0m")
+                        found_machine = sm_utils.create_smip_equipment_of_typeid(config.smip["parent_equipment_id"], machine_type_id, "Machine " + str(machine_id))
+
+                # Check if the station already exists in smip:
+                found_station = None
                 if found_machine:
-                        found_station = False
-                        stations = sm_utils.find_smip_equipment_of_parent(machine["id"])
-                        if verbose:
-                                print (stations)
+                        stations = sm_utils.find_smip_equipment_of_parent(found_machine)
+                        debug (verbose, stations)
                         for station in stations:
                                 if ("Station " + str(station_id)) == station["displayName"]:
-                                        found_station = True
-                        if found_station:
-                                print ("\033[33mNot implemented: Updating SMIP " + station["displayName"] + ", with ID: " + station["id"] + " on " + machine["displayName"] + ", with ID: " + machine["id"] + "\033[0m")
-                        else:
-                                typeid = sm_utils.find_smip_type_id("fis_machine")
-                                print ("\033[31mNot implemented: Need to create equipment of type " + typeid + " for Station " + str(station_id) + " as child of Machine ID:" + found_machine + "!\033[0m")
-                else:
-                        typeid = sm_utils.find_smip_type_id("fis_machine")
-                        print ("\033[31mNot implemented: Need to create equipment of type " + str(typeid) + " for Machine " + str(machine_id) + "!\033[0m")
-                        time.sleep(1)
+                                        found_station = station["id"]
+                        if found_station == None:
+                                if station_type_id == None:    # Only look this up if we haven't learned it yet
+                                        station_type_id = sm_utils.find_smip_type_id("fis_machine")
+                                print ("\033[96mDiscovered new equipment, Station " + str(station_id) + ", of type " + station_type_id + ", as child of Machine ID:" + found_machine + ". Creating...\033[0m")
+                                found_station = sm_utils.create_smip_equipment_of_typeid(found_machine, station_type_id, "Station " + str(station_id))
+                
+                # Update actual data station
+                if found_station:
+                        print ("\033[33mNot implemented: Updating SMIP " + station["displayName"] + ", with ID: " + station["id"] + " on " + machine["displayName"] + ", with ID: " + machine["id"] + "\033[0m")                        
 
         # Get ready for next loop
         next_sample_rate = random.randint(config.simulator["event_sample_min"],  config.simulator["event_sample_max"])
         sim_count += 1
-        if verbose:
-                print("Sim #" + str(sim_count) + " complete, Sleeping " + str(next_sample_rate) + "...")
-                print()
+        debug(verbose, "Sim #" + str(sim_count) + " complete, Sleeping " + str(next_sample_rate) + "...")
+        debug(verbose, "")
         time.sleep(next_sample_rate)
 

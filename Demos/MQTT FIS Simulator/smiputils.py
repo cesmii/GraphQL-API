@@ -12,7 +12,6 @@ class fis_machine():
                 return json.dumps(self, default=lambda o: o.__dict__)
                 
 class utils:
-
         def __init__(self, authenticator, password, username, role, endpoint, verbose=True):
                 self.smipgraphql = graphql(authenticator, password, username, role, endpoint, verbose)
                 return
@@ -34,7 +33,7 @@ class utils:
                 except requests.exceptions.HTTPError as e:
                         print("\033[31mAn error occured accessing the SM Platform:\033[0m")
                         print(e)
-                        return[]
+                        return []
 
         def find_smip_equipment_of_parent(self, parentid):
                 smp_query = f'''query get_stations {{
@@ -56,8 +55,36 @@ class utils:
                 except requests.exceptions.HTTPError as e:
                         print("\033[31mAn error occured accessing the SM Platform:\033[0m")
                         print(e)
-                        return[]
+                        return []
         
+        def create_smip_equipment_of_typeid(self, parentid, typeid, equipmentname):
+                smp_mutation = f'''
+				mutation MyNewEquipmentMutation {{
+				createEquipment(
+					input: {{
+						equipment: {{
+                                                        displayName: "{equipmentname}"
+                                                        typeId: "{typeid}"
+                                                        partOfId: "{parentid}"
+						}}
+					}}) {{
+						equipment {{
+							id
+							displayName
+						}}
+					}}
+				}}
+				'''		
+                smp_response = ""
+                try:
+                        smp_response = self.smipgraphql.post(smp_mutation)
+                        equipmentid = smp_response['data']['createEquipment']['equipment']['id']
+                        return equipmentid
+                except requests.exceptions.HTTPError as e:
+                        print("\033[31mAn error occured accessing the SM Platform:\033[0m")
+                        print(e)
+                        return None
+
         def find_smip_type_id(self, typename):
                 smp_query = f'''query get_stations {{
                                         equipmentTypes(filter: {{relativeName: {{equalTo: "{typename}"}}}}) {{
@@ -73,4 +100,4 @@ class utils:
                 except requests.exceptions.HTTPError as e:
                         print("\033[31mAn error occured accessing the SM Platform:\033[0m")
                         print(e)
-                        return[]
+                        return None
