@@ -140,7 +140,7 @@ while True:
                 found_machine = False
                 for machine in machines:
                         if ("Machine " + str(machine_id)) == machine["displayName"]:
-                                found_machine = True
+                                found_machine = machine["id"]
                 if found_machine:
                         found_station = False
                         stations = sm_utils.find_smip_equipment_of_parent(machine["id"])
@@ -152,15 +152,18 @@ while True:
                         if found_station:
                                 print ("\033[33mNot implemented: Updating SMIP " + station["displayName"] + ", with ID: " + station["id"] + " on " + machine["displayName"] + ", with ID: " + machine["id"] + "\033[0m")
                         else:
-                                print ("\033[31mNot implemented: Need to create equipment for station " + str(station_id) + "!\033[0m")
+                                typeid = sm_utils.find_smip_type_id("fis_machine")
+                                print ("\033[31mNot implemented: Need to create equipment of type " + typeid + " for Station " + str(station_id) + " as child of Machine ID:" + found_machine + "!\033[0m")
                 else:
-                        print ("\033[31mNot implemented: Need to create equipment for machine " + str(machine_id) + "!\033[0m")
+                        typeid = sm_utils.find_smip_type_id("fis_machine")
+                        print ("\033[31mNot implemented: Need to create equipment of type " + str(typeid) + " for Machine " + str(machine_id) + "!\033[0m")
                         time.sleep(1)
 
         # Get ready for next loop
         next_sample_rate = random.randint(config.simulator["event_sample_min"],  config.simulator["event_sample_max"])
         sim_count += 1
         if verbose:
-                print("Sim #" + str(sim_count) + ", Sleeping " + str(next_sample_rate))
+                print("Sim #" + str(sim_count) + " complete, Sleeping " + str(next_sample_rate) + "...")
+                print()
         time.sleep(next_sample_rate)
 

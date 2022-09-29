@@ -18,7 +18,6 @@ class utils:
                 return
                 
         def find_smip_equipment_of_type(self, typename):
-
                 smp_query = f'''query get_machines {{
 				        equipments(filter: 
                                                 {{typeName: {{includesInsensitive: "{typename}"}}}}
@@ -33,7 +32,7 @@ class utils:
                         equipments = smp_response['data']['equipments']
                         return equipments
                 except requests.exceptions.HTTPError as e:
-                        print("An error occured accessing the SM Platform!")
+                        print("\033[31mAn error occured accessing the SM Platform:\033[0m")
                         print(e)
                         return[]
 
@@ -55,6 +54,23 @@ class utils:
                         equipments = smp_response['data']['equipments']
                         return equipments
                 except requests.exceptions.HTTPError as e:
-                        print("An error occured accessing the SM Platform!")
+                        print("\033[31mAn error occured accessing the SM Platform:\033[0m")
+                        print(e)
+                        return[]
+        
+        def find_smip_type_id(self, typename):
+                smp_query = f'''query get_stations {{
+                                        equipmentTypes(filter: {{relativeName: {{equalTo: "{typename}"}}}}) {{
+                                                id
+                                        }}
+                                }}
+                                '''		
+                smp_response = ""
+                try:
+                        smp_response = self.smipgraphql.post(smp_query)
+                        typeid = smp_response['data']['equipmentTypes'][0]['id']
+                        return typeid
+                except requests.exceptions.HTTPError as e:
+                        print("\033[31mAn error occured accessing the SM Platform:\033[0m")
                         print(e)
                         return[]

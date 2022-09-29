@@ -3,6 +3,7 @@ import requests
 import json
 import time
 from datetime import datetime
+from string import whitespace
 
 class graphql:
 
@@ -28,26 +29,29 @@ class graphql:
             response = self.perform_graphql_request(content)
         except requests.exceptions.HTTPError as e:
             if "forbidden" in str(e).lower() or "unauthorized" in str(e).lower():
-                print ("Not authorized, getting new token...")
+                print ("\033[36mNot authorized, getting new token...\033[0m")
                 self.current_bearer_token = self.get_bearer_token()
                 response = self.perform_graphql_request(content)
             else:
-                print("An unhandled error occured accessing the SM Platform!")
+                print("\033[31mFatal: An unhandled error occured accessing the SM Platform!\033[0m")
                 print(e)
                 raise requests.exceptions.HTTPError(e)
         return response
 
     def perform_graphql_request(self, content, auth=False):
         if self.verbose:
-            print("Posting request with content: ")
-            print(content)
             print()
+            print("\033[36mPosting request with content: \033[0m")
+            show_content = content.translate(dict.fromkeys(map(ord, whitespace)))
+            print(show_content)
         if auth == True:
             header=None
         else:
             header={"Authorization": self.current_bearer_token}
         r = requests.post(self.args.url, headers=header, data={"query": content})
         r.raise_for_status()
+        if self.verbose:
+            print("\033[36mGot response: \033[0m" + json.dumps(r.json()))
         return r.json()
         
     def get_bearer_token (self):
@@ -63,14 +67,12 @@ class graphql:
                 }}
             """, True) 
         jwt_request = response['data']['authenticationRequest']['jwtRequest']
-        if self.verbose:
-            print ("got auth request response")
         if jwt_request['challenge'] is None:
-            print ("no challenge in response")
+            print ("No challenge in response")
             raise requests.exceptions.HTTPError(jwt_request['message'])
         else:
             if self.verbose:
-                print("Auth challenge received: " + jwt_request['challenge'])
+                print("\033[36mAuth challenge received: " + jwt_request['challenge'] + "\033[0m")
             else:
                 print("\033[36mAuthorizing with the SMIP\033[0m")
 
