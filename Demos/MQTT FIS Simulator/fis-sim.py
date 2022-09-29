@@ -3,6 +3,7 @@ import datetime, time, sys, random
 import config
 import argparse
 import paho.mqtt.client as paho
+from smip import graphql
 import smiputils
 import mqttutils
 import json, csv
@@ -60,9 +61,9 @@ with open(data_file, newline='') as f:
                 simulation_data.append(row)
 
 # Debugging info
-debug(verbose, "rows: " + str(len(simulation_data)))
-debug(verbose, "machine id column: " + str(machine_column))
-debug(verbose, "station id column: " + str(station_column), 1)
+debug(verbose, "Data Rows: " + str(len(simulation_data)))
+debug(verbose, "Machine ID Column: " + str(machine_column))
+debug(verbose, "Station ID Column: " + str(station_column), 1)
 print("===============================")
 
 # Load SMIP Data
@@ -75,7 +76,6 @@ port=config.mqtt["port"]
 payload_topic=config.mqtt["payload_topic_root"]
 def on_publish(client, userdata, result):
         print("Updating MQTT " + str(userdata))
-        pass
 mqtt_client= paho.Client("cesmii_fis_demo")
 mqtt_client.on_publish = on_publish
 
@@ -140,7 +140,6 @@ while True:
                 # Check if this equipment already exists in smip:
                 found_machine = None
                 machines = sm_utils.find_smip_equipment_of_type(config.smip["machine_type"])
-                debug (verbose, machines)
                 for machine in machines:
                         if ("Machine " + str(machine_id)) == machine["displayName"]:
                                 found_machine = machine["id"]
@@ -154,24 +153,43 @@ while True:
                 found_station = None
                 if found_machine:
                         stations = sm_utils.find_smip_equipment_of_parent(found_machine)
-                        debug (verbose, stations)
                         for station in stations:
                                 if ("Station " + str(station_id)) == station["displayName"]:
                                         found_station = station["id"]
                         if found_station == None:
                                 if station_type_id == None:    # Only look this up if we haven't learned it yet
-                                        station_type_id = sm_utils.find_smip_type_id("fis_machine")
+                                        station_type_id = sm_utils.find_smip_type_id("fis_station")
                                 print ("\033[96mDiscovered new equipment, Station " + str(station_id) + ", of type " + station_type_id + ", as child of Machine ID:" + found_machine + ". Creating...\033[0m")
                                 found_station = sm_utils.create_smip_equipment_of_typeid(found_machine, station_type_id, "Station " + str(station_id))
                 
-                # Update actual data station
+                # Update actual station data
                 if found_station:
-                        print ("\033[33mNot implemented: Updating SMIP " + station["displayName"] + ", with ID: " + station["id"] + " on " + machine["displayName"] + ", with ID: " + machine["id"] + "\033[0m")                        
+                        print ("\033[96mUpdating SMIP with new data for Station ID: " + found_station + "\033[0m")
+                        # find attribute ids for given station
+                        smip_attribs = sm_utils.find_attributes_of_equipment_id(found_station)
+                        debug(verbose, smip_attribs)
+
+                        # map data to smip attribs, checking for outer type (Profile) safety (smip will check for data type safety)
+                        payload_attribs = json.loads(payload_data.lower())
+                        type_safe = True
+                        ord_pos = 0
+                        alias_mutates = ""
+                        for smip_attrib in smip_attribs:
+                                ord_pos += 1
+                                attrib_name = smip_attrib['relativeName']
+                                if not attrib_name in payload_attribs.keys():
+                                        print("\033[33mWarning: A Type validation error has occured. Some data will not be ingested.\033[0m")
+                                        type_safe = False
+                                if type_safe:
+                                        # form mutation aliases
+                                        alias_mutates += sm_utils.build_alias_ts_mutation(str(ord_pos), smip_attrib['id'], payload_attribs[attrib_name].upper()) + "\n"
+                        # form out mutation, then fire and forget
+                        sm_utils.multi_tsmutate_aliases(alias_mutates)
 
         # Get ready for next loop
         next_sample_rate = random.randint(config.simulator["event_sample_min"],  config.simulator["event_sample_max"])
         sim_count += 1
+        debug(verbose, "")
         debug(verbose, "Sim #" + str(sim_count) + " complete, Sleeping " + str(next_sample_rate) + "...")
         debug(verbose, "")
         time.sleep(next_sample_rate)
-

@@ -2,8 +2,7 @@ import argparse
 import requests
 import json
 import time
-from datetime import datetime
-from string import whitespace
+import string
 
 class graphql:
 
@@ -21,6 +20,9 @@ class graphql:
         self.parser.add_argument("-r", "--role", type=str, default=role)
         self.parser.add_argument("-u", "--url", type=str, default=endpoint)
         self.args = self.parser.parse_args()
+    
+    def clean_whitespace(self, thestring):
+        return " ".join(thestring.strip().split())
 
     def post(self, content):
         if self.current_bearer_token == "":
@@ -42,8 +44,7 @@ class graphql:
         if self.verbose:
             print()
             print("\033[36mPosting request with content: \033[0m")
-            show_content = content.translate(dict.fromkeys(map(ord, whitespace)))
-            print(show_content)
+            print(self.clean_whitespace(content))
         if auth == True:
             header=None
         else:
@@ -51,7 +52,7 @@ class graphql:
         r = requests.post(self.args.url, headers=header, data={"query": content})
         r.raise_for_status()
         if self.verbose:
-            print("\033[36mGot response: \033[0m" + json.dumps(r.json()))
+            print("\033[36mGot response: \033[0m" + json.dumps(r.json()).encode('utf-8').decode('unicode-escape'))
         return r.json()
         
     def get_bearer_token (self):
@@ -87,11 +88,3 @@ class graphql:
             """, True)
         jwt_claim = response['data']['authenticationValidation']['jwtClaim']
         return f"Bearer {jwt_claim}"
-
-    def make_datetime_utc(self):
-        utc_time = str(datetime.utcnow())
-        time_parts = utc_time.split(" ")
-        utc_time = "T".join(time_parts)
-        time_parts = utc_time.split(".")
-        utc_time = time_parts[0] + "Z"
-        return utc_time
