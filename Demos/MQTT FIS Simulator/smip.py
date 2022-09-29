@@ -1,8 +1,6 @@
 import argparse
 import requests
 import json
-import time
-import string
 
 class graphql:
 

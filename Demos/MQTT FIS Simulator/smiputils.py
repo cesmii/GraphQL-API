@@ -2,7 +2,6 @@ import json
 from smip import graphql
 from datetime import datetime
 import requests
-import string
 
 class fis_machine():
         def __init__(self):

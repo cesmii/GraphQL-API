@@ -1,9 +1,7 @@
-from multiprocessing.dummy import Array
-import datetime, time, sys, random
+import datetime, time, random
 import config
 import argparse
 import paho.mqtt.client as paho
-from smip import graphql
 import smiputils
 import mqttutils
 import json, csv
@@ -146,7 +144,7 @@ while True:
                 if found_machine == None:
                         if machine_type_id == None:
                                 machine_type_id = sm_utils.find_smip_type_id("fis_machine")
-                        print ("\033[96mDiscovered new equipment, Machine " + str(machine_id) + " of type " + str(machine_type_id) + " in Location ID: " + config.smip["parent_equipment_id"] + ". Creating...\033[0m")
+                        print ("\033[96mDiscovered new equipment, Machine " + str(machine_id) + ", of type " + str(machine_type_id) + ", in Location ID: " + config.smip["parent_equipment_id"] + ". Creating...\033[0m")
                         found_machine = sm_utils.create_smip_equipment_of_typeid(config.smip["parent_equipment_id"], machine_type_id, "Machine " + str(machine_id))
 
                 # Check if the station already exists in smip:
