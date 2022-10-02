@@ -1,0 +1,61 @@
+{
+  "name": "notus-react",
+  "version": "1.1.0",
+  "description": "Notus React - A free Tailwind CSS and React UI Kit and Admin by Creative Tim.",
+  "repository": "https://github.com/creativetimofficial/notus-react",
+  "license": "MIT",
+  "dependencies": {
+    "@apollo/client": "^3.3.21",
+    "@fortawesome/fontawesome-free": "5.15.3",
+    "@popperjs/core": "2.9.1",
+    "@tailwindcss/forms": "0.2.1",
+    "apexcharts": "^3.33.0",
+    "autoprefixer": "10.2.5",
+    "chart.js": "2.9.4",
+    "d3-color": "^3.0.1",
+    "d3-interpolate": "^3.0.1",
+    "graphql": "^15.5.1",
+    "gulp": "4.0.2",
+    "gulp-append-prepend": "1.0.8",
+    "node-fetch": "^2.6.1",
+    "plotly.js-dist-min": "^2.5.0",
+    "postcss": "8.2.13",
+    "react": "17.0.1",
+    "react-apexcharts": "^1.3.9",
+    "react-dom": "17.0.1",
+    "react-liquid-gauge": "^1.2.4",
+    "react-router": "5.2.0",
+    "react-router-dom": "5.2.0",
+    "react-scripts": "4.0.3",
+    "tailwindcss": "2.0.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && gulp licenses",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm run build:tailwind && npm start",
+    "build:tailwind": "tailwind build src/assets/styles/index.css -o src/assets/styles/tailwind.css"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "optionalDependencies": {
+    "typescript": "4.2.3"
+  },
+  "devDependencies": {
+    "prettier": "^2.3.2"
+  }
+}

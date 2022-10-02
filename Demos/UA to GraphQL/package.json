@@ -1,0 +1,31 @@
+{
+  "name": "opcua-to-graphql-sample",
+  "version": "0.0.1",
+  "description": "Simple OPCUA client to GraphQL using node-opcua, forked from node-opcua-sample",
+  "main": "ua-to-graphql.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/erossignon/node-opcua-sample.git"
+  },
+  "keywords": [
+    "opcua"
+  ],
+  "author": "Etienne Rossignon, Jonathan Wise",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^14.11.2",
+    "async": "~3.2.0",
+    "node-fetch": "^3.1.1",
+    "node-opcua": "~2.18.0"
+  },
+  "devDependencies": {
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
+  }
+}

@@ -1,0 +1,17 @@
+
+pip3 install opcua
+
+Youtube
+
+https://www.youtube.com/watch?v=mEbPHflLNyc&list=PLWw98q-Xe7iGf-c4b6zF0bnJA9avEN_mF
+
+
+python3 ./server_test_led.py on one terminal
+
+and on another 
+
+terminal
+
+python3 ./client_test_led.py  
+
+input 0 or 1 to turn the led on or off.  For this demo I am using GPIO PIN 17

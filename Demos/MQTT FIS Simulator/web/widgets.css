@@ -1,0 +1,106 @@
+
+.widget {
+    /*color: pink;*/
+  }
+  
+  .fis_machine {
+    color: white;
+    background-color: #243782;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 20px;
+    margin: 15px;
+    min-width: 160px;
+    text-align: center;
+    text-transform: uppercase;
+    -webkit-box-shadow: rgb(0 0 0 / 30%) 0 1px 10px;
+    -moz-box-shadow: rgba(0,0,0,0.3) 0 1px 10px;
+    box-shadow: rgb(0 0 0 / 30%) 0 1px 10px;
+  }
+  
+  .fis_machine.updating {
+    /*background-color:darkslateblue;*/
+    animation: fadeInFromNone 0.5s ease-out;
+  }
+  
+  @-webkit-keyframes fadeInFromNone {
+      81% {
+          display: block;
+          opacity: .8;
+      }
+  
+      100% {
+          display: block;
+          opacity: 1;
+      }
+  }
+  
+  @-moz-keyframes fadeInFromNone {
+      81% {
+          display: block;
+          opacity: .8;
+      }
+  
+      100% {
+          display: block;
+          opacity: 1;
+      }
+  }
+  
+  @-o-keyframes fadeInFromNone {
+      81% {
+          display: block;
+          opacity: .8;
+      }
+  
+      100% {
+          display: block;
+          opacity: 1;
+      }
+  }
+  
+  @keyframes fadeInFromNone {
+      81% {
+          display: block;
+          opacity: .8;
+      }
+  
+      100% {
+          display: block;
+          opacity: 1;
+      }
+  }
+  
+  .fis_station {
+    color: #243782;
+    background-color: #ffffff;
+    border-radius: 15px 0;
+    display: table;
+    opacity: .9;
+    padding: 20px;
+    margin: 15px 0;
+    min-height: 60px;
+    text-align: initial;
+    text-transform: initial;
+    width: 120px;
+  }
+  
+  .fis_station.updating {
+    animation: fadeInFromNone 0.5s ease-out;
+  }
+  
+  .fis_station.faulted {
+    background-color: mistyrose !important;
+  }
+
+  .fis_station.running {
+    background-color: lightgreen !important;
+  }
+
+  .fis_status {
+    margin-top: 10px;
+    text-align: center;
+    font-weight: lighter;
+    font-size: smaller;
+  }
+  
