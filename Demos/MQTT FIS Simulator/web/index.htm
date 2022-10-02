@@ -79,7 +79,6 @@
 
         function populateUI(payload, query) {
             if (payload && payload.data && payload.data.equipments) {
-                console.log("here!" + JSON.stringify(payload.data.equipments));
                 payload.data.equipments.forEach (function(item, index, arr) {
                     machineId = "machine" + item.id;
                     if (!document.getElementById(machineId)) {
