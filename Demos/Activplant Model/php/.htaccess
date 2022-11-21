@@ -1,0 +1,5 @@
+DirectoryIndex index.php
+AuthType Basic
+AuthName "Dev Key Required"
+AuthUserFile c:/Apache24/passwords
+Require valid-user
