@@ -1,5 +1,8 @@
 <?php
 $config = include('config.php');
+if (isset($_GET["dbname"])) {
+    $config["dbname"] = $_GET["dbname"];
+}
 
 $assetCount = 0;
 $groupCount = 0;
@@ -57,7 +60,7 @@ function LoadNodeGroups($config) {
     try
     {
         $conn = OpenDBConnection($config);
-        $tsql = "SELECT * FROM [ActivplantDB02_rest].[dbo].[tblOS_Groups] ORDER BY GroupID";
+        $tsql = "SELECT * FROM [" . $config["dbname"] . "].[dbo].[tblOS_Groups] ORDER BY GroupID";
         $getNodeGroups = sqlsrv_query($conn, $tsql);
         if ($getNodeGroups == FALSE)
             die(FormatErrors(sqlsrv_errors()));
