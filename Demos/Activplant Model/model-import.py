@@ -42,6 +42,7 @@ url = config.php["endpoint"]
 username = config.php["username"]
 password = config.php["password"]
 response = requests.get(url, auth=(username, password))
+fedid = str(config.smip["fed_id"])
 time.sleep(config.smip["throttle_rate"])
 if (response.status_code == 200):
         data = response.json()
@@ -61,15 +62,15 @@ def showAddNodeWithType(thisNode, nodeType, indent, lastGroupParentId):
         node_type_id = ""
 
         if nodeType == NodeTypes.NodeGroup:
-                node_int_name = "vpng_" + str(thisNode['groupId'])
+                node_int_name = "vpng_" + fedid + "_" + str(thisNode['groupId'])
                 node_name = str(thisNode['groupName']).replace("\n", " ")
         else:
-                node_int_name = "vpng_" + str(thisNode['nodeId'])
+                node_int_name = "vpng_" + fedid + "_" + str(thisNode['nodeId'])
                 node_name = str(thisNode['nodeName']).replace("\n", " ")
         print((indent * spaces) + "[" + str(nodeType) + ": " + node_name + "]")
 
         if use_smip:
-                parent_group_int_name = "vpng_" + str(lastGroupParentId)        # Only groups can be parents
+                parent_group_int_name = "vpng_" + fedid + "_" + str(lastGroupParentId)        # Only groups can be parents
                 # Check if this equipment already exists in smip:
                 found_node = None
                 smip_nodes = sm_utils.find_smip_equipment_of_type(config.smip["type_ids"][str(nodeType)])
