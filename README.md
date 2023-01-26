@@ -17,6 +17,7 @@ Go here to learn about the GraphQL API and how to use some basic [Queries](https
 ## [Samples](https://github.com/cesmii/API/tree/main/Samples)
 [Sample code](https://github.com/cesmii/API/tree/main/Samples) to show you how to do simple GraphQL requests in a few common programming languages.
 
-## Related Projects
+## Related Repositories
+- [ThinkIQ Labs](https://github.com/ThinkIQ-Labs/)
 - [MQTT to GraphQL Connector](https://github.com/richardphi1618/MQTT-to-GraphQL-Connector-for-SMP)
 
