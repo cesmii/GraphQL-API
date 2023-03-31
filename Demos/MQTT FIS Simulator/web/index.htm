@@ -4,145 +4,50 @@
         <link rel="stylesheet" href="style.css" type="text/css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:300,700">
         <link rel="stylesheet" href="widgets.css" type="text/css">
-        <script src="config.js"></script>
-        <script src="smip.js"></script>
-        <script src="widgets.js"></script>
-
-        <script>
-        var errorHandled = false;
-        var updateTimer = null;
-        var currentBearerToken = "";
-
-        function loadMachines() {
-            document.getElementById("btnRefresh").innerHTML = "<img src=\"spinner.gif\" height=\"22px\">";
-            sendSmipQuery({
-                query: `{
-                    equipments(filter: {typeName: {equalTo: "${config.machineType}"}}) {
-                        displayName
-                        typeName
-                        id
-                        childEquipment {
-                        displayName
-                        typeName
-                        id
-                        attributes(filter: {relativeName: {startsWithInsensitive: "evt_desc"}}) {
-                                relativeName
-                                id
-                            }
-                        }
-                    }
-                }`
-            }, populateUI)
-        }
-
-        function updateStation(statusId, stationId) {
-            var endDate = new Date();
-            var startDate = new Date(endDate);
-            var durationInMinutes = 10;
-            startDate.setMinutes(endDate.getMinutes() - durationInMinutes);
-            sendSmipQuery({
-                query: `query HistoryQuery {
-                    getRawHistoryDataWithSampling(
-                        ids: ["${statusId}"]
-                        maxSamples: 1
-                        startTime: "${startDate.toISOString()}"
-                        endTime: "${endDate.toISOString()}"
-                    ) {
-                        id
-                        ts
-                        stringvalue
-                    }
-                }`
-            }, updateUI, stationId)
-        }
-
-        async function sendSmipQuery(theQuery, callBack, metaData) {
-            if (!currentBearerToken) {
-                currentBearerToken = await smip.getBearerToken();
-            } 
-            try {
-                callBack(await smip.performGraphQLRequest(theQuery, config.url, currentBearerToken), metaData);
-            }
-            catch (ex) {
-                if (ex == 400 || ex == 401) {
-                    console.log("perhaps the bearer token has expired, let's get a new one");
-                    currentBearerToken = await smip.getBearerToken();
-                    callBack(await smip.performGraphQLRequest(theQuery, config.url, currentBearerToken));
-                } else {
-                    console.log("caught an error: " + ex);
-                    if (!errorHandled)
-                        alert ("An unexpected error occured accessing the SMIP!");
-                    errorHandled = true;
-                }
-            }
-        }
-
-        function populateUI(payload, query) {
-            if (payload && payload.data && payload.data.equipments) {
-                payload.data.equipments.forEach (function(item, index, arr) {
-                    machineId = "machine" + item.id;
-                    if (!document.getElementById(machineId)) {
-                        newMachine = new widgetFactory(machineId, item);
-                        document.getElementById("machines").appendChild(newMachine.build(newMachine));
-                    } else {
-                        //Machines don't really update, stations do
-                    }
-                    item.childEquipment.forEach (function(item, index, arr) {
-                            stationId = "station" + item.id;
-                            if (!document.getElementById(stationId)) {
-                                newStation = new widgetFactory(stationId, item, config.stationType);
-                                document.getElementById(machineId).appendChild(newStation.build(newStation));
-                                document.getElementById(stationId).widget.statusId = item.attributes[0].id;
-                            }
-                            updateStation(document.getElementById(stationId).widget.statusId, item.id);
-                            document.getElementById(machineId).widget.update(item);
-                        }
-                    );
-                });
-                document.getElementById("btnRefresh").innerHTML = "Refresh";
-            } else {
-                console.log("Empty payload for equipments query. Nothing to populate.");
-            }
-        }
-
-        function updateUI(payload, stationId) {
-            var faultedStates = ["BAD PROGRAM","POWER OFF","ESTOP","I/O FAULT","SAFETY TRIP","MOTOR OFF","FAULTED","ROBOT FAULTED","COMMUNICATION FAULT"];
-            var runningStates = ["NORMAL OPERATION","RUNNING","BYPASS MODE","MANUAL MODE"];
-            if (payload && payload.data && payload.data.getRawHistoryDataWithSampling && payload.data.getRawHistoryDataWithSampling[0] && payload.data.getRawHistoryDataWithSampling[0].stringvalue) {
-                var newState = payload.data.getRawHistoryDataWithSampling[0].stringvalue;
-                document.getElementById("status" + stationId).innerHTML = newState;
-                if (faultedStates.indexOf(newState) != -1) {
-                    document.getElementById("station" + stationId).classList.add("faulted");
-                } else {
-                    document.getElementById("station" + stationId).classList.remove("faulted");
-                }
-                if (runningStates.indexOf(newState) != -1) {
-                    document.getElementById("station" + stationId).classList.add("running");
-                } else {
-                    document.getElementById("station" + stationId).classList.remove("running");
-                }
-            }
-            else
-                console.log("Empty payload for timeseries query. Nothing to update.");
-        }
-
-        function updateLoop() {
-            setInterval(function () {
-                loadMachines();
-            }, 5000);
-        }
-        
-        </script>
-
+        <link rel="stylesheet" href="error.css" type="text/css">
+        <script defer type = "text/javascript" src="smip.js"></script>
+        <script defer type = "text/javascript" src="widgets.js"></script>
+        <script defer type="text/javascript" src="config.js"></script>
+        <script defer type = "text/javascript" src="ui.js"></script>
     </head>
-    <body onload="loadMachines();updateLoop()">
+    <body onload="loadConfig()">
         <div class="title">
             <img src="cesmii.png" alt="" style="height:40px">
-            <img src="customer-logo.svg" alt="" class="logo" style="height:40px">
+            <!-- <img src="customer-logo.svg" alt="" class="logo" style="height:40px"> -->
             <button onclick="loadMachines()" id="btnRefresh" style="float:right; width:100px;height:44px;">Refresh</button>
         </div>
-        <h1>CESMII FIS Simulator</h1>
+        <h1>CESMII Simulator</h1>
         <div class="content">
+                <div id="empty" class="alert error" hidden>
+                <label class="close" title="close" for="alert1">
+                <i class="icon-remove"></i>
+                </label>
+                    <p class="inner">
+                        <strong>Warning!</strong> No compatible machine instances found on the SMIP instance. Please add equipment instances that match the SM Profile dependency.
+                    </p>
+                </div>
+                <!-- <div id="empty" hidden> There are no machines on your SMIP instance that match the SM Profile dependency. Please make sure instances of the equipment type exists on the SMIP Core instance and that you are sending data to those instances from the machines</div> -->
+            <button id="show" onclick="toggle('login')">Toggle SMIP Config</button>
+            <div id="login" hidden>Enter credentials
+                <form id="configForm" action="javascript:submitConfig()">
+                    <label for="smipurl">SMIP URL</label><br>
+                    <input type="text" id="smipurl" name="smipurl" required><br>
+
+                    <label for="authenticator">Authenticator</label><br>
+                    <input type="text" id="authenticator" name="authenticator" required><br>
+
+                    <label for="smipusername">Username</label><br>
+                    <input type="text" id="smipusername" name="smipusername" required><br>
+
+                    <label for="password">Password</label><br>
+                    <input type="password" id="password" name="password" required><br>
+
+                    <label for="role">Role</label><br>
+                    <input type="text" id="role" name="role" required><br><br>
+                    
+                    <input type="submit">	
+                </form>
+            </div>
             <div id="machines"></div>
         </div>
 

@@ -1,0 +1,3 @@
+python -m http.server
+python .\sim.py
+python .\gateway.py

@@ -49,7 +49,7 @@ smip.getBearerToken = async function getBearerToken() {
             var challengeResponse = await smip.performGraphQLRequest(theQuery, config.url);
             //console.log(challengeResponse)
             var newJwtToken = "Bearer " + challengeResponse.data.authenticationValidation.jwtClaim;
-            //console.log("Token received: " + newJwtToken);
+            console.log("Token received: " + newJwtToken);
             resolve(newJwtToken);
 
             //TODO: Handle errors!

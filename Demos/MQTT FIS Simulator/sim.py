@@ -1,6 +1,5 @@
 import datetime, time, random
 import config
-import argparse
 import paho.mqtt.client as paho
 import smiputils
 import mqttutils
@@ -8,17 +7,12 @@ import json, csv
 import random
 import copy
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-smip", "--smip", type=int, default=False)
-args = parser.parse_args()
-
 verbose = config.smip["verbose"]
 data_file = config.simulator["data_file"]
 simulation_keys = []
 simulation_data = []
 machine_column = 1
 station_column = 2
-use_smip = False
 
 def debug(verbose, message, sleep=0):
         if verbose:
@@ -30,9 +24,7 @@ def debug(verbose, message, sleep=0):
 print("\nCESMII FIS Data Block Simulator")
 print("===============================")
 debug(verbose, "Verbose mode: on")
-if bool(args.smip):
-        print("\033[36mCESMII SMIP publishing enabled at: " + config.smip["url"] + "\033[0m")
-        use_smip = True
+
 print("Using MQTT Broker: " + str(config.mqtt["broker"]))
 print("Using Data File: " + data_file)
 
@@ -64,10 +56,6 @@ debug(verbose, "Data Rows: " + str(len(simulation_data)))
 debug(verbose, "Machine ID Column: " + str(machine_column))
 debug(verbose, "Station ID Column: " + str(station_column), 1)
 print("===============================")
-
-# Load SMIP Data
-if use_smip:
-        sm_utils = smiputils.utils(config.smip["authenticator"], config.smip["password"], config.smip["name"], config.smip["role"], config.smip["url"], verbose)
         
 # MQTT Client
 broker=config.mqtt["broker"]
@@ -75,7 +63,7 @@ port=config.mqtt["port"]
 payload_topic=config.mqtt["payload_topic_root"]
 def on_publish(client, userdata, result):
         print("Updating MQTT topic: " + str(userdata))
-mqtt_client= paho.Client("cesmii_fis_demo")
+mqtt_client= paho.Client("cesmii_simulation_client")
 mqtt_client.on_publish = on_publish
 
 # Main Simulation Loop
@@ -124,6 +112,7 @@ while True:
                         curr_row[use_station_column] = station_id
 
                 # Build the topic, attach the payload, send to broker (unless simulating MQTT)
+                #TODO Make topic format a config
                 topic = payload_topic + "machine/" + str(machine_id) + "/station/" + str(station_id)
                 payload_data = mqttutils.utils.make_json_payload(curr_row, simulation_keys)
                 if config.mqtt['simulate_only'] != True:
@@ -132,60 +121,6 @@ while True:
                         mqtt_client.publish(topic, payload_data)
                 debug(verbose, topic)
                 debug(verbose, payload_data)
-
-                # Send to SMIP (if configured)
-                #       TODO: To make this even more real, this would be seperate code that lives in an MQTT client
-                #       It would then do the SMIP update based on the MQTT publish event. For the sake of brevity
-                #       both MQTT and SMIP share the incoming message and dispatch them individually in this demo.
-                if use_smip:
-                        # Check if this equipment already exists in smip:
-                        found_machine = None
-                        machines = sm_utils.find_smip_equipment_of_type(config.smip["machine_type"])
-                        for machine in machines:
-                                if ("Machine " + str(machine_id)) == machine["displayName"]:
-                                        found_machine = machine["id"]
-                        if found_machine == None:
-                                if machine_type_id == None:
-                                        machine_type_id = sm_utils.find_smip_type_id("fis_machine")
-                                print ("\033[36mDiscovered new equipment, Machine " + str(machine_id) + ", of type " + str(machine_type_id) + ", in Location ID: " + config.smip["parent_equipment_id"] + ". Instantiating in SMIP...\033[0m")
-                                found_machine = sm_utils.create_smip_equipment_of_typeid(config.smip["parent_equipment_id"], machine_type_id, "Machine " + str(machine_id))
-
-                        # Check if the station already exists in smip:
-                        found_station = None
-                        if found_machine:
-                                stations = sm_utils.find_smip_equipment_of_parent(found_machine)
-                                for station in stations:
-                                        if ("Station " + str(station_id)) == station["displayName"]:
-                                                found_station = station["id"]
-                                if found_station == None:
-                                        if station_type_id == None:    # Only look this up if we haven't learned it yet
-                                                station_type_id = sm_utils.find_smip_type_id("fis_station")
-                                        print ("\033[36mDiscovered new equipment, Station " + str(station_id) + ", of type " + station_type_id + ", as child of Machine ID:" + found_machine + ". Instantiating in SMIP...\033[0m")
-                                        found_station = sm_utils.create_smip_equipment_of_typeid(found_machine, station_type_id, "Station " + str(station_id))
-                        
-                        # Update actual station data
-                        if found_station:
-                                print ("Updating SMIP with new data for Station ID: " + found_station)
-                                # find attribute ids for given station
-                                smip_attribs = sm_utils.find_attributes_of_equipment_id(found_station)
-                                debug(verbose, smip_attribs)
-
-                                # map data to smip attribs, checking for outer type (Profile) safety (smip will check for data type safety)
-                                payload_attribs = json.loads(payload_data.lower())
-                                type_safe = True
-                                ord_pos = 0
-                                alias_mutates = ""
-                                for smip_attrib in smip_attribs:
-                                        ord_pos += 1
-                                        attrib_name = smip_attrib['relativeName']
-                                        if not attrib_name in payload_attribs.keys():
-                                                print("\033[33mWarning: A Type validation error has occured. Some data will not be ingested.\033[0m")
-                                                type_safe = False
-                                        if type_safe:
-                                                # form mutation aliases
-                                                alias_mutates += sm_utils.build_alias_ts_mutation(str(ord_pos), smip_attrib['id'], payload_attribs[attrib_name].upper()) + "\n"
-                                # form out mutation, then fire and forget
-                                sm_utils.multi_tsmutate_aliases(alias_mutates)
 
                 # Get ready for next loop
                 next_sample_rate = random.randint(config.simulator["event_sample_min"],  config.simulator["event_sample_max"])
