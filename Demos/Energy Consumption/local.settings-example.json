@@ -1,0 +1,30 @@
+﻿{
+  "IsEncrypted": false,
+
+  //Environment Variables - In Azure, add these in Configuration / Environment variables
+  //Rule of thumb - Put the keys and passwords here. Do not check this file in to Github.
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    //SMIP Settings
+    "SmipSettings:GraphQLEndpoint": "https://YOURINSTANCE.cesmii.net/graphql",
+    "SmipSettings:ClientId": "YOURAUTHID",
+    "SmipSettings:ClientSecret": "YOURAUTHSECRET",
+    "SmipSettings:UserName": "YOURUSERNAME",
+    "SmipSettings:Role": "YOURAUTHROLE",
+    "SmipSettings:ParentEquipmentId": "YOUR_PARENT_EQUIPMENT_ID", //ie: "99999"
+    "SmipSettings:SmallRegionEquipmentTypeId": "YOUR_SMALL_REGION_EQUIPMENT_TYPE_ID", //ie: "66666"
+    "SmipSettings:BigRegionEquipmentTypeId": "YOUR_BIG_REGION_EQUIPMENT_TYPE_ID", //ie: "77777"
+    "SmipSettings:StateEquipmentTypeId": "YOUR_STATE_EQUIPMENT_TYPE_ID", //ie: "88888"
+    "SmipSettings:CarbonRegionEquipmentTypeId": "YOUR_CARBON_EQUIPMENT_TYPE_ID", //ie: "11111"
+    //DOE Settings
+    "DoeSettings:Url": "https://api.eia.gov/series/",
+    "DoeSettings:ApiKey": "YOURAPIKEY",
+    "DoeSettings:DaysOffsetStart": "-1",
+    "DoeSettings:DaysOffsetEnd": "0",
+    //WattTime Settings
+    "WattTimeSettings:UserName": "YOURWATTTIMEUSERNAME",
+    "WattTimeSettings:Password": "YOURWATTTIMEPASSWORD",
+    "WattTimeSettings:Url": "https://api2.watttime.org/v2/"
+  }
+}
