@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<UANodeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <NamespaceUris>
+    <Uri>http://opcfoundation.org/UA/DI/</Uri>
+  </NamespaceUris>
+  <UAObjectType NodeId="ns=1;i=1001" BrowseName="1:TopologyElementType">
+    <DisplayName Locale="en-Us">TopologyElementType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">ns=1;i=1003</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=58</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=1;i=1002" BrowseName="1:DeviceType">
+    <DisplayName Locale="en-Us">DeviceType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=46">ns=1;i=6514</Reference>
+      <Reference ReferenceType="i=46">ns=1;i=6008</Reference>
+      <Reference ReferenceType="i=46">ns=1;i=6007</Reference>
+      <Reference ReferenceType="i=46">ns=1;i=6006</Reference>
+      <Reference ReferenceType="i=46">ns=1;i=6005</Reference>
+      <Reference ReferenceType="i=46">ns=1;i=6004</Reference>
+      <Reference ReferenceType="i=46">ns=1;i=6003</Reference>
+      <Reference ReferenceType="i=46">ns=1;i=6002</Reference>
+      <Reference ReferenceType="i=46">ns=1;i=6001</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=61</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=1;i=1003" BrowseName="1:BlockType" IsAbstract="true">
+    <DisplayName Locale="en-Us">BlockType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=46">ns=1;i=6013</Reference>
+      <Reference ReferenceType="i=46">ns=1;i=6012</Reference>
+      <Reference ReferenceType="i=46">ns=1;i=6011</Reference>
+      <Reference ReferenceType="i=46">ns=1;i=6010</Reference>
+      <Reference ReferenceType="i=46">ns=1;i=6009</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">ns=1;i=1001</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=1;i=1004" BrowseName="1:ConfigurableObjectType">
+    <DisplayName Locale="en-Us">ConfigurableObjectType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=47">ns=1;i=5004</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=58</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=1;i=1005" BrowseName="1:FunctionalGroupType">
+    <DisplayName Locale="en-Us">FunctionalGroupType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=61</Reference>
+    </References>
+  </UAObjectType>
+  <UAObject NodeId="ns=1;i=5001" BrowseName="1:DeviceSet">
+    <DisplayName Locale="en-Us">DeviceSet</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=58</Reference>
+      <Reference ReferenceType="i=35" IsForward="false">i=85</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=5004" BrowseName="1:SupportedTypes">
+    <DisplayName Locale="en-Us">SupportedTypes</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=61</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">ns=1;i=1004</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=6001" BrowseName="1:SerialNumber" DataType="i=12" ValueRank="0">
+    <DisplayName Locale="en-Us">SerialNumber</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1002</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=6002" BrowseName="1:RevisionCounter" DataType="i=6" ValueRank="0">
+    <DisplayName Locale="en-Us">RevisionCounter</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1002</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=6003" BrowseName="1:Manufacturer" DataType="i=21" ValueRank="0">
+    <DisplayName Locale="en-Us">Manufacturer</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1002</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=6004" BrowseName="1:Model" DataType="i=12" ValueRank="0">
+    <DisplayName Locale="en-Us">Model</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1002</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=6005" BrowseName="1:DeviceManual" DataType="i=12" ValueRank="0">
+    <DisplayName Locale="en-Us">DeviceManual</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1002</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=6006" BrowseName="1:DeviceRevision" DataType="i=12" ValueRank="0">
+    <DisplayName Locale="en-Us">DeviceRevision</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1002</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=6007" BrowseName="1:SoftwareRevision" DataType="i=12" ValueRank="0">
+    <DisplayName Locale="en-Us">SoftwareRevision</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1002</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=6008" BrowseName="1:HardwareRevision" DataType="i=12" ValueRank="0">
+    <DisplayName Locale="en-Us">HardwareRevision</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1002</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=6009" BrowseName="1:RevisionCounter" DataType="i=6" ValueRank="0">
+    <DisplayName Locale="en-Us">RevisionCounter</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1003</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=6010" BrowseName="1:ActualMode" DataType="i=21" ValueRank="0">
+    <DisplayName Locale="en-Us">ActualMode</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1003</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=6011" BrowseName="1:PermittedMode" DataType="i=21" ValueRank="1">
+    <DisplayName Locale="en-Us">PermittedMode</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1003</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=6012" BrowseName="1:NormalMode" DataType="i=21" ValueRank="1">
+    <DisplayName Locale="en-Us">NormalMode</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1003</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=6013" BrowseName="1:TargetMode" DataType="i=6" ValueRank="1">
+    <DisplayName Locale="en-Us">TargetMode</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1003</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=6514" BrowseName="1:DeviceClass" DataType="i=12" ValueRank="0">
+    <DisplayName Locale="en-Us">DeviceClass</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1002</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+</UANodeSet>

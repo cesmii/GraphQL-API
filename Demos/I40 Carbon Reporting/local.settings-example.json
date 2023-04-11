@@ -1,0 +1,15 @@
+{
+    "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "SMIPEndpoint": "https://YOURINSTANCE.cesmii.net/graphql",
+    "SMIPClientId": "YOURAUTHENTICATORNAME",
+    "SMIPClientSecret": "YOURAUTHENTICATORPASSWORD",
+    "SMIPUserName": "YOURSMIPUSERNAME",
+    "SMIPRole": "YOURAUTHENTICATOROLE",
+    "SMIPBearerToken": "TOKEN FROM SMIP NOT PRECEEDED BY THE WORD BEARER",
+    "SendToTestSink": "http://YOURTESTSINK/testpost.php",
+    "ThrottleRate":  5
+  }
+}
