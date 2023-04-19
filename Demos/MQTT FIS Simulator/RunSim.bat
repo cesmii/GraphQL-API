@@ -6,6 +6,5 @@ ECHO Copy config-example.py to config.py and enter the SMIP Credentials.
 ECHO.
 GOTO END
 :EXISTS
-cd web
 python .\sim.py
 :END
