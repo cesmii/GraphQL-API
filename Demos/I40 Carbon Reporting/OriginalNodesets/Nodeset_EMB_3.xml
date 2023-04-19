@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<UANodeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <NamespaceUris>
+    <Uri>http://PLCopen.org/OpcUa/IEC61131-3/</Uri>
+    <Uri>http://opcfoundation.org/UA/DI/</Uri>
+  </NamespaceUris>
+  <UAObjectType NodeId="ns=1;i=1001" BrowseName="1:CtrlConfigurationType">
+    <DisplayName Locale="en-Us">CtrlConfigurationType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=47">ns=1;i=5009</Reference>
+      <Reference ReferenceType="i=47">ns=1;i=5008</Reference>
+      <Reference ReferenceType="i=47">ns=1;i=5007</Reference>
+      <Reference ReferenceType="i=47">ns=1;i=5006</Reference>
+      <Reference ReferenceType="i=47">ns=1;i=5004</Reference>
+      <Reference ReferenceType="i=47">ns=1;i=5002</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">ns=2;i=1001</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=1;i=1002" BrowseName="1:CtrlRessourceType">
+    <DisplayName Locale="en-Us">CtrlRessourceType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=47">ns=1;i=5019</Reference>
+      <Reference ReferenceType="i=47">ns=1;i=5018</Reference>
+      <Reference ReferenceType="i=47">ns=1;i=5016</Reference>
+      <Reference ReferenceType="i=47">ns=1;i=5014</Reference>
+      <Reference ReferenceType="i=47">ns=1;i=5012</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">ns=2;i=1002</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=1;i=1003" BrowseName="1:CtrlProgramOrganizationUnitType" IsAbstract="true">
+    <DisplayName Locale="en-Us">CtrlProgramOrganizationUnitType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">ns=1;i=1005</Reference>
+      <Reference ReferenceType="i=45">ns=1;i=1004</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">ns=2;i=1003</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=1;i=1004" BrowseName="1:CtrlProgramType" IsAbstract="true">
+    <DisplayName Locale="en-Us">CtrlProgramType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">ns=1;i=1003</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=1;i=1005" BrowseName="1:CtrlFunctionBlockType" IsAbstract="true">
+    <DisplayName Locale="en-Us">CtrlFunctionBlockType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">ns=1;i=1003</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=1;i=1006" BrowseName="1:CtrlTaskType">
+    <DisplayName Locale="en-Us">CtrlTaskType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=46">ns=1;i=6006</Reference>
+      <Reference ReferenceType="i=46">ns=1;i=6005</Reference>
+      <Reference ReferenceType="i=46">ns=1;i=6004</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=58</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=1;i=1007" BrowseName="1:SCFType">
+    <DisplayName Locale="en-Us">SCFType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=58</Reference>
+    </References>
+  </UAObjectType>
+  <UAReferenceType NodeId="ns=1;i=4001" BrowseName="1:HasInputVar">
+    <DisplayName Locale="en-Us">HasInputVar</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=47</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="ns=1;i=4002" BrowseName="1:HasOutputVar">
+    <DisplayName Locale="en-Us">HasOutputVar</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=47</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="ns=1;i=4003" BrowseName="1:HasInOutVar">
+    <DisplayName Locale="en-Us">HasInOutVar</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=47</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="ns=1;i=4004" BrowseName="1:HasLocalVar">
+    <DisplayName Locale="en-Us">HasLocalVar</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=47</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="ns=1;i=4005" BrowseName="1:HasExternalVar">
+    <DisplayName Locale="en-Us">HasExternalVar</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=47</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="ns=1;i=4006" BrowseName="1:With">
+    <DisplayName Locale="en-Us">With</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=32</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAObject NodeId="ns=1;i=5002" BrowseName="1:MethodSet">
+    <DisplayName Locale="en-Us">MethodSet</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=58</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">ns=1;i=1001</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=5004" BrowseName="1:Resources">
+    <DisplayName Locale="en-Us">Resources</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">ns=2;i=1004</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">ns=1;i=1001</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=5006" BrowseName="1:GlobalVars">
+    <DisplayName Locale="en-Us">GlobalVars</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">ns=2;i=1005</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">ns=1;i=1001</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=5007" BrowseName="1:AccessVars">
+    <DisplayName Locale="en-Us">AccessVars</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">ns=2;i=1005</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">ns=1;i=1001</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=5008" BrowseName="1:ConfigVars">
+    <DisplayName Locale="en-Us">ConfigVars</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">ns=2;i=1005</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">ns=1;i=1001</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=5009" BrowseName="1:Configuration">
+    <DisplayName Locale="en-Us">Configuration</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">ns=2;i=1005</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">ns=1;i=1001</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=5012" BrowseName="1:MethodSet">
+    <DisplayName Locale="en-Us">MethodSet</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=58</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">ns=1;i=1002</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=5014" BrowseName="1:Tasks">
+    <DisplayName Locale="en-Us">Tasks</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">ns=2;i=1004</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">ns=1;i=1002</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=5016" BrowseName="1:Program">
+    <DisplayName Locale="en-Us">Program</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">ns=2;i=1004</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">ns=1;i=1002</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=5018" BrowseName="1:GlobalVars">
+    <DisplayName Locale="en-Us">GlobalVars</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">ns=2;i=1005</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">ns=1;i=1002</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=5019" BrowseName="1:Configuration">
+    <DisplayName Locale="en-Us">Configuration</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">ns=2;i=1005</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">ns=1;i=1002</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=5030" BrowseName="1:CtrlTypes">
+    <DisplayName Locale="en-Us">CtrlTypes</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=61</Reference>
+      <Reference ReferenceType="i=35" IsForward="false">i=88</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=6004" BrowseName="1:Priority" DataType="i=7" ValueRank="0">
+    <DisplayName Locale="en-Us">Priority</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1006</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=6005" BrowseName="1:Interval" DataType="i=12" ValueRank="0">
+    <DisplayName Locale="en-Us">Interval</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1006</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=6006" BrowseName="1:Single" DataType="i=12" ValueRank="0">
+    <DisplayName Locale="en-Us">Single</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">ns=1;i=1006</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+</UANodeSet>

@@ -1,0 +1,1944 @@
+<?xml version="1.0"?>
+<UANodeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <NamespaceUris>
+    <Uri/>
+  </NamespaceUris>
+  <UADataType NodeId="i=1" BrowseName="Boolean">
+    <DisplayName Locale="en-Us">Boolean</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=2" BrowseName="SByte">
+    <DisplayName Locale="en-Us">SByte</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=27</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=3" BrowseName="Byte">
+    <DisplayName Locale="en-Us">Byte</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=28</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=4" BrowseName="Int16">
+    <DisplayName Locale="en-Us">Int16</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=27</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=5" BrowseName="UInt16">
+    <DisplayName Locale="en-Us">UInt16</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=28</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=6" BrowseName="Int32">
+    <DisplayName Locale="en-Us">Int32</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=27</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=7" BrowseName="UInt32">
+    <DisplayName Locale="en-Us">UInt32</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=28</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=8" BrowseName="Int64">
+    <DisplayName Locale="en-Us">Int64</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=27</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=9" BrowseName="UInt64">
+    <DisplayName Locale="en-Us">UInt64</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=11737</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=28</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=10" BrowseName="Float">
+    <DisplayName Locale="en-Us">Float</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=26</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=11" BrowseName="Double">
+    <DisplayName Locale="en-Us">Double</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=290</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=26</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=12" BrowseName="String">
+    <DisplayName Locale="en-Us">String</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=291</Reference>
+      <Reference ReferenceType="i=45">i=295</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=13" BrowseName="DateTime">
+    <DisplayName Locale="en-Us">DateTime</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=294</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=14" BrowseName="Guid">
+    <DisplayName Locale="en-Us">Guid</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=15" BrowseName="ByteString">
+    <DisplayName Locale="en-Us">ByteString</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=30</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=16" BrowseName="XmlElement">
+    <DisplayName Locale="en-Us">XmlElement</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=17" BrowseName="NodeId">
+    <DisplayName Locale="en-Us">NodeId</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=18" BrowseName="ExpandedNodeId">
+    <DisplayName Locale="en-Us">ExpandedNodeId</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=20" BrowseName="QualifiedName">
+    <DisplayName Locale="en-Us">QualifiedName</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=21" BrowseName="LocalizedText">
+    <DisplayName Locale="en-Us">LocalizedText</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=22" BrowseName="Structure">
+    <DisplayName Locale="en-Us">Structure</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=7594</Reference>
+      <Reference ReferenceType="i=45">i=8912</Reference>
+      <Reference ReferenceType="i=45">i=897</Reference>
+      <Reference ReferenceType="i=45">i=877</Reference>
+      <Reference ReferenceType="i=45">i=299</Reference>
+      <Reference ReferenceType="i=45">i=871</Reference>
+      <Reference ReferenceType="i=45">i=868</Reference>
+      <Reference ReferenceType="i=45">i=865</Reference>
+      <Reference ReferenceType="i=45">i=856</Reference>
+      <Reference ReferenceType="i=45">i=308</Reference>
+      <Reference ReferenceType="i=45">i=385</Reference>
+      <Reference ReferenceType="i=45">i=382</Reference>
+      <Reference ReferenceType="i=45">i=874</Reference>
+      <Reference ReferenceType="i=45">i=344</Reference>
+      <Reference ReferenceType="i=45">i=859</Reference>
+      <Reference ReferenceType="i=45">i=862</Reference>
+      <Reference ReferenceType="i=45">i=853</Reference>
+      <Reference ReferenceType="i=45">i=884</Reference>
+      <Reference ReferenceType="i=45">i=338</Reference>
+      <Reference ReferenceType="i=45">i=379</Reference>
+      <Reference ReferenceType="i=45">i=376</Reference>
+      <Reference ReferenceType="i=45">i=316</Reference>
+      <Reference ReferenceType="i=45">i=296</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=23" BrowseName="DataValue">
+    <DisplayName Locale="en-Us">DataValue</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=24" BrowseName="BaseDataType">
+    <DisplayName Locale="en-Us">BaseDataType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=852</Reference>
+      <Reference ReferenceType="i=45">i=16</Reference>
+      <Reference ReferenceType="i=45">i=22</Reference>
+      <Reference ReferenceType="i=45">i=12</Reference>
+      <Reference ReferenceType="i=45">i=20</Reference>
+      <Reference ReferenceType="i=45">i=26</Reference>
+      <Reference ReferenceType="i=45">i=17</Reference>
+      <Reference ReferenceType="i=45">i=21</Reference>
+      <Reference ReferenceType="i=45">i=14</Reference>
+      <Reference ReferenceType="i=45">i=29</Reference>
+      <Reference ReferenceType="i=45">i=18</Reference>
+      <Reference ReferenceType="i=45">i=29</Reference>
+      <Reference ReferenceType="i=45">i=25</Reference>
+      <Reference ReferenceType="i=45">i=23</Reference>
+      <Reference ReferenceType="i=45">i=13</Reference>
+      <Reference ReferenceType="i=45">i=15</Reference>
+      <Reference ReferenceType="i=45">i=1</Reference>
+      <Reference ReferenceType="i=35" IsForward="false">i=90</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=25" BrowseName="DiagnosticInfo">
+    <DisplayName Locale="en-Us">DiagnosticInfo</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=26" BrowseName="Number">
+    <DisplayName Locale="en-Us">Number</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=10</Reference>
+      <Reference ReferenceType="i=45">i=11</Reference>
+      <Reference ReferenceType="i=45">i=28</Reference>
+      <Reference ReferenceType="i=45">i=27</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=27" BrowseName="Integer">
+    <DisplayName Locale="en-Us">Integer</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=8</Reference>
+      <Reference ReferenceType="i=45">i=6</Reference>
+      <Reference ReferenceType="i=45">i=4</Reference>
+      <Reference ReferenceType="i=45">i=2</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=26</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=28" BrowseName="UInteger">
+    <DisplayName Locale="en-Us">UInteger</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=9</Reference>
+      <Reference ReferenceType="i=45">i=7</Reference>
+      <Reference ReferenceType="i=45">i=5</Reference>
+      <Reference ReferenceType="i=45">i=3</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=26</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=29" BrowseName="Enumeration">
+    <DisplayName Locale="en-Us">Enumeration</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=851</Reference>
+      <Reference ReferenceType="i=45">i=302</Reference>
+      <Reference ReferenceType="i=45">i=315</Reference>
+      <Reference ReferenceType="i=45">i=257</Reference>
+      <Reference ReferenceType="i=45">i=120</Reference>
+      <Reference ReferenceType="i=45">i=256</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=30" BrowseName="Image">
+    <DisplayName Locale="en-Us">Image</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=2003</Reference>
+      <Reference ReferenceType="i=45">i=2002</Reference>
+      <Reference ReferenceType="i=45">i=2001</Reference>
+      <Reference ReferenceType="i=45">i=2000</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=15</Reference>
+    </References>
+  </UADataType>
+  <UAReferenceType NodeId="i=31" BrowseName="References">
+    <DisplayName Locale="en-Us">References</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=32</Reference>
+      <Reference ReferenceType="i=45">i=33</Reference>
+      <Reference ReferenceType="i=35" IsForward="false">i=91</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="i=32" BrowseName="NonHierarchicalReferences">
+    <DisplayName Locale="en-Us">NonHierarchicalReferences</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=40</Reference>
+      <Reference ReferenceType="i=45">i=38</Reference>
+      <Reference ReferenceType="i=45">i=37</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=31</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="i=33" BrowseName="HierarchicalReferences">
+    <DisplayName Locale="en-Us">HierarchicalReferences</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=34</Reference>
+      <Reference ReferenceType="i=45">i=36</Reference>
+      <Reference ReferenceType="i=45">i=35</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=31</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="i=34" BrowseName="HasChild">
+    <DisplayName Locale="en-Us">HasChild</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=44</Reference>
+      <Reference ReferenceType="i=45">i=45</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=33</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="i=35" BrowseName="Organizes">
+    <DisplayName Locale="en-Us">Organizes</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=33</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="i=36" BrowseName="HasEventSource">
+    <DisplayName Locale="en-Us">HasEventSource</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=48</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=33</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="i=37" BrowseName="HasModellingRule">
+    <DisplayName Locale="en-Us">HasModellingRule</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=32</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="i=38" BrowseName="HasEncoding">
+    <DisplayName Locale="en-Us">HasEncoding</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=32</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="i=40" BrowseName="HasTypeDefinition">
+    <DisplayName Locale="en-Us">HasTypeDefinition</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=32</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="i=44" BrowseName="Aggregates">
+    <DisplayName Locale="en-Us">Aggregates</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=47</Reference>
+      <Reference ReferenceType="i=45">i=46</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=34</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="i=45" BrowseName="HasSubtype">
+    <DisplayName Locale="en-Us">HasSubtype</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=34</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="i=46" BrowseName="HasProperty">
+    <DisplayName Locale="en-Us">HasProperty</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=44</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="i=47" BrowseName="HasComponent">
+    <DisplayName Locale="en-Us">HasComponent</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=44</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAReferenceType NodeId="i=48" BrowseName="HasNotifier">
+    <DisplayName Locale="en-Us">HasNotifier</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=36</Reference>
+    </References>
+    <InverseName Locale="en-Us"/>
+  </UAReferenceType>
+  <UAObjectType NodeId="i=58" BrowseName="BaseObjectType">
+    <DisplayName Locale="en-Us">BaseObjectType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=2013</Reference>
+      <Reference ReferenceType="i=45">i=2020</Reference>
+      <Reference ReferenceType="i=45">i=2004</Reference>
+      <Reference ReferenceType="i=45">i=61</Reference>
+      <Reference ReferenceType="i=45">i=2041</Reference>
+      <Reference ReferenceType="i=35" IsForward="false">i=88</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="i=61" BrowseName="FolderType">
+    <DisplayName Locale="en-Us">FolderType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=58</Reference>
+    </References>
+  </UAObjectType>
+  <UAVariableType NodeId="i=62" BrowseName="BaseVariableType">
+    <DisplayName Locale="en-Us">BaseVariableType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=68</Reference>
+      <Reference ReferenceType="i=45">i=63</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=89</Reference>
+    </References>
+    <Value/>
+  </UAVariableType>
+  <UAVariableType NodeId="i=63" BrowseName="BaseDataVariableType">
+    <DisplayName Locale="en-Us">BaseDataVariableType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=2365</Reference>
+      <Reference ReferenceType="i=45">i=2172</Reference>
+      <Reference ReferenceType="i=45">i=2171</Reference>
+      <Reference ReferenceType="i=45">i=2138</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=62</Reference>
+    </References>
+    <Value/>
+  </UAVariableType>
+  <UAVariableType NodeId="i=68" BrowseName="PropertyType" DataType="i=0">
+    <DisplayName Locale="en-Us">PropertyType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40" IsForward="false">i=2377</Reference>
+      <Reference ReferenceType="i=40" IsForward="false">i=2375</Reference>
+      <Reference ReferenceType="i=40" IsForward="false">i=2374</Reference>
+      <Reference ReferenceType="i=40" IsForward="false">i=2370</Reference>
+      <Reference ReferenceType="i=40" IsForward="false">i=2371</Reference>
+      <Reference ReferenceType="i=40" IsForward="false">i=2369</Reference>
+      <Reference ReferenceType="i=40" IsForward="false">i=2367</Reference>
+      <Reference ReferenceType="i=40" IsForward="false">i=2366</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=62</Reference>
+    </References>
+    <Value/>
+  </UAVariableType>
+  <UAVariableType NodeId="i=77" BrowseName="Mandatory" DataType="i=0">
+    <DisplayName Locale="en-Us">Mandatory</DisplayName>
+    <References>
+      <Reference ReferenceType="i=37" IsForward="false">i=2377</Reference>
+      <Reference ReferenceType="i=37" IsForward="false">i=2375</Reference>
+      <Reference ReferenceType="i=37" IsForward="false">i=2374</Reference>
+      <Reference ReferenceType="i=37" IsForward="false">i=2370</Reference>
+      <Reference ReferenceType="i=37" IsForward="false">i=2371</Reference>
+      <Reference ReferenceType="i=37" IsForward="false">i=2369</Reference>
+      <Reference ReferenceType="i=37" IsForward="false">i=2367</Reference>
+      <Reference ReferenceType="i=37" IsForward="false">i=2366</Reference>
+    </References>
+    <Value/>
+  </UAVariableType>
+  <UAObject NodeId="i=84" BrowseName="Root">
+    <DisplayName Locale="en-Us">Root</DisplayName>
+    <References>
+      <Reference ReferenceType="i=35">i=87</Reference>
+      <Reference ReferenceType="i=35">i=86</Reference>
+      <Reference ReferenceType="i=35">i=85</Reference>
+      <Reference ReferenceType="i=40">i=61</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="i=85" BrowseName="Objects">
+    <DisplayName Locale="en-Us">Objects</DisplayName>
+    <References>
+      <Reference ReferenceType="i=35">i=2253</Reference>
+      <Reference ReferenceType="i=40">i=61</Reference>
+      <Reference ReferenceType="i=35" IsForward="false">i=84</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="i=86" BrowseName="Types">
+    <DisplayName Locale="en-Us">Types</DisplayName>
+    <References>
+      <Reference ReferenceType="i=35">i=3048</Reference>
+      <Reference ReferenceType="i=35">i=90</Reference>
+      <Reference ReferenceType="i=35">i=91</Reference>
+      <Reference ReferenceType="i=35">i=89</Reference>
+      <Reference ReferenceType="i=35">i=88</Reference>
+      <Reference ReferenceType="i=40">i=61</Reference>
+      <Reference ReferenceType="i=35" IsForward="false">i=84</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="i=87" BrowseName="Views">
+    <DisplayName Locale="en-Us">Views</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=61</Reference>
+      <Reference ReferenceType="i=35" IsForward="false">i=84</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="i=88" BrowseName="ObjectTypes">
+    <DisplayName Locale="en-Us">ObjectTypes</DisplayName>
+    <References>
+      <Reference ReferenceType="i=35">i=58</Reference>
+      <Reference ReferenceType="i=40">i=61</Reference>
+      <Reference ReferenceType="i=35" IsForward="false">i=86</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="i=89" BrowseName="VariableTypes">
+    <DisplayName Locale="en-Us">VariableTypes</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=62</Reference>
+      <Reference ReferenceType="i=40">i=61</Reference>
+      <Reference ReferenceType="i=35" IsForward="false">i=86</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="i=90" BrowseName="DataTypes">
+    <DisplayName Locale="en-Us">DataTypes</DisplayName>
+    <References>
+      <Reference ReferenceType="i=35">i=93</Reference>
+      <Reference ReferenceType="i=35">i=24</Reference>
+      <Reference ReferenceType="i=40">i=61</Reference>
+      <Reference ReferenceType="i=35" IsForward="false">i=86</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="i=91" BrowseName="ReferenceTypes">
+    <DisplayName Locale="en-Us">ReferenceTypes</DisplayName>
+    <References>
+      <Reference ReferenceType="i=35">i=31</Reference>
+      <Reference ReferenceType="i=40">i=61</Reference>
+      <Reference ReferenceType="i=35" IsForward="false">i=86</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="i=93" BrowseName="OPC Binary">
+    <DisplayName Locale="en-Us">OPC Binary</DisplayName>
+    <References>
+      <Reference ReferenceType="i=35" IsForward="false">i=90</Reference>
+    </References>
+  </UAObject>
+  <UADataType NodeId="i=120" BrowseName="NamingRuleType">
+    <DisplayName Locale="en-Us">NamingRuleType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=29</Reference>
+    </References>
+    <Definition Name="NamingRuleType">
+      <Field Name="Mandatory" Value="1"/>
+      <Field Name="Optional" Value="2"/>
+      <Field Name="Constraint" Value="3"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=256" BrowseName="IdType">
+    <DisplayName Locale="en-Us">IdType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=29</Reference>
+    </References>
+    <Definition Name="IdType">
+      <Field Name="Numeric" Value="0"/>
+      <Field Name="String" Value="1"/>
+      <Field Name="Guid" Value="2"/>
+      <Field Name="Opaque" Value="3"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=257" BrowseName="NodeClass">
+    <DisplayName Locale="en-Us">NodeClass</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=29</Reference>
+    </References>
+    <Definition Name="NodeClass">
+      <Field Name="Unspecified" Value="0"/>
+      <Field Name="Object" Value="1"/>
+      <Field Name="Variable" Value="2"/>
+      <Field Name="Method" Value="4"/>
+      <Field Name="ObjectType" Value="8"/>
+      <Field Name="VariableType" Value="16"/>
+      <Field Name="ReferenceType" Value="32"/>
+      <Field Name="DataType" Value="64"/>
+      <Field Name="View" Value="128"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=290" BrowseName="Duration">
+    <DisplayName Locale="en-Us">Duration</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=11</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=291" BrowseName="NumericRange">
+    <DisplayName Locale="en-Us">NumericRange</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=12</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=294" BrowseName="UtcTime">
+    <DisplayName Locale="en-Us">UtcTime</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=13</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=295" BrowseName="LocaleId">
+    <DisplayName Locale="en-Us">LocaleId</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=12</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=296" BrowseName="Argument">
+    <DisplayName Locale="en-Us">Argument</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="Argument">
+      <Field Name="Name" DataType="i=12"/>
+      <Field Name="DataType" DataType="i=17"/>
+      <Field Name="ValueRank" DataType="i=6"/>
+      <Field Name="ArrayDimensions" DataType="i=7" ValueRank="1"/>
+      <Field Name="Description" DataType="i=21"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=299" BrowseName="StatusResult">
+    <DisplayName Locale="en-Us">StatusResult</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="StatusResult">
+      <Field Name="StatusCode" DataType="i=19"/>
+      <Field Name="DiagnosticInfo" DataType="i=25"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=302" BrowseName="MessageSecurityMode">
+    <DisplayName Locale="en-Us">MessageSecurityMode</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=29</Reference>
+    </References>
+    <Definition Name="MessageSecurityMode">
+      <Field Name="Invalid" Value="0"/>
+      <Field Name="None" Value="1"/>
+      <Field Name="Sign" Value="2"/>
+      <Field Name="SignAndEncrypt" Value="3"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=308" BrowseName="ApplicationDescription">
+    <DisplayName Locale="en-Us">ApplicationDescription</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="ApplicationDescription">
+      <Field Name="ApplicationUri" DataType="i=12"/>
+      <Field Name="ProductUri" DataType="i=12"/>
+      <Field Name="ApplicationName" DataType="i=21"/>
+      <Field Name="ApplicationType" DataType="i=307"/>
+      <Field Name="GatewayServerUri" DataType="i=12"/>
+      <Field Name="DiscoveryProfileUri" DataType="i=12"/>
+      <Field Name="DiscoveryUrls" DataType="i=12" ValueRank="1"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=315" BrowseName="SecurityTokenRequestType">
+    <DisplayName Locale="en-Us">SecurityTokenRequestType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=29</Reference>
+    </References>
+    <Definition Name="SecurityTokenRequestType">
+      <Field Name="Issue" Value="0"/>
+      <Field Name="Renew" Value="1"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=316" BrowseName="UserIdentityToken">
+    <DisplayName Locale="en-Us">UserIdentityToken</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="UserIdentityToken">
+      <Field Name="PolicyId" DataType="i=12"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=338" BrowseName="BuildInfo">
+    <DisplayName Locale="en-Us">BuildInfo</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="BuildInfo">
+      <Field Name="ProductUri" DataType="i=12"/>
+      <Field Name="ManufacturerName" DataType="i=12"/>
+      <Field Name="ProductName" DataType="i=12"/>
+      <Field Name="SoftwareVersion" DataType="i=12"/>
+      <Field Name="BuildNumber" DataType="i=12"/>
+      <Field Name="BuildDate" DataType="i=294"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=344" BrowseName="SignedSoftwareCertificate">
+    <DisplayName Locale="en-Us">SignedSoftwareCertificate</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="SignedSoftwareCertificate">
+      <Field Name="CertificateData" DataType="i=15"/>
+      <Field Name="Signature" DataType="i=15"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=376" BrowseName="AddNodesItem">
+    <DisplayName Locale="en-Us">AddNodesItem</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="AddNodesItem">
+      <Field Name="ParentNodeId" DataType="i=18"/>
+      <Field Name="ReferenceTypeId" DataType="i=17"/>
+      <Field Name="RequestedNewNodeId" DataType="i=18"/>
+      <Field Name="BrowseName" DataType="i=20"/>
+      <Field Name="NodeClass" DataType="i=257"/>
+      <Field Name="NodeAttributes" DataType="i=22"/>
+      <Field Name="TypeDefinition" DataType="i=18"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=379" BrowseName="AddReferencesItem">
+    <DisplayName Locale="en-Us">AddReferencesItem</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="AddReferencesItem">
+      <Field Name="SourceNodeId" DataType="i=17"/>
+      <Field Name="ReferenceTypeId" DataType="i=17"/>
+      <Field Name="IsForward" DataType="i=1"/>
+      <Field Name="TargetServerUri" DataType="i=12"/>
+      <Field Name="TargetNodeId" DataType="i=18"/>
+      <Field Name="TargetNodeClass" DataType="i=257"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=382" BrowseName="DeleteNodesItem">
+    <DisplayName Locale="en-Us">DeleteNodesItem</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="DeleteNodesItem">
+      <Field Name="NodeId" DataType="i=17"/>
+      <Field Name="DeleteTargetReferences" DataType="i=1"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=385" BrowseName="DeleteReferencesItem">
+    <DisplayName Locale="en-Us">DeleteReferencesItem</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="DeleteReferencesItem">
+      <Field Name="SourceNodeId" DataType="i=17"/>
+      <Field Name="ReferenceTypeId" DataType="i=17"/>
+      <Field Name="IsForward" DataType="i=1"/>
+      <Field Name="TargetNodeId" DataType="i=18"/>
+      <Field Name="DeleteBidirectional" DataType="i=1"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=851" BrowseName="RedundancySupport">
+    <DisplayName Locale="en-Us">RedundancySupport</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=29</Reference>
+    </References>
+    <Definition Name="RedundancySupport">
+      <Field Name="None" Value="0"/>
+      <Field Name="Cold" Value="1"/>
+      <Field Name="Warm" Value="2"/>
+      <Field Name="Hot" Value="3"/>
+      <Field Name="Transparent" Value="4"/>
+      <Field Name="HotAndMirrored" Value="5"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=852" BrowseName="ServerState">
+    <DisplayName Locale="en-Us">ServerState</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=24</Reference>
+    </References>
+    <Definition Name="ServerState">
+      <Field Name="Running" Value="0"/>
+      <Field Name="Failed" Value="1"/>
+      <Field Name="NoConfiguration" Value="2"/>
+      <Field Name="Suspended" Value="3"/>
+      <Field Name="Shutdown" Value="4"/>
+      <Field Name="Test" Value="5"/>
+      <Field Name="CommunicationFault" Value="6"/>
+      <Field Name="Unknown" Value="7"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=853" BrowseName="RedundantServerDataType">
+    <DisplayName Locale="en-Us">RedundantServerDataType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="RedundantServerDataType">
+      <Field Name="ServerId" DataType="i=12"/>
+      <Field Name="ServiceLevel" DataType="i=3"/>
+      <Field Name="ServerState" DataType="i=852"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=856" BrowseName="SamplingIntervalDiagnosticsDataType">
+    <DisplayName Locale="en-Us">SamplingIntervalDiagnosticsDataType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="SamplingIntervalDiagnosticsDataType">
+      <Field Name="SamplingInterval" DataType="i=290"/>
+      <Field Name="MonitoredItemCount" DataType="i=7"/>
+      <Field Name="MaxMonitoredItemCount" DataType="i=7"/>
+      <Field Name="DisabledMonitoredItemCount" DataType="i=7"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=859" BrowseName="ServerDiagnosticsSummaryDataType">
+    <DisplayName Locale="en-Us">ServerDiagnosticsSummaryDataType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="ServerDiagnosticsSummaryDataType">
+      <Field Name="ServerViewCount" DataType="i=7"/>
+      <Field Name="CurrentSessionCount" DataType="i=7"/>
+      <Field Name="CumulatedSessionCount" DataType="i=7"/>
+      <Field Name="SecurityRejectedSessionCount" DataType="i=7"/>
+      <Field Name="RejectedSessionCount" DataType="i=7"/>
+      <Field Name="SessionTimeoutCount" DataType="i=7"/>
+      <Field Name="SessionAbortCount" DataType="i=7"/>
+      <Field Name="CurrentSubscriptionCount" DataType="i=7"/>
+      <Field Name="CumulatedSubscriptionCount" DataType="i=7"/>
+      <Field Name="PublishingIntervalCount" DataType="i=7"/>
+      <Field Name="SecurityRejectedRequestsCount" DataType="i=7"/>
+      <Field Name="RejectedRequestsCount" DataType="i=7"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=862" BrowseName="ServerStatusDataType">
+    <DisplayName Locale="en-Us">ServerStatusDataType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=38">i=864</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="ServerStatusDataType">
+      <Field Name="StartTime" DataType="i=294"/>
+      <Field Name="CurrentTime" DataType="i=294"/>
+      <Field Name="State" DataType="i=852"/>
+      <Field Name="BuildInfo" DataType="i=338"/>
+      <Field Name="SecondsTillShutdown" DataType="i=7"/>
+      <Field Name="ShutdownReason" DataType="i=21"/>
+    </Definition>
+  </UADataType>
+  <UAObject NodeId="i=864" BrowseName="Default Binary">
+    <DisplayName Locale="en-Us">Default Binary</DisplayName>
+    <References>
+      <Reference ReferenceType="i=38" IsForward="false">i=862</Reference>
+    </References>
+  </UAObject>
+  <UADataType NodeId="i=865" BrowseName="SessionDiagnosticsDataType">
+    <DisplayName Locale="en-Us">SessionDiagnosticsDataType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="SessionDiagnosticsDataType">
+      <Field Name="SessionId" DataType="i=17"/>
+      <Field Name="SessionName" DataType="i=12"/>
+      <Field Name="ClientDescription" DataType="i=308"/>
+      <Field Name="ServerUri" DataType="i=12"/>
+      <Field Name="EndpointUrl" DataType="i=12"/>
+      <Field Name="LocaleIds" DataType="i=295" ValueRank="1"/>
+      <Field Name="ActualSessionTimeout" DataType="i=290"/>
+      <Field Name="MaxResponseMessageSize" DataType="i=7"/>
+      <Field Name="ClientConnectionTime" DataType="i=294"/>
+      <Field Name="ClientLastContactTime" DataType="i=294"/>
+      <Field Name="CurrentSubscriptionsCount" DataType="i=7"/>
+      <Field Name="CurrentMonitoredItemsCount" DataType="i=7"/>
+      <Field Name="CurrentPublishRequestsInQueue" DataType="i=7"/>
+      <Field Name="TotalRequestCount" DataType="i=871"/>
+      <Field Name="UnauthorizedRequestCount" DataType="i=7"/>
+      <Field Name="ReadCount" DataType="i=871"/>
+      <Field Name="HistoryReadCount" DataType="i=871"/>
+      <Field Name="WriteCount" DataType="i=871"/>
+      <Field Name="HistoryUpdateCount" DataType="i=871"/>
+      <Field Name="CallCount" DataType="i=871"/>
+      <Field Name="CreateMonitoredItemsCount" DataType="i=871"/>
+      <Field Name="ModifyMonitoredItemsCount" DataType="i=871"/>
+      <Field Name="SetMonitoringModeCount" DataType="i=871"/>
+      <Field Name="SetTriggeringCount" DataType="i=871"/>
+      <Field Name="DeleteMonitoredItemsCount" DataType="i=871"/>
+      <Field Name="CreateSubscriptionCount" DataType="i=871"/>
+      <Field Name="ModifySubscriptionCount" DataType="i=871"/>
+      <Field Name="SetPublishingModeCount" DataType="i=871"/>
+      <Field Name="PublishCount" DataType="i=871"/>
+      <Field Name="RepublishCount" DataType="i=871"/>
+      <Field Name="TransferSubscriptionsCount" DataType="i=871"/>
+      <Field Name="DeleteSubscriptionsCount" DataType="i=871"/>
+      <Field Name="AddNodesCount" DataType="i=871"/>
+      <Field Name="AddReferencesCount" DataType="i=871"/>
+      <Field Name="DeleteNodesCount" DataType="i=871"/>
+      <Field Name="DeleteReferencesCount" DataType="i=871"/>
+      <Field Name="BrowseCount" DataType="i=871"/>
+      <Field Name="BrowseNextCount" DataType="i=871"/>
+      <Field Name="TranslateBrowsePathsToNodeIdsCount" DataType="i=871"/>
+      <Field Name="QueryFirstCount" DataType="i=871"/>
+      <Field Name="QueryNextCount" DataType="i=871"/>
+      <Field Name="RegisterNodesCount" DataType="i=871"/>
+      <Field Name="UnregisterNodesCount" DataType="i=871"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=868" BrowseName="SessionSecurityDiagnosticsDataType">
+    <DisplayName Locale="en-Us">SessionSecurityDiagnosticsDataType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="SessionSecurityDiagnosticsDataType">
+      <Field Name="SessionId" DataType="i=17"/>
+      <Field Name="ClientUserIdOfSession" DataType="i=12"/>
+      <Field Name="ClientUserIdHistory" DataType="i=12" ValueRank="1"/>
+      <Field Name="AuthenticationMechanism" DataType="i=12"/>
+      <Field Name="Encoding" DataType="i=12"/>
+      <Field Name="TransportProtocol" DataType="i=12"/>
+      <Field Name="SecurityMode" DataType="i=302"/>
+      <Field Name="SecurityPolicyUri" DataType="i=12"/>
+      <Field Name="ClientCertificate" DataType="i=15"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=871" BrowseName="ServiceCounterDataType">
+    <DisplayName Locale="en-Us">ServiceCounterDataType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="ServiceCounterDataType">
+      <Field Name="TotalCount" DataType="i=7"/>
+      <Field Name="ErrorCount" DataType="i=7"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=874" BrowseName="SubscriptionDiagnosticsDataType">
+    <DisplayName Locale="en-Us">SubscriptionDiagnosticsDataType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=38">i=876</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="SubscriptionDiagnosticsDataType">
+      <Field Name="SessionId" DataType="i=17"/>
+      <Field Name="SubscriptionId" DataType="i=7"/>
+      <Field Name="Priority" DataType="i=3"/>
+      <Field Name="PublishingInterval" DataType="i=290"/>
+      <Field Name="MaxKeepAliveCount" DataType="i=7"/>
+      <Field Name="MaxLifetimeCount" DataType="i=7"/>
+      <Field Name="MaxNotificationsPerPublish" DataType="i=7"/>
+      <Field Name="PublishingEnabled" DataType="i=1"/>
+      <Field Name="ModifyCount" DataType="i=7"/>
+      <Field Name="EnableCount" DataType="i=7"/>
+      <Field Name="DisableCount" DataType="i=7"/>
+      <Field Name="RepublishRequestCount" DataType="i=7"/>
+      <Field Name="RepublishMessageRequestCount" DataType="i=7"/>
+      <Field Name="RepublishMessageCount" DataType="i=7"/>
+      <Field Name="TransferRequestCount" DataType="i=7"/>
+      <Field Name="TransferredToAltClientCount" DataType="i=7"/>
+      <Field Name="TransferredToSameClientCount" DataType="i=7"/>
+      <Field Name="PublishRequestCount" DataType="i=7"/>
+      <Field Name="DataChangeNotificationsCount" DataType="i=7"/>
+      <Field Name="EventNotificationsCount" DataType="i=7"/>
+      <Field Name="NotificationsCount" DataType="i=7"/>
+      <Field Name="LatePublishRequestCount" DataType="i=7"/>
+      <Field Name="CurrentKeepAliveCount" DataType="i=7"/>
+      <Field Name="CurrentLifetimeCount" DataType="i=7"/>
+      <Field Name="UnacknowledgedMessageCount" DataType="i=7"/>
+      <Field Name="DiscardedMessageCount" DataType="i=7"/>
+      <Field Name="MonitoredItemCount" DataType="i=7"/>
+      <Field Name="DisabledMonitoredItemCount" DataType="i=7"/>
+      <Field Name="MonitoringQueueOverflowCount" DataType="i=7"/>
+      <Field Name="NextSequenceNumber" DataType="i=7"/>
+      <Field Name="EventQueueOverFlowCount" DataType="i=7"/>
+    </Definition>
+  </UADataType>
+  <UAObject NodeId="i=876" BrowseName="Default Binary">
+    <DisplayName Locale="en-Us">Default Binary</DisplayName>
+    <References>
+      <Reference ReferenceType="i=38" IsForward="false">i=874</Reference>
+    </References>
+  </UAObject>
+  <UADataType NodeId="i=877" BrowseName="ModelChangeStructureDataType">
+    <DisplayName Locale="en-Us">ModelChangeStructureDataType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="ModelChangeStructureDataType">
+      <Field Name="Affected" DataType="i=17"/>
+      <Field Name="AffectedType" DataType="i=17"/>
+      <Field Name="Verb" DataType="i=3"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=884" BrowseName="Range">
+    <DisplayName Locale="en-Us">Range</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="Range">
+      <Field Name="Low" DataType="i=11"/>
+      <Field Name="High" DataType="i=11"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=897" BrowseName="SemanticChangeStructureDataType">
+    <DisplayName Locale="en-Us">SemanticChangeStructureDataType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="SemanticChangeStructureDataType">
+      <Field Name="Affected" DataType="i=17"/>
+      <Field Name="AffectedType" DataType="i=17"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=2000" BrowseName="ImageBMP">
+    <DisplayName Locale="en-Us">ImageBMP</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=30</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=2001" BrowseName="ImageGIF">
+    <DisplayName Locale="en-Us">ImageGIF</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=30</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=2002" BrowseName="ImageJPG">
+    <DisplayName Locale="en-Us">ImageJPG</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=30</Reference>
+    </References>
+  </UADataType>
+  <UADataType NodeId="i=2003" BrowseName="ImagePNG">
+    <DisplayName Locale="en-Us">ImagePNG</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=30</Reference>
+    </References>
+  </UADataType>
+  <UAObjectType NodeId="i=2004" BrowseName="ServerType">
+    <DisplayName Locale="en-Us">ServerType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=58</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="i=2013" BrowseName="ServerCapabilitiesType">
+    <DisplayName Locale="en-Us">ServerCapabilitiesType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=46">i=2016</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=58</Reference>
+    </References>
+  </UAObjectType>
+  <UAVariable NodeId="i=2016" BrowseName="LocaleIdArray" DataType="i=295" ValueRank="1">
+    <DisplayName Locale="en-Us">LocaleIdArray</DisplayName>
+    <References>
+      <Reference ReferenceType="i=46" IsForward="false">i=2013</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAObjectType NodeId="i=2020" BrowseName="ServerDiagnosticsType">
+    <DisplayName Locale="en-Us">ServerDiagnosticsType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=46">i=2025</Reference>
+      <Reference ReferenceType="i=47">i=2023</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=58</Reference>
+    </References>
+  </UAObjectType>
+  <UAVariable NodeId="i=2023" BrowseName="SubscriptionDiagnosticsArray" DataType="i=874">
+    <DisplayName Locale="en-Us">SubscriptionDiagnosticsArray</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=874</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2020</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=2025" BrowseName="EnabledFlag" DataType="i=1">
+    <DisplayName Locale="en-Us">EnabledFlag</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2020</Reference>
+    </References>
+    <Value>
+      <uax:Boolean>true</uax:Boolean>
+    </Value>
+  </UAVariable>
+  <UAObjectType NodeId="i=2041" BrowseName="BaseEventType" IsAbstract="true">
+    <DisplayName Locale="en-Us">BaseEventType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=46">i=2051</Reference>
+      <Reference ReferenceType="i=46">i=2050</Reference>
+      <Reference ReferenceType="i=46">i=3190</Reference>
+      <Reference ReferenceType="i=46">i=2047</Reference>
+      <Reference ReferenceType="i=46">i=2046</Reference>
+      <Reference ReferenceType="i=46">i=2045</Reference>
+      <Reference ReferenceType="i=46">i=2044</Reference>
+      <Reference ReferenceType="i=46">i=2043</Reference>
+      <Reference ReferenceType="i=46">i=2042</Reference>
+      <Reference ReferenceType="i=35" IsForward="false">i=3048</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=58</Reference>
+    </References>
+  </UAObjectType>
+  <UAVariable NodeId="i=2042" BrowseName="EventId" DataType="i=15" ValueRank="-2">
+    <DisplayName Locale="en-Us">EventId</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2041</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=2043" BrowseName="EventType" DataType="i=17" ValueRank="-2">
+    <DisplayName Locale="en-Us">EventType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2041</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=2044" BrowseName="SourceNode" DataType="i=17" ValueRank="-2">
+    <DisplayName Locale="en-Us">SourceNode</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2041</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=2045" BrowseName="SourceName" DataType="i=12" ValueRank="-2">
+    <DisplayName Locale="en-Us">SourceName</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2041</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=2046" BrowseName="Time" DataType="i=294" ValueRank="-2">
+    <DisplayName Locale="en-Us">Time</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2041</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=2047" BrowseName="ReceiveTime" DataType="i=294" ValueRank="-2">
+    <DisplayName Locale="en-Us">ReceiveTime</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2041</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=2050" BrowseName="Message" DataType="i=21" ValueRank="-2">
+    <DisplayName Locale="en-Us">Message</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2041</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=2051" BrowseName="Severity" DataType="i=5" ValueRank="-2">
+    <DisplayName Locale="en-Us">Severity</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2041</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariableType NodeId="i=2138" BrowseName="ServerStatusType">
+    <DisplayName Locale="en-Us">ServerStatusType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=47">i=2141</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=63</Reference>
+    </References>
+    <Value/>
+  </UAVariableType>
+  <UAVariable NodeId="i=2141" BrowseName="State" DataType="i=852">
+    <DisplayName Locale="en-Us">State</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2138</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariableType NodeId="i=2171" BrowseName="SubscriptionDiagnosticsArrayType" DataType="i=874">
+    <DisplayName Locale="en-Us">SubscriptionDiagnosticsArrayType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=63</Reference>
+    </References>
+    <Value/>
+  </UAVariableType>
+  <UAVariableType NodeId="i=2172" BrowseName="SubscriptionDiagnosticsType" DataType="i=874">
+    <DisplayName Locale="en-Us">SubscriptionDiagnosticsType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=63</Reference>
+    </References>
+    <Value/>
+  </UAVariableType>
+  <UAObject NodeId="i=2253" BrowseName="Server" EventNotifier="1">
+    <DisplayName Locale="en-Us">Server</DisplayName>
+    <References>
+      <Reference ReferenceType="i=47">i=2296</Reference>
+      <Reference ReferenceType="i=47">i=2295</Reference>
+      <Reference ReferenceType="i=47">i=2274</Reference>
+      <Reference ReferenceType="i=47">i=2268</Reference>
+      <Reference ReferenceType="i=46">i=2994</Reference>
+      <Reference ReferenceType="i=46">i=2267</Reference>
+      <Reference ReferenceType="i=47">i=2256</Reference>
+      <Reference ReferenceType="i=46">i=2255</Reference>
+      <Reference ReferenceType="i=46">i=2254</Reference>
+      <Reference ReferenceType="i=40">i=2004</Reference>
+      <Reference ReferenceType="i=35" IsForward="false">i=85</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="i=2254" BrowseName="ServerArray" DataType="i=12" ValueRank="1">
+    <DisplayName Locale="en-Us">ServerArray</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2253</Reference>
+    </References>
+    <Value>
+      <uax:ListOfString>
+        <uax:String>urn:3S7PN6J3XR0:FestoAG:CODESYSOpcUaServer</uax:String>
+      </uax:ListOfString>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2255" BrowseName="NamespaceArray" DataType="i=12" ValueRank="1">
+    <DisplayName Locale="en-Us">NamespaceArray</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2253</Reference>
+    </References>
+    <Value>
+      <uax:ListOfString>
+        <uax:String>http://opcfoundation.org/UA/</uax:String>
+        <uax:String>urn:3S7PN6J3XR0:FestoAG:CODESYSOpcUaServer</uax:String>
+        <uax:String>http://opcfoundation.org/UA/DI/</uax:String>
+        <uax:String>http://PLCopen.org/OpcUa/IEC61131-3/</uax:String>
+        <uax:String>CODESYSSPV3/3S/IecVarAccess</uax:String>
+      </uax:ListOfString>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2256" BrowseName="ServerStatus" DataType="i=862">
+    <DisplayName Locale="en-Us">ServerStatus</DisplayName>
+    <References>
+      <Reference ReferenceType="i=47">i=2993</Reference>
+      <Reference ReferenceType="i=47">i=2992</Reference>
+      <Reference ReferenceType="i=47">i=2260</Reference>
+      <Reference ReferenceType="i=47">i=2259</Reference>
+      <Reference ReferenceType="i=47">i=2258</Reference>
+      <Reference ReferenceType="i=47">i=2257</Reference>
+      <Reference ReferenceType="i=40">i=2138</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2253</Reference>
+    </References>
+    <Value>
+      <uax:ExtensionObject>
+        <uax:TypeId>
+          <uax:Identifier>i=863</uax:Identifier>
+        </uax:TypeId>
+        <uax:Body>
+          <uax:ServerStatusDataType>
+            <uax:StartTime>2000-01-13T01:35:57.983Z</uax:StartTime>
+            <uax:CurrentTime>2000-01-14T04:58:29.237Z</uax:CurrentTime>
+            <uax:State>0</uax:State>
+            <uax:BuildInfo>
+              <uax:TypeId>
+                <uax:Identifier>i=340</uax:Identifier>
+              </uax:TypeId>
+              <uax:Body>
+                <uax:ByteString>FAAAAGh0dHA6Ly93d3cuZmVzdG8uY29tEQAAAEZlc3RvIEFHICYgQ28uIEtHDAAAAENQWC1FLUNFQy1DMQkAAAAzLjUuMTIuNTAJAAAAMy41LjEyLjUwAHRY8+pl1AE=</uax:ByteString>
+              </uax:Body>
+            </uax:BuildInfo>
+            <uax:SecondsTillShutdown>0</uax:SecondsTillShutdown>
+            <uax:ShutdownReason/>
+          </uax:ServerStatusDataType>
+        </uax:Body>
+      </uax:ExtensionObject>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2257" BrowseName="StartTime" DataType="i=294">
+    <DisplayName Locale="en-Us">StartTime</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2256</Reference>
+    </References>
+    <Value>
+      <uax:DateTime>2000-01-13T01:35:57.983Z</uax:DateTime>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2258" BrowseName="CurrentTime" DataType="i=294">
+    <DisplayName Locale="en-Us">CurrentTime</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2256</Reference>
+    </References>
+    <Value>
+      <uax:DateTime>2000-01-14T04:58:29.242Z</uax:DateTime>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2259" BrowseName="State" DataType="i=852">
+    <DisplayName Locale="en-Us">State</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2256</Reference>
+    </References>
+    <Value>
+      <uax:Int32>0</uax:Int32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2260" BrowseName="BuildInfo" DataType="i=338">
+    <DisplayName Locale="en-Us">BuildInfo</DisplayName>
+    <References>
+      <Reference ReferenceType="i=47">i=2266</Reference>
+      <Reference ReferenceType="i=47">i=2265</Reference>
+      <Reference ReferenceType="i=47">i=2264</Reference>
+      <Reference ReferenceType="i=47">i=2261</Reference>
+      <Reference ReferenceType="i=47">i=2263</Reference>
+      <Reference ReferenceType="i=47">i=2262</Reference>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2256</Reference>
+    </References>
+    <Value>
+      <uax:ExtensionObject>
+        <uax:TypeId>
+          <uax:Identifier>i=339</uax:Identifier>
+        </uax:TypeId>
+        <uax:Body>
+          <uax:BuildInfo>
+            <uax:ProductUri>http://www.festo.com</uax:ProductUri>
+            <uax:ManufacturerName>Festo AG &amp; Co. KG</uax:ManufacturerName>
+            <uax:ProductName>CPX-E-CEC-C1</uax:ProductName>
+            <uax:SoftwareVersion>3.5.12.50</uax:SoftwareVersion>
+            <uax:BuildNumber>3.5.12.50</uax:BuildNumber>
+            <uax:BuildDate>2018-10-17T07:28:08.000Z</uax:BuildDate>
+          </uax:BuildInfo>
+        </uax:Body>
+      </uax:ExtensionObject>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2261" BrowseName="ProductName" DataType="i=12">
+    <DisplayName Locale="en-Us">ProductName</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2260</Reference>
+    </References>
+    <Value>
+      <uax:String>CPX-E-CEC-C1</uax:String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2262" BrowseName="ProductUri" DataType="i=12">
+    <DisplayName Locale="en-Us">ProductUri</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2260</Reference>
+    </References>
+    <Value>
+      <uax:String>http://www.festo.com</uax:String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2263" BrowseName="ManufacturerName" DataType="i=12">
+    <DisplayName Locale="en-Us">ManufacturerName</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2260</Reference>
+    </References>
+    <Value>
+      <uax:String>Festo AG &amp; Co. KG</uax:String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2264" BrowseName="SoftwareVersion" DataType="i=12">
+    <DisplayName Locale="en-Us">SoftwareVersion</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2260</Reference>
+    </References>
+    <Value>
+      <uax:String>3.5.12.50</uax:String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2265" BrowseName="BuildNumber" DataType="i=12">
+    <DisplayName Locale="en-Us">BuildNumber</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2260</Reference>
+    </References>
+    <Value>
+      <uax:String>3.5.12.50</uax:String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2266" BrowseName="BuildDate" DataType="i=294">
+    <DisplayName Locale="en-Us">BuildDate</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2260</Reference>
+    </References>
+    <Value>
+      <uax:DateTime>2018-10-17T07:28:08.000Z</uax:DateTime>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2267" BrowseName="ServiceLevel" DataType="i=3">
+    <DisplayName Locale="en-Us">ServiceLevel</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2253</Reference>
+    </References>
+    <Value>
+      <uax:Byte>0</uax:Byte>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="i=2268" BrowseName="ServerCapabilities">
+    <DisplayName Locale="en-Us">ServerCapabilities</DisplayName>
+    <References>
+      <Reference ReferenceType="i=47">i=2997</Reference>
+      <Reference ReferenceType="i=47">i=2996</Reference>
+      <Reference ReferenceType="i=46">i=3704</Reference>
+      <Reference ReferenceType="i=46">i=2737</Reference>
+      <Reference ReferenceType="i=46">i=2736</Reference>
+      <Reference ReferenceType="i=46">i=2735</Reference>
+      <Reference ReferenceType="i=46">i=2272</Reference>
+      <Reference ReferenceType="i=46">i=2271</Reference>
+      <Reference ReferenceType="i=46">i=2269</Reference>
+      <Reference ReferenceType="i=40">i=2013</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2253</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="i=2269" BrowseName="ServerProfileArray" DataType="i=12">
+    <DisplayName Locale="en-Us">ServerProfileArray</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2268</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=2271" BrowseName="LocaleIdArray" DataType="i=295" ValueRank="1">
+    <DisplayName Locale="en-Us">LocaleIdArray</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2268</Reference>
+    </References>
+    <Value>
+      <uax:ListOfString>
+        <uax:String>en-Us</uax:String>
+      </uax:ListOfString>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2272" BrowseName="MinSupportedSampleRate" DataType="i=290">
+    <DisplayName Locale="en-Us">MinSupportedSampleRate</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2268</Reference>
+    </References>
+    <Value>
+      <uax:Double>100</uax:Double>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="i=2274" BrowseName="ServerDiagnostics">
+    <DisplayName Locale="en-Us">ServerDiagnostics</DisplayName>
+    <References>
+      <Reference ReferenceType="i=46">i=2294</Reference>
+      <Reference ReferenceType="i=47">i=3706</Reference>
+      <Reference ReferenceType="i=47">i=2290</Reference>
+      <Reference ReferenceType="i=47">i=2275</Reference>
+      <Reference ReferenceType="i=40">i=2138</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2253</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="i=2275" BrowseName="ServerDiagnosticsSummary" DataType="i=859">
+    <DisplayName Locale="en-Us">ServerDiagnosticsSummary</DisplayName>
+    <References>
+      <Reference ReferenceType="i=47">i=2288</Reference>
+      <Reference ReferenceType="i=47">i=2287</Reference>
+      <Reference ReferenceType="i=47">i=2286</Reference>
+      <Reference ReferenceType="i=47">i=2285</Reference>
+      <Reference ReferenceType="i=47">i=2284</Reference>
+      <Reference ReferenceType="i=47">i=2282</Reference>
+      <Reference ReferenceType="i=47">i=2281</Reference>
+      <Reference ReferenceType="i=47">i=3705</Reference>
+      <Reference ReferenceType="i=47">i=2279</Reference>
+      <Reference ReferenceType="i=47">i=2278</Reference>
+      <Reference ReferenceType="i=47">i=2277</Reference>
+      <Reference ReferenceType="i=47">i=2276</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2274</Reference>
+    </References>
+    <Value>
+      <uax:ExtensionObject>
+        <uax:TypeId>
+          <uax:Identifier>i=860</uax:Identifier>
+        </uax:TypeId>
+        <uax:Body>
+          <uax:ServerDiagnosticsSummaryDataType>
+            <uax:ServerViewCount>0</uax:ServerViewCount>
+            <uax:CurrentSessionCount>3</uax:CurrentSessionCount>
+            <uax:CumulatedSessionCount>7</uax:CumulatedSessionCount>
+            <uax:SecurityRejectedSessionCount>0</uax:SecurityRejectedSessionCount>
+            <uax:RejectedSessionCount>0</uax:RejectedSessionCount>
+            <uax:SessionTimeoutCount>0</uax:SessionTimeoutCount>
+            <uax:SessionAbortCount>0</uax:SessionAbortCount>
+            <uax:CurrentSubscriptionCount>3</uax:CurrentSubscriptionCount>
+            <uax:CumulatedSubscriptionCount>8</uax:CumulatedSubscriptionCount>
+            <uax:PublishingIntervalCount>6</uax:PublishingIntervalCount>
+            <uax:SecurityRejectedRequestsCount>0</uax:SecurityRejectedRequestsCount>
+            <uax:RejectedRequestsCount>0</uax:RejectedRequestsCount>
+          </uax:ServerDiagnosticsSummaryDataType>
+        </uax:Body>
+      </uax:ExtensionObject>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2276" BrowseName="ServerViewCount" DataType="i=7">
+    <DisplayName Locale="en-Us">ServerViewCount</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2275</Reference>
+    </References>
+    <Value>
+      <uax:UInt32>0</uax:UInt32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2277" BrowseName="CurrentSessionCount" DataType="i=7">
+    <DisplayName Locale="en-Us">CurrentSessionCount</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2275</Reference>
+    </References>
+    <Value>
+      <uax:UInt32>3</uax:UInt32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2278" BrowseName="CumulatedSessionCount" DataType="i=7">
+    <DisplayName Locale="en-Us">CumulatedSessionCount</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2275</Reference>
+    </References>
+    <Value>
+      <uax:UInt32>7</uax:UInt32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2279" BrowseName="SecurityRejectedSessionCount" DataType="i=7">
+    <DisplayName Locale="en-Us">SecurityRejectedSessionCount</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2275</Reference>
+    </References>
+    <Value>
+      <uax:UInt32>0</uax:UInt32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2281" BrowseName="SessionTimeoutCount" DataType="i=7">
+    <DisplayName Locale="en-Us">SessionTimeoutCount</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2275</Reference>
+    </References>
+    <Value>
+      <uax:UInt32>0</uax:UInt32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2282" BrowseName="SessionAbortCount" DataType="i=7">
+    <DisplayName Locale="en-Us">SessionAbortCount</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2275</Reference>
+    </References>
+    <Value>
+      <uax:UInt32>0</uax:UInt32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2284" BrowseName="PublishingIntervalCount" DataType="i=7">
+    <DisplayName Locale="en-Us">PublishingIntervalCount</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2275</Reference>
+    </References>
+    <Value>
+      <uax:UInt32>6</uax:UInt32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2285" BrowseName="CurrentSubscriptionCount" DataType="i=7">
+    <DisplayName Locale="en-Us">CurrentSubscriptionCount</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2275</Reference>
+    </References>
+    <Value>
+      <uax:UInt32>3</uax:UInt32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2286" BrowseName="CumulatedSubscriptionCount" DataType="i=7">
+    <DisplayName Locale="en-Us">CumulatedSubscriptionCount</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2275</Reference>
+    </References>
+    <Value>
+      <uax:UInt32>8</uax:UInt32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2287" BrowseName="SecurityRejectedRequestsCount" DataType="i=7">
+    <DisplayName Locale="en-Us">SecurityRejectedRequestsCount</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2275</Reference>
+    </References>
+    <Value>
+      <uax:UInt32>0</uax:UInt32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2288" BrowseName="RejectedRequestsCount" DataType="i=7">
+    <DisplayName Locale="en-Us">RejectedRequestsCount</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2275</Reference>
+    </References>
+    <Value>
+      <uax:UInt32>0</uax:UInt32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2290" BrowseName="SubscriptionDiagnosticsArray" DataType="i=874" ValueRank="1">
+    <DisplayName Locale="en-Us">SubscriptionDiagnosticsArray</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=2171</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2274</Reference>
+    </References>
+    <Value>
+      <uax:ListOfExtensionObject>
+        <uax:ExtensionObject>
+          <uax:TypeId>
+            <uax:Identifier>i=875</uax:Identifier>
+          </uax:TypeId>
+          <uax:Body>
+            <uax:SubscriptionDiagnosticsDataType>
+              <uax:SessionId>
+                <uax:Identifier>i=0</uax:Identifier>
+              </uax:SessionId>
+              <uax:SubscriptionId>2</uax:SubscriptionId>
+              <uax:Priority>0</uax:Priority>
+              <uax:PublishingInterval>100</uax:PublishingInterval>
+              <uax:MaxKeepAliveCount>50</uax:MaxKeepAliveCount>
+              <uax:MaxLifetimeCount>50</uax:MaxLifetimeCount>
+              <uax:MaxNotificationsPerPublish>0</uax:MaxNotificationsPerPublish>
+              <uax:PublishingEnabled>true</uax:PublishingEnabled>
+              <uax:ModifyCount>0</uax:ModifyCount>
+              <uax:EnableCount>0</uax:EnableCount>
+              <uax:DisableCount>0</uax:DisableCount>
+              <uax:RepublishRequestCount>0</uax:RepublishRequestCount>
+              <uax:RepublishMessageRequestCount>0</uax:RepublishMessageRequestCount>
+              <uax:RepublishMessageCount>0</uax:RepublishMessageCount>
+              <uax:TransferRequestCount>0</uax:TransferRequestCount>
+              <uax:TransferredToAltClientCount>0</uax:TransferredToAltClientCount>
+              <uax:TransferredToSameClientCount>0</uax:TransferredToSameClientCount>
+              <uax:PublishRequestCount>0</uax:PublishRequestCount>
+              <uax:DataChangeNotificationsCount>0</uax:DataChangeNotificationsCount>
+              <uax:EventNotificationsCount>0</uax:EventNotificationsCount>
+              <uax:NotificationsCount>0</uax:NotificationsCount>
+              <uax:LatePublishRequestCount>0</uax:LatePublishRequestCount>
+              <uax:CurrentKeepAliveCount>23</uax:CurrentKeepAliveCount>
+              <uax:CurrentLifetimeCount>24</uax:CurrentLifetimeCount>
+              <uax:UnacknowledgedMessageCount>0</uax:UnacknowledgedMessageCount>
+              <uax:DiscardedMessageCount>0</uax:DiscardedMessageCount>
+              <uax:MonitoredItemCount>1</uax:MonitoredItemCount>
+              <uax:DisabledMonitoredItemCount>0</uax:DisabledMonitoredItemCount>
+              <uax:MonitoringQueueOverflowCount>0</uax:MonitoringQueueOverflowCount>
+              <uax:NextSequenceNumber>0</uax:NextSequenceNumber>
+              <uax:EventQueueOverFlowCount>0</uax:EventQueueOverFlowCount>
+            </uax:SubscriptionDiagnosticsDataType>
+          </uax:Body>
+        </uax:ExtensionObject>
+      </uax:ListOfExtensionObject>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2294" BrowseName="EnabledFlag" DataType="i=1">
+    <DisplayName Locale="en-Us">EnabledFlag</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2274</Reference>
+    </References>
+    <Value>
+      <uax:Boolean>true</uax:Boolean>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="i=2295" BrowseName="VendorServerInfo">
+    <DisplayName Locale="en-Us">VendorServerInfo</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=2138</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2253</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="i=2296" BrowseName="ServerRedundancy">
+    <DisplayName Locale="en-Us">ServerRedundancy</DisplayName>
+    <References>
+      <Reference ReferenceType="i=46">i=11314</Reference>
+      <Reference ReferenceType="i=46">i=11313</Reference>
+      <Reference ReferenceType="i=46">i=11312</Reference>
+      <Reference ReferenceType="i=46">i=3709</Reference>
+      <Reference ReferenceType="i=40">i=2138</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2253</Reference>
+    </References>
+  </UAObject>
+  <UAVariableType NodeId="i=2365" BrowseName="DataItemType">
+    <DisplayName Locale="en-Us">DataItemType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=2372</Reference>
+      <Reference ReferenceType="i=45">i=2368</Reference>
+      <Reference ReferenceType="i=46">i=2367</Reference>
+      <Reference ReferenceType="i=46">i=2366</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=63</Reference>
+    </References>
+    <Value/>
+  </UAVariableType>
+  <UAVariable NodeId="i=2366" BrowseName="Definition" DataType="i=12">
+    <DisplayName Locale="en-Us">Definition</DisplayName>
+    <References>
+      <Reference ReferenceType="i=37">i=77</Reference>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2365</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=2367" BrowseName="ValuePrecision" DataType="i=12">
+    <DisplayName Locale="en-Us">ValuePrecision</DisplayName>
+    <References>
+      <Reference ReferenceType="i=37">i=77</Reference>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2365</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariableType NodeId="i=2368" BrowseName="AnalogItemType" DataType="i=26">
+    <DisplayName Locale="en-Us">AnalogItemType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=46">i=2370</Reference>
+      <Reference ReferenceType="i=46">i=2371</Reference>
+      <Reference ReferenceType="i=46">i=2369</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=2365</Reference>
+    </References>
+    <Value/>
+  </UAVariableType>
+  <UAVariable NodeId="i=2369" BrowseName="EURange" DataType="i=884">
+    <DisplayName Locale="en-Us">EURange</DisplayName>
+    <References>
+      <Reference ReferenceType="i=37">i=77</Reference>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2368</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=2370" BrowseName="InstrumentRange" DataType="i=12">
+    <DisplayName Locale="en-Us">InstrumentRange</DisplayName>
+    <References>
+      <Reference ReferenceType="i=37">i=77</Reference>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2368</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=2371" BrowseName="EngineeringUnits" DataType="i=12">
+    <DisplayName Locale="en-Us">EngineeringUnits</DisplayName>
+    <References>
+      <Reference ReferenceType="i=37">i=77</Reference>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2368</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariableType NodeId="i=2372" BrowseName="DiscreteItemType">
+    <DisplayName Locale="en-Us">DiscreteItemType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45">i=2376</Reference>
+      <Reference ReferenceType="i=45">i=2373</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=2365</Reference>
+    </References>
+    <Value/>
+  </UAVariableType>
+  <UAVariableType NodeId="i=2373" BrowseName="TwoStateDiscreteType" DataType="i=1">
+    <DisplayName Locale="en-Us">TwoStateDiscreteType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=46">i=2375</Reference>
+      <Reference ReferenceType="i=46">i=2374</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=2372</Reference>
+    </References>
+    <Value/>
+  </UAVariableType>
+  <UAVariable NodeId="i=2374" BrowseName="FalseState" DataType="i=21">
+    <DisplayName Locale="en-Us">FalseState</DisplayName>
+    <References>
+      <Reference ReferenceType="i=37">i=77</Reference>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2373</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=2375" BrowseName="TrueState" DataType="i=21">
+    <DisplayName Locale="en-Us">TrueState</DisplayName>
+    <References>
+      <Reference ReferenceType="i=37">i=77</Reference>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2373</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariableType NodeId="i=2376" BrowseName="MultiStateDiscreteType" DataType="i=28" ValueRank="-2">
+    <DisplayName Locale="en-Us">MultiStateDiscreteType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=46">i=2377</Reference>
+      <Reference ReferenceType="i=45" IsForward="false">i=2372</Reference>
+    </References>
+    <Value/>
+  </UAVariableType>
+  <UAVariable NodeId="i=2377" BrowseName="EnumStrings" DataType="i=21">
+    <DisplayName Locale="en-Us">EnumStrings</DisplayName>
+    <References>
+      <Reference ReferenceType="i=37">i=77</Reference>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2376</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=2735" BrowseName="MaxBrowseContinuationPoints" DataType="i=5">
+    <DisplayName Locale="en-Us">MaxBrowseContinuationPoints</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2268</Reference>
+    </References>
+    <Value>
+      <uax:UInt16>50</uax:UInt16>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2736" BrowseName="MaxQueryContinuationPoints" DataType="i=5">
+    <DisplayName Locale="en-Us">MaxQueryContinuationPoints</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2268</Reference>
+    </References>
+    <Value>
+      <uax:UInt16>50</uax:UInt16>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2737" BrowseName="MaxHistoryContinuationPoints" DataType="i=5">
+    <DisplayName Locale="en-Us">MaxHistoryContinuationPoints</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2268</Reference>
+    </References>
+    <Value>
+      <uax:UInt16>50</uax:UInt16>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2992" BrowseName="SecondsTillShutdown" DataType="i=7">
+    <DisplayName Locale="en-Us">SecondsTillShutdown</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2256</Reference>
+    </References>
+    <Value>
+      <uax:UInt32>0</uax:UInt32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2993" BrowseName="ShutdownReason" DataType="i=21">
+    <DisplayName Locale="en-Us">ShutdownReason</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2256</Reference>
+    </References>
+    <Value>
+      <uax:LocalizedText>
+        <uax:Locale/>
+        <uax:Text/>
+      </uax:LocalizedText>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="i=2994" BrowseName="Auditing" DataType="i=1">
+    <DisplayName Locale="en-Us">Auditing</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2253</Reference>
+    </References>
+    <Value>
+      <uax:Boolean>false</uax:Boolean>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="i=2996" BrowseName="ModellingRules">
+    <DisplayName Locale="en-Us">ModellingRules</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=61</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2268</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="i=2997" BrowseName="AggregateFunctions">
+    <DisplayName Locale="en-Us">AggregateFunctions</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=61</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2268</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="i=3048" BrowseName="EventTypes">
+    <DisplayName Locale="en-Us">EventTypes</DisplayName>
+    <References>
+      <Reference ReferenceType="i=35">i=2041</Reference>
+      <Reference ReferenceType="i=40">i=61</Reference>
+      <Reference ReferenceType="i=35" IsForward="false">i=86</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="i=3190" BrowseName="LocalTime" DataType="i=8912" ValueRank="-2">
+    <DisplayName Locale="en-Us">LocalTime</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2041</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=3704" BrowseName="SoftwareCertificates" DataType="i=344">
+    <DisplayName Locale="en-Us">SoftwareCertificates</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2268</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=3705" BrowseName="RejectedSessionCount" DataType="i=7">
+    <DisplayName Locale="en-Us">RejectedSessionCount</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=63</Reference>
+      <Reference ReferenceType="i=47" IsForward="false">i=2275</Reference>
+    </References>
+    <Value>
+      <uax:UInt32>0</uax:UInt32>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="i=3706" BrowseName="SessionDiagnosticsArray">
+    <DisplayName Locale="en-Us">SessionDiagnosticsArray</DisplayName>
+    <References>
+      <Reference ReferenceType="i=47" IsForward="false">i=2274</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="i=3709" BrowseName="RedundancySupport" DataType="i=851">
+    <DisplayName Locale="en-Us">RedundancySupport</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2296</Reference>
+    </References>
+    <Value>
+      <uax:Int32>0</uax:Int32>
+    </Value>
+  </UAVariable>
+  <UADataType NodeId="i=7594" BrowseName="EnumValueType">
+    <DisplayName Locale="en-Us">EnumValueType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="EnumValueType">
+      <Field Name="Value" DataType="i=8"/>
+      <Field Name="DisplayName" DataType="i=21"/>
+      <Field Name="Description" DataType="i=21"/>
+    </Definition>
+  </UADataType>
+  <UADataType NodeId="i=8912" BrowseName="TimeZoneDataType">
+    <DisplayName Locale="en-Us">TimeZoneDataType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=22</Reference>
+    </References>
+    <Definition Name="TimeZoneDataType">
+      <Field Name="Offset" DataType="i=4"/>
+      <Field Name="DaylightSavingInOffset" DataType="i=1"/>
+    </Definition>
+  </UADataType>
+  <UAVariable NodeId="i=11312" BrowseName="CurrentServerId" DataType="i=12">
+    <DisplayName Locale="en-Us">CurrentServerId</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2296</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=11313" BrowseName="RedundantServerArray" DataType="i=853">
+    <DisplayName Locale="en-Us">RedundantServerArray</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2296</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UAVariable NodeId="i=11314" BrowseName="ServerUriArray" DataType="i=12">
+    <DisplayName Locale="en-Us">ServerUriArray</DisplayName>
+    <References>
+      <Reference ReferenceType="i=40">i=68</Reference>
+      <Reference ReferenceType="i=46" IsForward="false">i=2296</Reference>
+    </References>
+    <Value/>
+  </UAVariable>
+  <UADataType NodeId="i=11737" BrowseName="BitFieldMaskDataType">
+    <DisplayName Locale="en-Us">BitFieldMaskDataType</DisplayName>
+    <References>
+      <Reference ReferenceType="i=45" IsForward="false">i=9</Reference>
+    </References>
+  </UADataType>
+</UANodeSet>

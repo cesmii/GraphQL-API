@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AzureFunctionsVersion>v3</AzureFunctionsVersion>
+    <AssemblyName>CESMII.EnergyConsumption.Functions</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="FileRepo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+	  <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.11" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	  <PackageReference Include="GraphQL" Version="4.7.1" />
+	  <PackageReference Include="GraphQL.Client" Version="4.0.2" />
+	  <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft" Version="4.0.2" />
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="host.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="local.settings-example.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="local.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="readme.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+</Project>
