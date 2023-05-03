@@ -26,16 +26,12 @@ query EquipmentTypesAndInstancesQuery {
     id
     displayName
     relativeName
-    asThing {
-      equipmentByTypeId {
-        id
-        displayName
-        relativeName
-      }
+    type {
+      typeId
+      displayName
     }
   }
 }
-
 ```
 
 If you only want Equipment Types defined locally, you can query your library for type definitions:
@@ -119,7 +115,7 @@ query AttributeQuery {
     	) {
       		floatvalue
       		ts
-    	}	
+    	}
     }
 }
 ```
