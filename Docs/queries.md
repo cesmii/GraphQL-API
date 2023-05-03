@@ -25,7 +25,7 @@ query EquipmentTypesAndInstancesQuery {
   equipments {
     displayName
     id
-        equipmentType {
+      equipmentType {
       displayName
     }
   }
