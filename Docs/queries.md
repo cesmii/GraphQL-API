@@ -22,12 +22,10 @@ We can expand this query to ask it to also return a list of the Equipment (insta
 
 ```
 query EquipmentTypesAndInstancesQuery {
-  equipmentTypes {
-    id
+  equipments {
     displayName
-    relativeName
-    type {
-      typeId
+    id
+        equipmentType {
       displayName
     }
   }
