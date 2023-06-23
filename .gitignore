@@ -359,3 +359,12 @@ Demos/UA to GraphQL/package-lock.json
 Demos/MQTT FIS Simulator/web/customer-logo.svg
 Demos/Activplant Model/config.py
 Demos/Activplant Model/php/config.php
+
+# Python
+__pycache__/
+env/
+
+# Node
+.bin/
+.cache/
+node_modules/
