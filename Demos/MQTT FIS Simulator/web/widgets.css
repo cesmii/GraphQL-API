@@ -90,11 +90,12 @@
   }
   
   .fis_station.faulted {
-    background-color: mistyrose !important;
+    background-color: crimson !important;
+    color: white !important;
   }
 
   .fis_station.running {
-    background-color: lightgreen !important;
+    background-color: chartreuse !important;
   }
 
   .fis_status {

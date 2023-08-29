@@ -9,9 +9,10 @@ async function loadConfig() {
         form.authenticator.value = config.authenticator;
         form.smipusername.value = config.username;
         form.password.value = config.password;
-        form.role.value = config.role; 
-        document.getElementById("login").style.display = "block";
-        document.getElementById("machines").style.display = "none";
+        form.role.value = config.role;
+       	//document.getElementById("login").style.display = "block";
+        //document.getElementById("machines").style.display = "none";
+	submitConfig();
 }
 
 function showElement(id, show) {
@@ -33,7 +34,7 @@ function submitConfig() {
     config.machineType = "fis_machine";
     config.stationType = "fis_station";
     
-    alert("Successfully submitted SMIP Config! Click OK to continue...")
+    //alert("Successfully submitted SMIP Config! Click OK to continue...")
     showElement("login", false)
     loadMachines()
     updateLoop()
