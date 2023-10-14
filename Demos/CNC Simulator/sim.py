@@ -8,7 +8,7 @@ import sys
 
 sm_utils = smiputils.utils(config.smip["authenticator"], config.smip["password"], config.smip["name"], config.smip["role"], config.smip["url"], config.smip["verbose"])
 CNC_Num = sm_utils.smipgraphql.args.optional
-data_file = "C:\CESMII\github\API\Demos\CNC Simulator\cnc_values.csv"
+data_file = "cnc_values.csv"
 hidden_parent_id = "449036" #CNC
 shown_parent_id = "28221" #CESMII
 instance_ids = ["448631", "488962", "489328"] #
