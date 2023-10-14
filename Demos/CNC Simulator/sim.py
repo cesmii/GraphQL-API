@@ -8,7 +8,7 @@ import sys
 
 sm_utils = smiputils.utils(config.smip["authenticator"], config.smip["password"], config.smip["name"], config.smip["role"], config.smip["url"], config.smip["verbose"])
 CNC_Num = sm_utils.smipgraphql.args.optional
-data_file = "cnc_values.csv"
+data_file = "C:\CESMII\github\API\Demos\CNC Simulator\cnc_values.csv"
 hidden_parent_id = "449036" #CNC
 shown_parent_id = "28221" #CESMII
 instance_ids = ["448631", "488962", "489328"] #
@@ -36,7 +36,7 @@ def clear_data():
     alias_mutates = ""
     for id in ids[0]:
         # Build Multi-Attr Mutation Query
-        alias_mutates += sm_utils.build_alias_clear_ts_mutation(str(ord), id) + "\n"
+        alias_mutates += sm_utils.build_alias_clear_ts_mutation(str(ord), id)
         ord +=1
     
     # Send Query
@@ -75,7 +75,7 @@ def run_sim():
                 # Build Multi-Attr Mutation Query
                 if i == 0:
                     val = val + '-' + str(CNC_Num)
-                alias_mutates += sm_utils.build_alias_ts_mutation(str(ord), ids[0][i], val) + "\n"
+                alias_mutates += sm_utils.build_alias_ts_mutation(str(ord), ids[0][i], val)
                 ord +=1
             
             # Send Query

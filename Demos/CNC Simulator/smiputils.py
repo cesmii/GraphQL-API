@@ -205,9 +205,9 @@ class utils:
                 smp_response = ""
                 try:
                         smp_response = self.smipgraphql.post(smp_mutation)
-                        data = smp_response['data']
-                        return data
+                        if 'errors' in smp_response:
+                                print("\033[31mAn error occured writing to the SM Platform:\033[0m")
+                                print(smp_response['errors'])
                 except requests.exceptions.HTTPError as e:
                         print("\033[31mAn error occured writing to the SM Platform:\033[0m")
                         print(e)
-                        return None
