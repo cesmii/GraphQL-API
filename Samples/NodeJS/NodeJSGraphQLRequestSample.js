@@ -96,7 +96,7 @@ async function doMain() {
         console.log();
 
         //Authenticate
-        var newTokenResponse = await getBearerToken(instanceGraphQLEndpoint);
+        var newTokenResponse = await getBearerToken();
         currentBearerToken = "Bearer " + newTokenResponse;
 
         console.log("New Token received: " + JSON.stringify(newTokenResponse));
