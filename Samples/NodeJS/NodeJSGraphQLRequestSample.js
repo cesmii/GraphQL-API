@@ -1,5 +1,6 @@
 /* 
- Tested with Node.JS 18
+ Tested with NodeJS 18
+ Can run on NodeJS 12 and later with the addition of node-fetch
 */
 const instanceGraphQLEndpoint = "https://YOURINSTANCE.cesmii.net/graphql";
 
