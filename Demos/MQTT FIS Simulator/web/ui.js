@@ -186,8 +186,8 @@ function updateUI(payload, stationId) {
             stationStatusElement.classList.add("fault-unknown");
         }
         else {
-            stationStatusElement.classList.add("fault-unknown");
             stationStatusElement.classList.remove(...allClasses);
+            stationStatusElement.classList.add("fault-unknown");
         }
 
     }
