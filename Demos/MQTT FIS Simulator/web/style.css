@@ -1,27 +1,27 @@
 body {
     background: #f0f0f0;
     color: #243782;
-    font-family: "Encode Sans Condensed",sans-serif;
+    font-family: "Open Sans",sans-serif;
     letter-spacing: .01em;
     margin: 0;
   }
   
   button {
-    color: #6875a4;;
-    font-family: "Encode Sans Condensed",sans-serif;
+    color: #5F7470;;
+    font-family: "Open Sans",sans-serif;
+    font-weight: bold;
     letter-spacing: .01em;
     padding: 10px 20px;
     text-transform: uppercase;
   }
   
   h1 {
-    background: #6875a4;
-    color: #ffffff;
+    background: #889696;
+    color: #E0E2DB;
+    font-size: 22px;
     font-weight: 300;
     margin-top: 0;
-    padding: 10px;
-    text-align: center;
-    text-transform: uppercase;
+    padding: 10px 20px 15px;
   }
   
   .content {
@@ -35,7 +35,7 @@ body {
   }
   
   .title {
-    background-color: #243782;
+    background-color: #5F7470;
     padding: 10px 20px;
   }
   

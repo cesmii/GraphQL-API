@@ -1,88 +1,80 @@
-
-.widget {
-    /*color: pink;*/
-  }
+#machines {
+  display: flex;
+  flex-wrap: wrap;
+}
   
   .fis_machine {
-    color: white;
-    background-color: #243782;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 20px;
-    margin: 15px;
-    min-width: 160px;
+    align-items: center;
+    background-color: #e0e2db;
+    border-radius: 2px;
+    border: 1px solid #D2D4C8;
+    color: #5F7470;
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: flex-start;
+    margin: 10px;
+    padding: 10px;
     text-align: center;
     text-transform: uppercase;
-    -webkit-box-shadow: rgb(0 0 0 / 30%) 0 1px 10px;
-    -moz-box-shadow: rgba(0,0,0,0.3) 0 1px 10px;
-    box-shadow: rgb(0 0 0 / 30%) 0 1px 10px;
   }
   
   .fis_machine.updating {
-    /*background-color:darkslateblue;*/
+    opacity: .85;
     animation: fadeInFromNone 0.5s ease-out;
   }
   
   @-webkit-keyframes fadeInFromNone {
       81% {
-          display: block;
           opacity: .8;
       }
   
       100% {
-          display: block;
           opacity: 1;
       }
   }
   
   @-moz-keyframes fadeInFromNone {
       81% {
-          display: block;
           opacity: .8;
       }
   
       100% {
-          display: block;
           opacity: 1;
       }
   }
   
   @-o-keyframes fadeInFromNone {
       81% {
-          display: block;
           opacity: .8;
       }
   
       100% {
-          display: block;
           opacity: 1;
       }
   }
   
   @keyframes fadeInFromNone {
       81% {
-          display: block;
           opacity: .8;
       }
   
       100% {
-          display: block;
           opacity: 1;
       }
   }
   
   .fis_station {
-    color: #243782;
-    background-color: #ffffff;
-    border-radius: 15px 0;
+    color: #5F7470;
+    background-color: #D2D4C8;
+    border-radius: 2px;
+    border: 1px solid #D2D4C8;
     display: table;
-    opacity: .9;
-    padding: 20px;
-    margin: 15px 0;
+    padding: 5px 0px 0px;
+    margin: 10px 3px;
     min-height: 60px;
-    text-align: initial;
     text-transform: initial;
-    width: 120px;
+    width: 180px;
   }
   
   .fis_station.updating {
@@ -95,13 +87,68 @@
   }
 
   .fis_station.running {
-    background-color: chartreuse !important;
+/*    background-color: #138200;*/
+/*    color: #E0E2DB;*/
   }
 
   .fis_status {
-    margin-top: 10px;
+    margin: 10px 0;
     text-align: center;
     font-weight: lighter;
     font-size: smaller;
+    padding: 10px 1px;
   }
   
+#btnRefresh {
+  float:right;
+  height: 45px;
+  min-width: 125px;
+}
+
+
+.fault-good {
+  background-color: #138200;
+  color: #fff;
+}
+
+.fault-warning {
+  background-color: #f3b13f;
+  color: #fff;
+}
+
+.fault-maintenance {
+  background-color: #0020f5;
+  color: #fff;
+}
+
+.fault-failed {
+  background-color: #d03832;
+  color: #fff;
+}
+
+.fault-unknown {
+  background-color: #6d6e71;
+  color: #fff;
+}
+
+.widgetPartStatusContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  font-weight: 300;
+}
+
+span.widget-title {
+    font-weight: 300;
+    font-size: 11px;
+}
+
+.widget-status {
+    background: #E0E2DB;
+    display: flex;
+    flex-direction: column;
+    flex: 45%;
+    font-size: 26px;
+    font-weight: 700;
+    margin: 1px;
+}

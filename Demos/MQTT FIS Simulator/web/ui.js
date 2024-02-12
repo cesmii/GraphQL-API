@@ -10,17 +10,16 @@ async function loadConfig() {
         form.smipusername.value = config.username;
         form.password.value = config.password;
         form.role.value = config.role;
-       	//document.getElementById("login").style.display = "block";
         //document.getElementById("machines").style.display = "none";
 	submitConfig();
 }
 
 function showElement(id, show) {
-    document.getElementById(id).style.display = show == true ? "block" : "none" ;
+    document.getElementById(id).style.display = show == true ? "flex" : "none" ;
 }
 
 function toggle(id) {
-    document.getElementById(id).style.display = document.getElementById(id).style.display == "block" ? "none" : "block" ;
+    document.getElementById(id).style.display = document.getElementById(id).style.display == "flex" ? "none" : "flex" ;
 }
 
 function submitConfig() {
@@ -146,21 +145,51 @@ function populateUI(payload, query) {
 }
 
 function updateUI(payload, stationId) {
-    var faultedStates = ["BAD PROGRAM","POWER OFF","ESTOP","I/O FAULT","SAFETY TRIP","MOTOR OFF","FAULTED","ROBOT FAULTED","COMMUNICATION FAULT"];
-    var runningStates = ["NORMAL OPERATION","RUNNING","BYPASS MODE","MANUAL MODE"];
+    var goodStates = ["NORMAL OPERATION","RUNNING","BYPASS MODE","MANUAL MODE", "CYCLE STOP", "IN IDLE STATE"];
+    var warningStates = ["PLC BATTERY LOW", "SAFETY FAULT", "MANUAL STYLE CHANGE", "PHOTO EYE BYPASSED", "MANUAL MODE SELECTED"];
+    var maintenanceStates = ["WAITING FOR STARTUP", "WAITING FOR OPERATOR", "WAITING FOR BROADCAST", "CYCLE ENABLE RESET REQUIRED"];
+    var failedStates = ["BAD PROGRAM","POWER OFF","ESTOP","I/O FAULT","SAFETY TRIP","MOTOR OFF","FAULTED","ROBOT FAULTED","COMMUNICATION FAULT", "E-STOP PUSHED  RIGHT SIDE", "E-STOP PUSHED  LEFT SIDE", "I/O RACK FAULT RACK 1", "FAULT RESET REQUIRED", "CONTROL POWER OFF", "E-STOP FAULT LEFT SIDE", "RETRY EXCEEDED", "ROBOT FAULT R01", "I/O RACK FAULT RACK 2", "BLOCKED UPSTREAM"];
+    var unknownStates = ["<No Status>"];
+
+
+    var allClasses = [ "fault-good", "fault-warning", "fault-maintenance", "fault-failed", "fault-unknown" ];
+
     if (payload && payload.data && payload.data.getRawHistoryDataWithSampling && payload.data.getRawHistoryDataWithSampling[0] && payload.data.getRawHistoryDataWithSampling[0].stringvalue) {
         var newState = payload.data.getRawHistoryDataWithSampling[0].stringvalue;
+        var station = document.getElementById("station" + stationId);
+        var stationStatusElement = station.getElementsByClassName("fis_status")[0];
         document.getElementById("status" + stationId).innerHTML = newState;
-        if (faultedStates.indexOf(newState) != -1) {
-            document.getElementById("station" + stationId).classList.add("faulted");
-        } else {
-            document.getElementById("station" + stationId).classList.remove("faulted");
+
+        // FAULTED STATES
+        if (failedStates.indexOf(newState) != -1) {
+            stationStatusElement.classList.remove(...allClasses);
+            stationStatusElement.classList.add("fault-failed");
         }
-        if (runningStates.indexOf(newState) != -1) {
-            document.getElementById("station" + stationId).classList.add("running");
-        } else {
-            document.getElementById("station" + stationId).classList.remove("running");
+        // RUNNING STATES
+        else if (goodStates.indexOf(newState) != -1) {
+            stationStatusElement.classList.remove(...allClasses);
+            stationStatusElement.classList.add("fault-good");
         }
+        // WARNING STATES
+        else if (warningStates.indexOf(newState) != -1) {
+            stationStatusElement.classList.remove(...allClasses);
+            stationStatusElement.classList.add("fault-warning");
+        }
+        // MAINTENANCE STATES
+        else if (maintenanceStates.indexOf(newState) != -1) {
+            stationStatusElement.classList.remove(...allClasses);
+            stationStatusElement.classList.add("fault-maintenance");
+        }
+        // UNKNOWN STATES
+        else if (unknownStates.indexOf(newState) != -1) {
+            stationStatusElement.classList.remove(...allClasses);
+            stationStatusElement.classList.add("fault-unknown");
+        }
+        else {
+            stationStatusElement.classList.add("fault-unknown");
+            stationStatusElement.classList.remove(...allClasses);
+        }
+
     }
     else {
         console.log("Empty payload for timeseries query. Nothing to update.");
