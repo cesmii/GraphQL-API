@@ -87,7 +87,8 @@ def on_connect(client, userdata, flags, rc):
     else:
         print("Failed to connect, return code %d\n", rc)
 
-mqtt_client= paho.Client("cesmii_smip_client")
+mqtt_client = paho.Client(paho.CallbackAPIVersion.VERSION1)
+#mqtt_client= paho.Client("cesmii_smip_client")
 mqtt_client.on_connect = on_connect
 mqtt_client.on_publish = on_publish
 mqtt_client.on_message = on_message
@@ -97,6 +98,7 @@ sm_utils = smiputils.utils(config.smip["authenticator"], config.smip["password"]
 
 # Main Simulation Loop
 sim_count = 0
+
 
 mqtt_client.connect(broker, port)
 mqtt_client.subscribe("#")
