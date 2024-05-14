@@ -3,9 +3,16 @@
 ''' Dependenices to install via pip:
       pip install pyspectator
       pip install opcua 
-    Note: This generally works on Windows (including WSL) with some warnings, however pyspectator 
-    requires VisualStudio C++ Build tools, and an additional Python package:
+    Note: This generally works on Windows (including WSL) with some warnings, however pyspectator requires VisualStudio C++ Build tools:
+      - Microsoft C++ 14 Build Tools https://visualstudio.microsoft.com/visual-cpp-build-tools/
+      - Make sure you check the box for C++ Desktop development
+    Windows also requires an additional Python package:
       pip install wmi
+    Starting with Python3.10, pyspectator doesn't work without modification:
+      - in collections.py, changed line 1 to: from collections.abc import MutableMapping, Container
+      - in processor.py, replaced line 5 with two lines:
+            from collections.abc import Mapping
+            from collections.abc import Callable
 '''
 
 from opcua import Server
