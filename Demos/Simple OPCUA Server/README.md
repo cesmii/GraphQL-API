@@ -7,5 +7,5 @@ pip install asyncua
 ```
 
 ### Documentation
-Documentation on this Python OPC UA server is located here: https://python-opcua.readthedocs.io/en/latest/
+Documentation on this Python OPC UA server is located here: https://github.com/FreeOpcUa/opcua-asyncio
 
