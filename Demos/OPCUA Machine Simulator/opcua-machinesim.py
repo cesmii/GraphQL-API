@@ -1,13 +1,13 @@
 #! /usr/bin/env python3
 
-''' Dependenices to install via pip:
+''' Dependenices to install:
       pip install opcua 
 '''
 # TODO: Migrate to new library: https://github.com/FreeOpcUa/opcua-asyncio
 
 from opcua import Server
 import datetime
-import time
+#import time
 import csv
 
 # TODO: These could be command line arguments
