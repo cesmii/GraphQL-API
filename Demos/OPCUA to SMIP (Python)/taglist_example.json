@@ -1,0 +1,17 @@
+[
+    {
+        "attribute":"TAG_NAME1",
+        "smip_attr_id":"123456",
+        "opcua_nodeid":"NODE_ID"
+    },
+    {
+        "attribute":"TAG_NAME2",
+        "smip_attr_id":"000000",
+        "opcua_nodeid":"NODE_ID"
+    },
+    {
+        "attribute":"TAG_NAME3",
+        "smip_attr_id":"999999",
+        "opcua_nodeid":"NODE_ID"
+    }
+]
