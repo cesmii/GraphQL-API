@@ -1,0 +1,9 @@
+{
+  "SMIP": {
+    "graphQlEndpoint": "https://REPLACE_WITH_INSTANCE_NAME.cesmii.net/graphql",
+    "clientId": "REPLACE_WITH_CLIENT_ID",
+    "clientSecret": "REPLACE_WITH_CLIENT_SECRET",
+    "role": "REPLACE_WITH_ROLE",
+    "userName": "REPLACE_WITH_USERNAME"
+  }
+}
